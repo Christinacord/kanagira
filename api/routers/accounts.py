@@ -15,7 +15,7 @@ from pydantic import BaseModel
 from queries.accounts import (
     AccountIn,
     AccountOut,
-    AccountRepo,
+    AccountQueries,
     DuplicateAccountError,
 )
 
@@ -38,7 +38,7 @@ async def create_account(
     info: AccountIn,
     request: Request,
     response: Response,
-    repo: AccountRepo = Depends(),
+    repo: AccountQueries = Depends(),
 ):
     hashed_password = authenticator.hash_password(info.password)
     try:
