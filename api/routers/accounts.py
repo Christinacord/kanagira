@@ -8,7 +8,7 @@ from fastapi import (
     Request,
 )
 from jwtdown_fastapi.authentication import Token
-from .auth import authenticator
+from authenticator import authenticator
 
 from pydantic import BaseModel
 
@@ -61,7 +61,7 @@ async def create_account(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
-    form = AccountForm(username=info.email, password=info.password)
+    form = AccountForm(username=info.username, password=info.password)
     token = await authenticator.login(response, request, form, repo)
     return AccountToken(account=account, **token.dict())
 
