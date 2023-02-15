@@ -34,16 +34,17 @@ class AccountQueries:
                     # Run our SELECT statement
                     result = db.execute(
                         """
-                        SELECT (id, full_name, username, email, hashed_password)
+                        SELECT id, full_name, username, email, hashed_password
                         FROM accounts
-                        WHERE id = %s;
+                        WHERE username = %s;
                         """,
                         [username]
                     )
                     record = result.fetchone()
+                    print(record)
                     if record is None:
                         return None
-                    return self.account(record)
+                    return Account(id=record[0], full_name=record[1], username=record[2], email=record[3], hashed_password=record[4])
 
     #cleaner separating params and query
     # def create(self, info: AccountIn, hashed_password: str) -> Account:
