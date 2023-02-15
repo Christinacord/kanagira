@@ -17,10 +17,11 @@ steps = [
         CREATE TABLE swim_lanes (
             id SERIAL PRIMARY KEY NOT NULL,
             name VARCHAR(100) NOT NULL,
-            FOREIGN KEY (board_id) REFERENCES boards(id)
+            board_id INTEGER REFERENCES boards("id") ON DELETE CASCADE
         );
         """,
         # "Down" SQL statement
+        # psycopg.errors.UndefinedColumn: column "board_id" referenced in foreign key constraint does not exist
         """
         DROP TABLE swim_lanes;
         """
@@ -35,9 +36,9 @@ steps = [
             priority INTEGER NOT NULL,
             type VARCHAR(100) NOT NULL,
             difficulty INTEGER NOT NULL,
-            FOREIGN KEY (creator_id) REFERENCES accounts(id)
-            FOREIGN KEY (assignee_id) REFERENCES accounts(id)
-            FOREIGN KEY (swim_lane_id) REFERENCES swim_lanes(id)
+            creator_id INTEGER REFERENCES accounts("id") ON DELETE CASCADE,
+            assignee_id INTEGER REFERENCES accounts("id") ON DELETE CASCADE,
+            swim_lane_id INTEGER REFERENCES swim_lanes("id") ON DELETE CASCADE
         );
         """,
         # "Down" SQL statement
