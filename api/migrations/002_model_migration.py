@@ -3,7 +3,8 @@ steps = [
         # "Up" SQL statement
         """
         CREATE TABLE boards (
-            id SERIAL PRIMARY KEY NOT NULL
+            id SERIAL PRIMARY KEY NOT NULL,
+            name VARCHAR(50) NOT NULL
         );
         """,
         # "Down" SQL statement
