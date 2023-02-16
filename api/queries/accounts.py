@@ -43,7 +43,6 @@ class AccountQueries:
                     [username]
                 )
                 record = result.fetchone()
-                print(record)
                 if record is None:
                     return None
                 return Account(id=record[0], full_name=record[1], username=record[2], email=record[3], hashed_password=record[4])
@@ -52,7 +51,6 @@ class AccountQueries:
         # set up connection to database and create cursor to navigate
         with pool.connection() as conn:
             with conn.cursor() as db:
-                print(f"Inserting values into accounts table: {info.full_name}, {info.username}, {info.email}, {hashed_password}")
                 # create a new account with inputted data
                 result = db.execute(
                     """
