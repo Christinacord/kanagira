@@ -31,19 +31,19 @@ class IssueQueries:
     def get_issue_by_id(self, issue_id: int) -> IssueOut:
         with pool.getconn() as conn:
             with conn.cursor() as cursor:
-                cursor.execute(
+                result = cursor.execute(
                     """
                     SELECT id, name, description, priority, type, difficulty, creator_id, assignee_id, swim_lane_id
                     FROM issues
-                    WHERE id = %s
+                    WHERE id = %s;
                     """,
-                    (issue_id,),
+                    [issue_id]
                 )
-                row = cursor.fetchone()
-                if row is None:
+                record = result.fetchone()
+                if record is None:
                     raise ValueError(f"Could not find issue with id {issue_id}")
-                return IssueOut(*row)
-    
+                return IssueOut(id=record[0], name=record[1], description=record[2], priority=record[3], type=record[4], difficulty=record[5], creator_id=record[6], assignee_id=record[7], swim_lane_id=record[8])
+
     # Get Issues by swim_lane_id
     def get_issue_by_swim_lane_id(self, swim_lane_id: int) -> list[IssueOut]:
         with pool.getconn() as conn:
