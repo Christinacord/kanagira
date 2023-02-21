@@ -27,15 +27,15 @@ class HttpError(BaseModel):
 router = APIRouter()
 
 
-@router.get("/api/{board_id}/swim_lanes", response_model=list[SwimLaneOut])
+@router.get("/api/boards/{board_id}/swim_lanes", response_model=list[SwimLaneOut])
 async def get_swim_lanes(board_id: int, repo: SwimLaneQueries = Depends()):
     return repo.get_all_swim_lanes(board_id)
 
 
-@router.post("/api/swim_lanes")
-async def create_swim_lane(info: SwimLaneIn, repo: SwimLaneQueries = Depends()):
+@router.post("/api/boards/{board_id}/swim_lanes")
+async def create_swim_lane(board_id: int, info: SwimLaneIn, repo: SwimLaneQueries = Depends()):
     try:
-        swim_lane = repo.create_swim_lane(info)
+        swim_lane = repo.create_swim_lane(board_id, info)
     except DuplicateSwimLaneError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -47,7 +47,7 @@ async def create_swim_lane(info: SwimLaneIn, repo: SwimLaneQueries = Depends()):
 @router.put("/api/boards/{board_id}/swim_lanes/{swim_lane_id}")
 async def update_swim_lane(board_id: int, swim_lane_id: int, info: SwimLaneIn, repo: SwimLaneQueries = Depends()):
     try:
-        swim_lane = repo.update_swim_lane(info)
+        swim_lane = repo.update_swim_lane(board_id, swim_lane_id, info)
     except DuplicateSwimLaneError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

@@ -35,7 +35,8 @@ class IssueQueries:
                     """
                     SELECT id, name, description, priority, type, difficulty, creator_id, assignee_id, swim_lane_id
                     FROM issues
-                    WHERE id = %s;
+                    WHERE id = %s
+                    ORDER BY id;
                     """,
                     [issue_id]
                 )
@@ -54,6 +55,7 @@ class IssueQueries:
                     SELECT id, name, description, priority, type, difficulty, creator_id, assignee_id, swim_lane_id
                     FROM issues
                     WHERE swim_lane_id = %s
+                    ORDER BY id;
                     """,
                     [swim_lane_id]
                 )
@@ -72,6 +74,7 @@ class IssueQueries:
                     SELECT id, name, description, priority, type, difficulty, creator_id, assignee_id, swim_lane_id
                     FROM issues
                     WHERE assignee_id = %s
+                    ORDER BY id;
                     """,
                     [assignee_id]
                 )
@@ -100,17 +103,23 @@ class IssueQueries:
                 id = cursor.fetchone()[0]
                 return IssueOut(id=id, name=info.name, description=info.description, priority=info.priority, type=info.type, difficulty=info.difficulty, creator_id=creator_id, swim_lane_id=swim_lane_id)
 
-
-    def update(self, info: IssueIn) -> IssueOut:
+    def update(self, issue_id, info: IssueIn) -> IssueOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    INSERT INTO issues (name, description, priority, type, difficulty, assignee_id)
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    UPDATE issues
+                    SET name = %s,
+                        description = %s,
+                        priority = %s,
+                        type = %s,
+                        difficulty = %s,
+                        assignee_id = %s
+                    WHERE id = %s
                     RETURNING id;
                     """,
-                    [info.name, info.description, info.priority, info.type, info.difficulty, info.assignee_id]
+                    [info.name, info.description, info.priority, info.type,
+                        info.difficulty, info.assignee_id, issue_id]
                 )
                 id = result.fetchone()[0]
-                return IssueIn(id=id, name=info.name, description=info.description, priority=info.priority, type=info.type, difficulty=info.difficulty)
+                return IssueIn(id=id, name=info.name, description=info.description, priority=info.priority, type=info.type, difficulty=info.difficulty, assignee_id=info.assignee_id)

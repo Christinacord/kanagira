@@ -8,7 +8,6 @@ class DuplicateSwimLaneError(ValueError):
 
 class SwimLaneIn(BaseModel):
     name: str
-    board_id: int
 
 
 class SwimLaneOut(BaseModel):
@@ -25,14 +24,15 @@ class SwimLaneQueries:
                     """
                     SELECT id, name, board_id
                     FROM swim_lanes
-                    WHERE board_id = %s;
+                    WHERE board_id = %s
+                    ORDER BY id;
                     """,
                     [board_id]
                 )
                 records = result.fetchall()
                 return [SwimLaneOut(id=record[0], name=record[1], board_id=record[2]) for record in records]
 
-    def create_swim_lane(self, info: SwimLaneIn) -> SwimLaneOut:
+    def create_swim_lane(self, board_id: int, info: SwimLaneIn) -> SwimLaneOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
@@ -41,22 +41,22 @@ class SwimLaneQueries:
                     VALUES (%s, %s)
                     RETURNING id;
                     """,
-                    [info.name, info.board_id]
+                    [info.name, board_id]
                 )
                 id = result.fetchone()[0]
-                return SwimLaneOut(id=id, name=info.name, board_id=info.board_id)
+                return SwimLaneOut(id=id, name=info.name, board_id=board_id)
 
-
-    def update_swim_lane(self, info: SwimLaneIn) -> SwimLaneOut:
+    def update_swim_lane(self, board_id: int, swim_lane_id: int, info: SwimLaneIn) -> SwimLaneOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    INSERT INTO swim_lanes (name, board_id)
-                    VALUES (%s, %s)
+                    UPDATE swim_lanes
+                    SET name = %s
+                    WHERE id = %s
                     RETURNING id;
                     """,
-                    [info.name, info.board_id]
+                    [info.name, swim_lane_id]
                 )
                 id = result.fetchone()[0]
-                return SwimLaneOut(id=id, name=info.name, board_id=info.board_id)
+                return SwimLaneOut(id=id, name=info.name, board_id=board_id, swim_lane_id=swim_lane_id)

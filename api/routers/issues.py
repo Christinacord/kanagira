@@ -52,7 +52,6 @@ async def get_issues_by_swim_lane_id(board_id: int, swim_lane_id: int, repo: Iss
 @router.get("/api/issues/me")
 async def get_issues_by_assignee_id(account_data: dict = Depends(authenticator.get_current_account_data), repo: IssueQueries = Depends()):
     assignee_id = account_data["id"]
-    print("*******", assignee_id)
     issue = repo.get_issues_by_assignee_id(assignee_id)
     if issue is None:
         raise HTTPException(
@@ -77,7 +76,7 @@ async def create_issue(board_id: int, swim_lane_id: int, info: IssueIn, account_
 @router.put("/api/boards/{board_id}/swim_lanes/{swim_lane_id}/issues/{issue_id}")
 async def update_issue(board_id: int, swim_lane_id: int, info: IssueIn, issue_id: int, repo: IssueQueries = Depends()):
     try:
-        issue = repo.update(info)
+        issue = repo.update(issue_id, info)
     except DuplicateIssueError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

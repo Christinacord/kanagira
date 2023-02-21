@@ -38,7 +38,8 @@ class BoardQueries:
                 result = db.execute(
                     """
                     SELECT id, name
-                    FROM boards;
+                    FROM boards
+                    ORDER BY id;
                     """
                 )
                 records = result.fetchall()
@@ -58,17 +59,18 @@ class BoardQueries:
                 id = result.fetchone()[0]
                 return BoardIn(id=id, name=info.name)
 
-
-    def update(self, info: BoardIn) -> BoardOut:
+    def update(self, board_id: int, info: BoardIn) -> BoardOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    INSERT INTO boards (name)
-                    VALUES (%s)
+                    UPDATE boards
+                    SET name = %s
+                    WHERE id = %s
+                    ORDER BY id
                     RETURNING id;
                     """,
-                    [info.name]
+                    [info.name, board_id]
                 )
                 id = result.fetchone()[0]
                 return BoardIn(id=id, name=info.name)
