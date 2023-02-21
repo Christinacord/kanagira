@@ -1,6 +1,6 @@
 from fastapi import FastAPI, APIRouter
 from authenticator import authenticator
-from routers import accounts, boards, swim_lanes
+from routers import accounts, boards, swim_lanes, issues
 import os
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -10,6 +10,7 @@ app.include_router(authenticator.router, tags=["accounts"])
 app.include_router(accounts.router, tags=["accounts"])
 app.include_router(boards.router, tags=["boards"])
 app.include_router(swim_lanes.router, tags=["swim_lanes"])
+app.include_router(issues.router, tags=["issues"])
 
 app.add_middleware(
     CORSMiddleware,
