@@ -41,38 +41,45 @@ class IssueQueries:
                 )
                 record = result.fetchone()
                 if record is None:
-                    raise ValueError(f"Could not find issue with id {issue_id}")
+                    raise ValueError(
+                        f"Could not find issue with id {issue_id}")
                 return IssueOut(id=record[0], name=record[1], description=record[2], priority=record[3], type=record[4], difficulty=record[5], creator_id=record[6], assignee_id=record[7], swim_lane_id=record[8])
 
     # Get Issues by swim_lane_id
-    def get_issue_by_swim_lane_id(self, swim_lane_id: int) -> list[IssueOut]:
+    def get_issues_by_swim_lane_id(self, swim_lane_id: int) -> list[IssueOut]:
         with pool.getconn() as conn:
             with conn.cursor() as cursor:
-                cursor.execute(
+                result = cursor.execute(
                     """
                     SELECT id, name, description, priority, type, difficulty, creator_id, assignee_id, swim_lane_id
                     FROM issues
                     WHERE swim_lane_id = %s
                     """,
-                    (swim_lane_id,),
+                    [swim_lane_id]
                 )
-                rows = cursor.fetchall()
-                return [IssueOut(*row) for row in rows]
+                records = result.fetchall()
+                if records is None:
+                    raise ValueError(
+                        f"Could not find issues with swimlane id {swim_lane_id}")
+                return [IssueOut(id=record[0], name=record[1], description=record[2], priority=record[3], type=record[4], difficulty=record[5], creator_id=record[6], assignee_id=record[7], swim_lane_id=record[8]) for record in records]
 
     # Get Issues by assignee_id
-    def get_issue_by_assignee_id(self, assignee_id: int) -> list[IssueOut]:
+    def get_issues_by_assignee_id(self, assignee_id: int) -> list[IssueOut]:
         with pool.getconn() as conn:
             with conn.cursor() as cursor:
-                cursor.execute(
+                result = cursor.execute(
                     """
                     SELECT id, name, description, priority, type, difficulty, creator_id, assignee_id, swim_lane_id
                     FROM issues
                     WHERE assignee_id = %s
                     """,
-                    (assignee_id,),
+                    [assignee_id]
                 )
-                rows = cursor.fetchall()
-                return [IssueOut(*row) for row in rows]
+                records = result.fetchall()
+                if records is None:
+                    raise ValueError(
+                        f"Could not find issues with assignee id {assignee_id}")
+                return [IssueOut(id=record[0], name=record[1], description=record[2], priority=record[3], type=record[4], difficulty=record[5], creator_id=record[6], assignee_id=record[7], swim_lane_id=record[8]) for record in records]
 
     # Create issue
     # Get id of currently logged in user
@@ -87,7 +94,23 @@ class IssueQueries:
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
-                    (info.name, info.description, info.priority, info.type, info.difficulty, creator_id, None, swim_lane_id),
+                    (info.name, info.description, info.priority, info.type,
+                     info.difficulty, creator_id, None, swim_lane_id),
                 )
                 id = cursor.fetchone()[0]
                 return IssueOut(id=id, name=info.name, description=info.description, priority=info.priority, type=info.type, difficulty=info.difficulty, creator_id=creator_id, swim_lane_id=swim_lane_id)
+
+
+    def update(self, info: IssueIn) -> IssueOut:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                    INSERT INTO issues (name, description, priority, type, difficulty, assignee_id)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                    RETURNING id;
+                    """,
+                    [info.name, info.description, info.priority, info.type, info.difficulty, info.assignee_id]
+                )
+                id = result.fetchone()[0]
+                return IssueIn(id=id, name=info.name, description=info.description, priority=info.priority, type=info.type, difficulty=info.difficulty)

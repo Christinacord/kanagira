@@ -57,4 +57,18 @@ class BoardQueries:
                 )
                 id = result.fetchone()[0]
                 return BoardIn(id=id, name=info.name)
-    
+
+
+    def update(self, info: BoardIn) -> BoardOut:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                    INSERT INTO boards (name)
+                    VALUES (%s)
+                    RETURNING id;
+                    """,
+                    [info.name]
+                )
+                id = result.fetchone()[0]
+                return BoardIn(id=id, name=info.name)
