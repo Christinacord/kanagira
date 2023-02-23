@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 //handle change necessary?
 //form input types?
 //classnames for form - material ui?
+//The REACT_APP_ variable that you'll use may be different.
+//Pay attention to the url value for the specific service you're using.
 
 function LoginForm() {
   const [username, setUsername] = React.useState("");
