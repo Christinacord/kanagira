@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 function Nav() {
-  pass;
+  return <></>;
 }
 
 export default Nav;
