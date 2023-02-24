@@ -37,7 +37,9 @@ steps = [
             type VARCHAR(100) NOT NULL,
             difficulty INTEGER NOT NULL,
             creator_id INTEGER REFERENCES accounts("id") ON DELETE CASCADE,
-            assignee_id INTEGER REFERENCES accounts("id") ON DELETE CASCADE NULL,
+            assignee_id INTEGER REFERENCES accounts("id")
+                ON DELETE CASCADE
+                NULL,
             swim_lane_id INTEGER REFERENCES swim_lanes("id") ON DELETE CASCADE
         );
         """,
