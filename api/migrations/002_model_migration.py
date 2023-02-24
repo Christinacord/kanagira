@@ -10,7 +10,7 @@ steps = [
         # "Down" SQL statement
         """
         DROP TABLE boards;
-        """
+        """,
     ],
     [
         # "Up" SQL statement
@@ -22,10 +22,9 @@ steps = [
         );
         """,
         # "Down" SQL statement
-        # psycopg.errors.UndefinedColumn: column "board_id" referenced in foreign key constraint does not exist
         """
         DROP TABLE swim_lanes;
-        """
+        """,
     ],
     [
         # "Up" SQL statement
@@ -45,6 +44,6 @@ steps = [
         # "Down" SQL statement
         """
         DROP TABLE issues;
-        """
-    ]
+        """,
+    ],
 ]
