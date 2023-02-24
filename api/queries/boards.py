@@ -25,7 +25,7 @@ class BoardQueries:
                     FROM boards
                     WHERE id = %s;
                     """,
-                    [id]
+                    [id],
                 )
                 record = result.fetchone()
                 if record is None:
@@ -43,7 +43,10 @@ class BoardQueries:
                     """
                 )
                 records = result.fetchall()
-                return [BoardOut(id=record[0], name=record[1]) for record in records]
+                return [
+                    BoardOut(id=record[0], name=record[1])
+                    for record in records
+                ]
 
     def create(self, info: BoardIn) -> BoardIn:
         with pool.connection() as conn:
@@ -54,7 +57,7 @@ class BoardQueries:
                     VALUES (%s)
                     RETURNING id;
                     """,
-                    [info.name]
+                    [info.name],
                 )
                 id = result.fetchone()[0]
                 return BoardIn(id=id, name=info.name)
@@ -70,7 +73,7 @@ class BoardQueries:
                     ORDER BY id
                     RETURNING id;
                     """,
-                    [info.name, board_id]
+                    [info.name, board_id],
                 )
                 id = result.fetchone()[0]
                 return BoardIn(id=id, name=info.name)

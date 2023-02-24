@@ -10,7 +10,7 @@ steps = [
         # "Down" SQL statement
         """
         DROP TABLE boards;
-        """
+        """,
     ],
     [
         # "Up" SQL statement
@@ -22,10 +22,9 @@ steps = [
         );
         """,
         # "Down" SQL statement
-        # psycopg.errors.UndefinedColumn: column "board_id" referenced in foreign key constraint does not exist
         """
         DROP TABLE swim_lanes;
-        """
+        """,
     ],
     [
         # "Up" SQL statement
@@ -38,13 +37,15 @@ steps = [
             type VARCHAR(100) NOT NULL,
             difficulty INTEGER NOT NULL,
             creator_id INTEGER REFERENCES accounts("id") ON DELETE CASCADE,
-            assignee_id INTEGER REFERENCES accounts("id") ON DELETE CASCADE NULL,
+            assignee_id INTEGER REFERENCES accounts("id")
+                ON DELETE CASCADE
+                NULL,
             swim_lane_id INTEGER REFERENCES swim_lanes("id") ON DELETE CASCADE
         );
         """,
         # "Down" SQL statement
         """
         DROP TABLE issues;
-        """
-    ]
+        """,
+    ],
 ]
