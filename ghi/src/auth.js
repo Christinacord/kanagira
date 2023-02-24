@@ -103,16 +103,15 @@ export function useToken() {
     return handleErrorMessage(error);
   }
 
-  async function signup(username, password, email, firstName, lastName) {
+  async function signup(full_name, username, email, password) {
     const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/sign_up`;
     const response = await fetch(url, {
       method: "post",
       body: JSON.stringify({
+        full_name,
         username,
-        password,
         email,
-        first_name: firstName,
-        last_name: lastName,
+        password
       }),
       headers: {
         "Content-Type": "application/json",
@@ -124,16 +123,15 @@ export function useToken() {
     return false;
   }
 
-  async function update(username, password, email, firstName, lastName) {
+  async function update(full_name, username, email, password) {
     const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/accounts`;
     const response = await fetch(url, {
       method: "patch",
       body: JSON.stringify({
+        full_name,
         username,
-        password,
         email,
-        first_name: firstName,
-        last_name: lastName,
+        password
       }),
       headers: {
         "Content-Type": "application/json",

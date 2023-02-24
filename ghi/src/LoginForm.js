@@ -61,7 +61,7 @@ function LoginComponent() {
             </div>
           </div>
           <button variant="outlined" size="large">
-            Sign Up
+            Sign In
           </button>
         </form>
       </div>
