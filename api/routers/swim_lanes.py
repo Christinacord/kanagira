@@ -11,7 +11,7 @@ from queries.swim_lanes import (
     DuplicateSwimLaneError,
     SwimLaneIn,
     SwimLaneOut,
-    SwimLaneQueries
+    SwimLaneQueries,
 )
 
 
@@ -27,13 +27,17 @@ class HttpError(BaseModel):
 router = APIRouter()
 
 
-@router.get("/api/boards/{board_id}/swim_lanes", response_model=list[SwimLaneOut])
+@router.get(
+    "/api/boards/{board_id}/swim_lanes", response_model=list[SwimLaneOut]
+)
 async def get_swim_lanes(board_id: int, repo: SwimLaneQueries = Depends()):
     return repo.get_all_swim_lanes(board_id)
 
 
 @router.post("/api/boards/{board_id}/swim_lanes")
-async def create_swim_lane(board_id: int, info: SwimLaneIn, repo: SwimLaneQueries = Depends()):
+async def create_swim_lane(
+    board_id: int, info: SwimLaneIn, repo: SwimLaneQueries = Depends()
+):
     try:
         swim_lane = repo.create_swim_lane(board_id, info)
     except DuplicateSwimLaneError:
@@ -45,7 +49,12 @@ async def create_swim_lane(board_id: int, info: SwimLaneIn, repo: SwimLaneQuerie
 
 
 @router.put("/api/boards/{board_id}/swim_lanes/{swim_lane_id}")
-async def update_swim_lane(board_id: int, swim_lane_id: int, info: SwimLaneIn, repo: SwimLaneQueries = Depends()):
+async def update_swim_lane(
+    board_id: int,
+    swim_lane_id: int,
+    info: SwimLaneIn,
+    repo: SwimLaneQueries = Depends(),
+):
     try:
         swim_lane = repo.update_swim_lane(board_id, swim_lane_id, info)
     except DuplicateSwimLaneError:

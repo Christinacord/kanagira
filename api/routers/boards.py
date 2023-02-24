@@ -7,12 +7,7 @@ from fastapi import (
 
 from pydantic import BaseModel
 
-from queries.boards import (
-    DuplicateBoardError,
-    BoardIn,
-    BoardOut,
-    BoardQueries
-)
+from queries.boards import DuplicateBoardError, BoardIn, BoardOut, BoardQueries
 
 
 class BoardForm(BaseModel):
@@ -31,7 +26,9 @@ router = APIRouter()
 async def get_board(id: int, repo: BoardQueries = Depends()):
     board = repo.get_by_id(id)
     if board is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Board not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Board not found"
+        )
     return board
 
 
@@ -56,7 +53,9 @@ async def create_board(info: BoardIn, repo: BoardQueries = Depends()):
 
 # Update a Board
 @router.put("/api/boards/{board_id}")
-async def update_board(board_id: int, info: BoardIn, repo: BoardQueries = Depends()):
+async def update_board(
+    board_id: int, info: BoardIn, repo: BoardQueries = Depends()
+):
     try:
         board = repo.update(board_id, info)
     except DuplicateBoardError:
