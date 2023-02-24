@@ -3,5 +3,8 @@
   "python.formatting.provider": "black",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  }
 }
