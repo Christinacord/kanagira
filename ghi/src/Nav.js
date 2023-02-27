@@ -67,7 +67,17 @@ function Nav() {
               >
                 <li>
                   <NavLink aria-current="page" to="/boards">
-                    Boards
+                    My Boards
+                  </NavLink>
+                </li>
+              </ul>
+              <ul
+                className="list-menu list-menu-dark"
+                aria-labelledby="navbarDarklistMenuLink"
+              >
+                <li>
+                  <NavLink aria-current="page" to="/boards/create">
+                    Create Board
                   </NavLink>
                 </li>
               </ul>
