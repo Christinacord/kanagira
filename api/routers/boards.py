@@ -4,7 +4,8 @@ from fastapi import (
     status,
     APIRouter,
 )
-
+from typing import Optional
+from authenticator import authenticator
 from pydantic import BaseModel
 
 from queries.boards import DuplicateBoardError, BoardIn, BoardOut, BoardQueries
@@ -24,18 +25,22 @@ router = APIRouter()
 # Get one Board by ID
 @router.get("/api/boards/{id}")
 async def get_board(id: int, repo: BoardQueries = Depends()):
-    board = repo.get_by_id(id)
-    if board is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Board not found"
-        )
-    return board
+    account_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+    if account_data:
+        board = repo.get_by_id(id)
+        if board is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Board not found"
+            )
+        return board
 
 
 # Get all Boards
 @router.get("/api/boards", response_model=list[BoardOut])
 async def get_boards(repo: BoardQueries = Depends()):
-    return repo.get_all_boards()
+    account_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+    if account_data:
+        return repo.get_all_boards()
 
 
 # Create a Board

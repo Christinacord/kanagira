@@ -97,6 +97,7 @@ export function useToken() {
     if (response.ok) {
       const token = await getTokenInternal();
       setToken(token);
+      navigate("/");
       return;
     }
     let error = await response.json();
@@ -104,14 +105,14 @@ export function useToken() {
   }
 
   async function signup(full_name, username, email, password) {
-    const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/sign_up`;
+    const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/accounts`;
     const response = await fetch(url, {
       method: "post",
       body: JSON.stringify({
         full_name,
         username,
         email,
-        password
+        password,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -119,6 +120,7 @@ export function useToken() {
     });
     if (response.ok) {
       await login(username, password);
+      navigate("/boards");
     }
     return false;
   }
@@ -131,7 +133,7 @@ export function useToken() {
         full_name,
         username,
         email,
-        password
+        password,
       }),
       headers: {
         "Content-Type": "application/json",
