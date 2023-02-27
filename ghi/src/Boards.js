@@ -1,4 +1,10 @@
+import { useToken } from "./auth.js";
+
 function Boards() {
+  const { token } = useToken();
+  if (!token) {
+    return <div>Please Log In</div>;
+  }
   return (
     <>
       <div>

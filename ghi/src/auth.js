@@ -80,7 +80,6 @@ export function useToken() {
       await fetch(url, { method: "delete", credentials: "include" });
       internalToken = null;
       setToken(null);
-      console.log("Logged out?", token);
       navigate("/");
     }
   }
@@ -98,7 +97,6 @@ export function useToken() {
     if (response.ok) {
       const token = await getTokenInternal();
       setToken(token);
-      console.log(token);
       navigate("/");
       return;
     }

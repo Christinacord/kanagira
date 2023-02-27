@@ -3,38 +3,13 @@ import { logout } from "./auth";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "./auth.js";
 
-//DELETE /token to log out, which deletes the cookie set with logging in
-// function Logout() {
-// const navigate = useNavigate();
-// const { token, logout } = useToken();
-// const handleClick = async (e) => {
-//   e.preventDefault();
-//   logout();
-
-//   e.preventDefault();
-
-//   const logout = await fetch("http://localhost:8100/token", {
-//     method: "DELETE",
-//     credentials: "include",
-//     headers: { accept: "application/json" },
-//   });
-//   if (logout.ok) {
-//     navigate("/");
-//   }
-// };
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-//   signup(full_name, username, email, password);
-//   };
-// }
-
 function Nav() {
   const { token, logout } = useToken();
   const handleClick = async (e) => {
     e.preventDefault();
     logout();
   };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
