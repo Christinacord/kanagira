@@ -28,6 +28,24 @@ class Account(BaseModel):
 
 
 class AccountQueries:
+    def get_all_accounts(self) -> list[AccountOut]:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                    SELECT id, full_name, username
+                    FROM accounts
+                    ORDER BY id;
+                    """
+                )
+                records = result.fetchall()
+                return [
+                    AccountOut(id=record[0],
+                               full_name=record[1],
+                               username=record[2])
+                    for record in records
+                ]
+
     def get_by_username(self, username: str) -> Account:
         with pool.connection() as conn:
             with conn.cursor() as db:

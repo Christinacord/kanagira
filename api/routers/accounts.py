@@ -36,6 +36,12 @@ class HttpError(BaseModel):
 router = APIRouter()
 
 
+# Get all Boards
+@router.get("/api/accounts", response_model=list[AccountOut])
+async def get_accounts(repo: AccountQueries = Depends()):
+    return repo.get_all_accounts()
+
+
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
