@@ -6,52 +6,55 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function IssueForm() {
     const navigate = useNavigate();
     const { board_id, swimlane_id } = useParams();
-    console.log("board id", board_id, "swimlane id", swimlane_id);
-    const [taskname, setTaskName] = React.useState("");
-    const [issue_type, setIssue_Type] = React.useState("");
+    const [name, setName] = React.useState("");
+    const [type, setType] = React.useState("");
     const [description, setDescription] = React.useState("");
-    const [assignee, setAssignee] = React.useState("");
-    // const [creator, setCreator] = React.useState("");
+    const [priority, setPriority] = React.useState("");
+    const [difficulty, setDifficulty] = React.useState("");
 
     const { token } = useToken();
     if (!token) {
         return <div>Please Log In</div>;
     }
 
-    const handleTaskNameChange = (e) => {
+    const handleNameChange = (e) => {
         const value = e.target.value;
-        setTaskName(value);
+        setName(value);
     };
-    const handleIssue_TypeChange = (e) => {
+    const handleTypeChange = (e) => {
         const value = e.target.value;
-        setIssue_Type(value);
+        setType(value);
     };
     const handleDescriptionChange = (e) => {
         const value = e.target.value;
         setDescription(value);
     };
-    const handleAssigneeChange = (e) => {
+
+    const handlePriorityChange = (e) => {
         const value = e.target.value;
-        setAssignee(value);
+        setPriority(value);
     };
-    // const handleCreator = (e) => {
-    //     const value = e.target.value;
-    //     setCreator(value);
+
+    const handleDifficultyChange = (e) => {
+        const value = e.target.value;
+        setDifficulty(value);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {};
-        data.taskname = taskname;
-        data.issue_type = issue_type;
+        data.name = name;
         data.description = description;
-        data.assignee = assignee;
-        // data.creator = creator;
-        console.log(data);
-        const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swimlane/${swimlane_id}/issues`;
+        data.priority = priority;
+        data.type = type;
+        data.difficulty = difficulty;
+        data.assignee = 0;
+        const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swimlane_id}/issues`;
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
+                "Authorization": "Bearer " + token,
                 "Content-Type": "application/json",
             },
         };
@@ -59,8 +62,7 @@ export default function IssueForm() {
         const response = await fetch(issuesUrl, fetchConfig);
         if (response.ok) {
             const entry = await response.json();
-            // navigate("/issues");
-            console.log("this is the entry", entry);
+
         }
     };
 
@@ -73,33 +75,15 @@ export default function IssueForm() {
                             <div className="row">
                                 <div className="form">
                                     <input
-                                        onChange={handleTaskNameChange}
+                                        onChange={handleNameChange}
                                         required
-                                        placeholder="task_name"
+                                        placeholder="name"
                                         type="text"
-                                        id="task_name"
-                                        name="task_name"
+                                        id="name"
+                                        name="name"
                                         className="form"
                                     />
-                                    <label htmlFor="task_name">Task Name</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="issue-page">
-                        <div className="issue-form">
-                            <div className="row">
-                                <div className="form">
-                                    <input
-                                        onChange={handleIssue_TypeChange}
-                                        required
-                                        placeholder="issue_type"
-                                        type="text"
-                                        id="issue_type"
-                                        name="issue_type"
-                                        className="form"
-                                    />
-                                    <label htmlFor="issue_type">Issue Type</label>
+                                    <label htmlFor="name">Issue Name</label>
                                 </div>
                             </div>
                         </div>
@@ -127,17 +111,57 @@ export default function IssueForm() {
                             <div className="row">
                                 <div className="form">
                                     <input
-                                        onChange={handleAssigneeChange}
+                                        onChange={handlePriorityChange}
                                         required
-                                        placeholder="assignee"
+                                        placeholder="priority"
                                         type="text"
-                                        id="assignee"
-                                        name="assignee"
+                                        id="priority"
+                                        name="priority"
                                         className="form"
                                     />
-                                    <label htmlFor="assignee">Assignee</label>
+                                    <label htmlFor="priority">Priority</label>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div className="issue-page">
+                        <div className="issue-form">
+                            <div className="row">
+                                <div className="form">
+                                    <input
+                                        onChange={handleTypeChange}
+                                        required
+                                        placeholder="issue type"
+                                        type="text"
+                                        id="type"
+                                        name="type"
+                                        className="form"
+                                    />
+                                    <label htmlFor="type">Issue Type</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="issue-page">
+                        <div className="issue-form">
+                            <div className="row">
+                                <div className="form">
+                                    <input
+                                        onChange={handleDifficultyChange}
+                                        required
+                                        placeholder="difficulty"
+                                        type="text"
+                                        id="difficulty"
+                                        name="difficulty"
+                                        className="form"
+                                    />
+                                    <label htmlFor="difficulty">Difficulty</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="issue-page">
+                        <div className="issue-form">
                             <button variant="outlined" size="large">
                                 Create Issue
                             </button>

@@ -66,8 +66,8 @@ class IssueQueries:
                 result = cursor.execute(
                     """
                     SELECT
-                    (id, name, description, priority, type, difficulty,
-                    creator_id, assignee_id, swim_lane_id)
+                    id, name, description, priority, type, difficulty,
+                    creator_id, assignee_id, swim_lane_id
                     FROM issues
                     WHERE swim_lane_id = %s
                     ORDER BY id;
