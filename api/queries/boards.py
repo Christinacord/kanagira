@@ -59,8 +59,40 @@ class BoardQueries:
                     """,
                     [info.name],
                 )
-                id = result.fetchone()[0]
-                return BoardIn(id=id, name=info.name)
+                board_id = result.fetchone()[0]
+                db.execute(
+                    """
+                    INSERT INTO swim_lanes (name, board_id)
+                    VALUES (%s, %s),(%s, %s),(%s, %s), (%s, %s),(%s, %s)
+                    """,
+                    [
+                        "Backlog",
+                        board_id,
+                        "In Progress",
+                        board_id,
+                        "Review",
+                        board_id,
+                        "Testing",
+                        board_id,
+                        "Complete",
+                        board_id,
+                    ],
+                )
+                return BoardIn(id=board_id, name=info.name)
+
+    # def create(self, info: BoardIn) -> BoardIn:
+    #     with pool.connection() as conn:
+    #         with conn.cursor() as db:
+    #             result = db.execute(
+    #                 """
+    #                 INSERT INTO boards (name)
+    #                 VALUES (%s)
+    #                 RETURNING id;
+    #                 """,
+    #                 [info.name],
+    #             )
+    #             id = result.fetchone()[0]
+    #             return BoardIn(id=id, name=info.name)
 
     def update(self, board_id: int, info: BoardIn) -> BoardOut:
         with pool.connection() as conn:

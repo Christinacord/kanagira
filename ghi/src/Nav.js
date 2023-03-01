@@ -98,7 +98,7 @@ function Nav() {
               >
                 <li>
                   <NavLink aria-current="page" to="#">
-                    PLACEHOLD
+                    Create Issue
                   </NavLink>
                 </li>
               </ul>
