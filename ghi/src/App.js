@@ -13,10 +13,6 @@ import BoardForm from "./BoardForm";
 import IssueForm from "./IssueForm";
 
 
-import IssueForm from "./IssueForm";
-
-
-
 function GetToken() {
   // Get token from JWT cookie (if already logged in)
   useToken();
