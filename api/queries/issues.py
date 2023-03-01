@@ -29,7 +29,9 @@ class IssueOut(BaseModel):
 
 class IssueQueries:
     def get_issue_by_id(self, issue_id: int) -> IssueOut:
-        with pool.getconn() as conn:
+        conn = None
+        try:
+            conn = pool.getconn()
             with conn.cursor() as cursor:
                 result = cursor.execute(
                     """
@@ -58,10 +60,14 @@ class IssueQueries:
                     assignee_id=record[7],
                     swim_lane_id=record[8],
                 )
+        finally:
+            if conn is not None:
+                pool.putconn(conn)
 
-    # Get Issues by swim_lane_id
     def get_issues_by_swim_lane_id(self, swim_lane_id: int) -> list[IssueOut]:
-        with pool.getconn() as conn:
+        conn = None
+        try:
+            conn = pool.getconn()
             with conn.cursor() as cursor:
                 result = cursor.execute(
                     """
@@ -93,10 +99,14 @@ class IssueQueries:
                     )
                     for record in records
                 ]
+        finally:
+            if conn is not None:
+                pool.putconn(conn)
 
-    # Get Issues by assignee_id
     def get_issues_by_assignee_id(self, assignee_id: int) -> list[IssueOut]:
-        with pool.getconn() as conn:
+        conn = None
+        try:
+            conn = pool.getconn()
             with conn.cursor() as cursor:
                 result = cursor.execute(
                     """
@@ -128,15 +138,16 @@ class IssueQueries:
                     )
                     for record in records
                 ]
+        finally:
+            if conn is not None:
+                pool.putconn(conn)
 
-    # Create issue
-    # Get id of currently logged in user
-    # Get id of the swim lane
-    # Create the issue and assign the currently logged in user as the creator
     def create(
         self, info: IssueIn, creator_id: int, swim_lane_id: int
     ) -> IssueOut:
-        with pool.getconn() as conn:
+        conn = None
+        try:
+            conn = pool.getconn()
             with conn.cursor() as cursor:
                 cursor.execute(
                     """
@@ -168,9 +179,14 @@ class IssueQueries:
                     creator_id=creator_id,
                     swim_lane_id=swim_lane_id,
                 )
+        finally:
+            if conn is not None:
+                pool.putconn(conn)
 
     def update(self, issue_id, info: IssueIn) -> IssueOut:
-        with pool.connection() as conn:
+        conn = None
+        try:
+            conn = pool.getconn()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -204,3 +220,6 @@ class IssueQueries:
                     difficulty=info.difficulty,
                     assignee_id=info.assignee_id,
                 )
+        finally:
+            if conn is not None:
+                pool.putconn(conn)

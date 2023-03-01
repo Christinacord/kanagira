@@ -18,7 +18,9 @@ class SwimLaneOut(BaseModel):
 
 class SwimLaneQueries:
     def get_all_swim_lanes(self, board_id: int) -> list[SwimLaneOut]:
-        with pool.connection() as conn:
+        conn = None
+        try:
+            conn = pool.getconn()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -36,9 +38,14 @@ class SwimLaneQueries:
                     )
                     for record in records
                 ]
+        finally:
+            if conn is not None:
+                pool.putconn(conn)
 
     def create_swim_lane(self, board_id: int, info: SwimLaneIn) -> SwimLaneOut:
-        with pool.connection() as conn:
+        conn = None
+        try:
+            conn = pool.getconn()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -50,11 +57,16 @@ class SwimLaneQueries:
                 )
                 id = result.fetchone()[0]
                 return SwimLaneOut(id=id, name=info.name, board_id=board_id)
+        finally:
+            if conn is not None:
+                pool.putconn(conn)
 
     def update_swim_lane(
         self, board_id: int, swim_lane_id: int, info: SwimLaneIn
     ) -> SwimLaneOut:
-        with pool.connection() as conn:
+        conn = None
+        try:
+            conn = pool.getconn()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -72,3 +84,6 @@ class SwimLaneQueries:
                     board_id=board_id,
                     swim_lane_id=swim_lane_id,
                 )
+        finally:
+            if conn is not None:
+                pool.putconn(conn)

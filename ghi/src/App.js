@@ -29,7 +29,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/signup" element={<SignupComponent />} />
-          <Route path="/boards" element={<BoardView />} />
+          <Route path="/boards/:board_id/view" element={<BoardView />} />
           <Route path="/boards/create" element={<BoardForm />} />
           <Route path="/boards/:board_id/swimlane/:swimlane_id/issues/create" element={<IssueForm />} />
         </Routes>

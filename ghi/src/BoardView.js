@@ -1,40 +1,50 @@
+import React, { useEffect, useState } from "react";
 import { useToken } from "./auth.js";
 import { useNavigate, useParams } from "react-router-dom";
 
 function BoardView() {
+  const [issues, setIssues] = useState([]);
 
   const { board_id } = useParams();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = {};
-    const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lane`;
-    const fetchConfig = {
-      method: "GET",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const { token } = useToken();
+
+  useEffect(() => {
+
+    const fetchIssues = async () => {
+      const issuesData = [];
+      const swimlaneStartId = ((board_id - 1) * 5) + 1;
+      for (let i = swimlaneStartId; i < swimlaneStartId + 5; i++) {
+        const swim_lane_id = i;
+        const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
+        const fetchConfig = {
+          method: "GET",
+          headers: {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        };
+        const response = await fetch(issuesUrl, fetchConfig);
+        if (response.ok) {
+          const data = await response.json();
+          issuesData.push(...data);
+        }
+      }
+      setIssues(issuesData);
     };
 
-    const response = await fetch(issuesUrl, fetchConfig);
-    if (response.ok) {
-      const entry = await response.json();
-      console.log("this is the entry", entry);
-    }
-  };
+    fetchIssues();
+}, []);
 
+  console.log(issues);
 
-  const { token } = useToken();
   if (!token) {
     return <div>Please Log In</div>;
   }
 
-
-  
-
   return (
-    <></>
+    <>
+    </>
   );
 }
 

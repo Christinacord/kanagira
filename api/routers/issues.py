@@ -43,7 +43,7 @@ async def get_issue_by_id(
     return issue
 
 
-@router.get("/api/boards/{board_id}/swim_lanes/{swim_lane_id}/issues/")
+@router.get("/api/boards/{board_id}/swim_lanes/{swim_lane_id}/issues")
 async def get_issues_by_swim_lane_id(
     board_id: int, swim_lane_id: int, repo: IssueQueries = Depends()
 ):
