@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { logout } from "./auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useToken } from "./auth.js";
 
 function Nav() {
+  const { board_id, swimlane_id } = useParams();
   const { token, logout } = useToken();
   const handleClick = async (e) => {
     e.preventDefault();
@@ -97,7 +98,7 @@ function Nav() {
                 aria-labelledby="navbarDarklistMenuLink"
               >
                 <li>
-                  <NavLink aria-current="page" to="#">
+                  <NavLink aria-current="page" to={`/boards/${board_id}/swimlanes/${swimlane_id}/issues`}>
                     Create Issue
                   </NavLink>
                 </li>

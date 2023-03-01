@@ -13,7 +13,6 @@ import BoardForm from "./BoardForm";
 import IssueForm from "./IssueForm";
 
 
-
 function GetToken() {
   // Get token from JWT cookie (if already logged in)
   useToken();
@@ -32,7 +31,7 @@ function App() {
           <Route path="/signup" element={<SignupComponent />} />
           <Route path="/boards" element={<Boards />} />
           <Route path="/boards/create" element={<BoardForm />} />
-          <Route path="/api/boards/board_id/swimlane/swimlane_id/issues/create" element={<IssueForm />} />
+          <Route path="/api/boards/:board_id/swimlane/:swimlane_id/issues/create" element={<IssueForm />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function IssueForm() {
     const navigate = useNavigate();
     const { board_id, swimlane_id } = useParams();
+    console.log("board id", board_id, "swimlane id", swimlane_id);
     const [taskname, setTaskName] = React.useState("");
     const [issue_type, setIssue_Type] = React.useState("");
     const [description, setDescription] = React.useState("");
@@ -45,7 +46,7 @@ export default function IssueForm() {
         data.description = description;
         data.assignee = assignee;
         // data.creator = creator;
-
+        console.log(data);
         const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swimlane/${swimlane_id}/issues`;
         const fetchConfig = {
             method: "POST",
@@ -58,91 +59,91 @@ export default function IssueForm() {
         const response = await fetch(issuesUrl, fetchConfig);
         if (response.ok) {
             const entry = await response.json();
-            navigate("/issues");
+            // navigate("/issues");
+            console.log("this is the entry", entry);
         }
     };
 
     return (
         <>
-            <div className="issue-page">
-                <div className="issue-form">
-                    <form onSubmit={handleSubmit} id="issue-form">
-                        <div className="row">
-                            <div className="form">
-                                <input
-                                    onChange={handleTaskNameChange}
-                                    required
-                                    placeholder="task_name"
-                                    type="text"
-                                    id="task_name"
-                                    name="task_name"
-                                    className="form"
-                                />
-                                <label htmlFor="task_name">Task Name</label>
+            <div>
+                <form onSubmit={handleSubmit} id="issue-form">
+                    <div className="issue-page">
+                        <div className="issue-form">
+                            <div className="row">
+                                <div className="form">
+                                    <input
+                                        onChange={handleTaskNameChange}
+                                        required
+                                        placeholder="task_name"
+                                        type="text"
+                                        id="task_name"
+                                        name="task_name"
+                                        className="form"
+                                    />
+                                    <label htmlFor="task_name">Task Name</label>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-
-            <div className="issue-page">
-                <div className="issue-form">
-                    <div className="row">
-                        <div className="form">
-                            <input
-                                onChange={handleIssue_TypeChange}
-                                required
-                                placeholder="issue_type"
-                                type="text"
-                                id="issue_type"
-                                name="issue_type"
-                                className="form"
-                            />
-                            <label htmlFor="issue_type">Issue Type</label>
+                    </div>
+                    <div className="issue-page">
+                        <div className="issue-form">
+                            <div className="row">
+                                <div className="form">
+                                    <input
+                                        onChange={handleIssue_TypeChange}
+                                        required
+                                        placeholder="issue_type"
+                                        type="text"
+                                        id="issue_type"
+                                        name="issue_type"
+                                        className="form"
+                                    />
+                                    <label htmlFor="issue_type">Issue Type</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div className="issue-page">
-                <div className="issue-form">
-                    <div className="row">
-                        <div className="form">
-                            <input
-                                onChange={handleDescriptionChange}
-                                required
-                                placeholder="description"
-                                type="text"
-                                id="description"
-                                name="description"
-                                className="form"
-                            />
-                            <label htmlFor="description">Description</label>
+                    <div className="issue-page">
+                        <div className="issue-form">
+                            <div className="row">
+                                <div className="form">
+                                    <input
+                                        onChange={handleDescriptionChange}
+                                        required
+                                        placeholder="description"
+                                        type="text"
+                                        id="description"
+                                        name="description"
+                                        className="form"
+                                    />
+                                    <label htmlFor="description">Description</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div className="issue-page">
-                <div className="issue-form">
-                    <div className="row">
-                        <div className="form">
-                            <input
-                                onChange={handleAssigneeChange}
-                                required
-                                placeholder="assignee"
-                                type="text"
-                                id="assignee"
-                                name="assignee"
-                                className="form"
-                            />
-                            <label htmlFor="assignee">Assignee</label>
+                    <div className="issue-page">
+                        <div className="issue-form">
+                            <div className="row">
+                                <div className="form">
+                                    <input
+                                        onChange={handleAssigneeChange}
+                                        required
+                                        placeholder="assignee"
+                                        type="text"
+                                        id="assignee"
+                                        name="assignee"
+                                        className="form"
+                                    />
+                                    <label htmlFor="assignee">Assignee</label>
+                                </div>
+                            </div>
+                            <button variant="outlined" size="large">
+                                Create Issue
+                            </button>
                         </div>
                     </div>
-                    <button variant="outlined" size="large">
-                        Create Issue
-                    </button>
-                </div>
+                </form>
             </div>
         </>
     );
