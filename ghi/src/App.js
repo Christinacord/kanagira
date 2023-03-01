@@ -8,7 +8,7 @@ import "./App.css";
 import { AuthProvider, useToken } from "./auth.js";
 import LoginComponent from "./LoginForm";
 import SignupComponent from "./SignupForm";
-import Boards from "./Boards";
+import BoardView from "./BoardView";
 import BoardForm from "./BoardForm";
 import IssueForm from "./IssueForm";
 
@@ -29,9 +29,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/signup" element={<SignupComponent />} />
-          <Route path="/boards" element={<Boards />} />
+          <Route path="/boards" element={<BoardView />} />
           <Route path="/boards/create" element={<BoardForm />} />
-          <Route path="/api/boards/:board_id/swimlane/:swimlane_id/issues/create" element={<IssueForm />} />
+          <Route path="/boards/:board_id/swimlane/:swimlane_id/issues/create" element={<IssueForm />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
