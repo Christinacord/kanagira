@@ -4,11 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useToken } from "./auth.js";
 
 function Nav() {
+  const navigate = useNavigate();
   const { board_id, swimlane_id } = useParams();
   const { token, logout } = useToken();
   const handleClick = async (e) => {
     e.preventDefault();
     logout();
+    navigate("/");
   };
 
   return (

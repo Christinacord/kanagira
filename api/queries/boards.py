@@ -19,7 +19,7 @@ class BoardQueries:
     def get_by_id(self, id: int) -> BoardOut:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -40,7 +40,7 @@ class BoardQueries:
     def get_all_boards(self) -> list[BoardOut]:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -59,9 +59,7 @@ class BoardQueries:
                 pool.putconn(conn)
 
     def create(self, info: BoardIn) -> BoardIn:
-        conn = None
-        try:
-            conn = pool.getconn()
+        with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -91,14 +89,11 @@ class BoardQueries:
                     ],
                 )
                 return BoardIn(id=board_id, name=info.name)
-        finally:
-            if conn is not None:
-                pool.putconn(conn)
 
     def update(self, board_id: int, info: BoardIn) -> BoardOut:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as db:
                 result = db.execute(
                     """

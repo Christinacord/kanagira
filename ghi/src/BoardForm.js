@@ -35,7 +35,7 @@ function BoardForm() {
     const response = await fetch(boardsUrl, fetchConfig);
     if (response.ok) {
       const entry = await response.json();
-      navigate("/boards");
+      // navigate("/");
     }
   };
 

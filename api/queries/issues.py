@@ -31,7 +31,7 @@ class IssueQueries:
     def get_issue_by_id(self, issue_id: int) -> IssueOut:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as cursor:
                 result = cursor.execute(
                     """
@@ -67,7 +67,7 @@ class IssueQueries:
     def get_issues_by_swim_lane_id(self, swim_lane_id: int) -> list[IssueOut]:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as cursor:
                 result = cursor.execute(
                     """
@@ -106,7 +106,7 @@ class IssueQueries:
     def get_issues_by_assignee_id(self, assignee_id: int) -> list[IssueOut]:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as cursor:
                 result = cursor.execute(
                     """
@@ -145,9 +145,7 @@ class IssueQueries:
     def create(
         self, info: IssueIn, creator_id: int, swim_lane_id: int
     ) -> IssueOut:
-        conn = None
-        try:
-            conn = pool.getconn()
+        with pool.connection() as conn:
             with conn.cursor() as cursor:
                 cursor.execute(
                     """
@@ -179,14 +177,11 @@ class IssueQueries:
                     creator_id=creator_id,
                     swim_lane_id=swim_lane_id,
                 )
-        finally:
-            if conn is not None:
-                pool.putconn(conn)
 
     def update(self, issue_id, info: IssueIn) -> IssueOut:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as db:
                 result = db.execute(
                     """

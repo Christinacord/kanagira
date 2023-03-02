@@ -7,12 +7,19 @@ Week 17
 
 Week 16
 
-2/27/23: Driver: ??. We did a stand up, fine-tuned our swim lanes and outstanding issues and their statuses. Today we are planning on testing the sign up form,
+3/1/23: Driver: Christina. We tested out our issue creation form and it turned out to be an issue with the router not our JS form.
+Driver: Ryan. We then went and worked on our Main Project. We
+figure out which board we are on and then do a get request for the swim lanes that are on it.
+figure out how to make the swimlanes show up properly. Swimlanes should have a component within it and then we should have the issues within it. Maybe do a card.
+
+2/28/23: Driver: Ian. We split off to work on the nav bar. Originally, we were going to get the functionality in, but then as we started to work and plan things out we realized that we would have to refactor everything in Material UI. Worked a little bit before we came together and pivoted. Ian continued to drive and he, Ryan, and I worked on getting the Boards creation query to also automatically create 5 pre-set swim lanes. Break, then we came together and worked out the issue creation form that Christina and Joe were working on. We had to fix the form brackets and div setup in the JSX. We also had to resolve how we were going to call in the board id and swim lane id for the post Request URL. Got help from Candice and Justin to fix our useParams and call it in. Finally got it to go through on the front end (seemingly) but when testing in Swagger, Docker kept crashing. Will need to test tomorrow. We did our git pushes and merge requests.
+
+2/27/23: Driver: Daniel (me). We did a stand up, fine-tuned our swim lanes and outstanding issues and their statuses. Today we are planning on testing the sign up form, and working on the log out button. We, with the help of Candice also made protected our Boards page. I am still a little unclear on it, and how exactly it works. But we got enough clarification to work it, and it should be the same duplication process to apply it to all of our pages. One thing I had not realized was the difference in protecting the back end routes, the front end pages, and the front end to back end requests.
 
 Week 15
-2/24/23: Driver: Ian?
+2/24/23: Driver: Ian. Christina, Ian, and I worked together again. We had a shorter day today because of starting late, (taking a little longer with the stand up, and the social hack hour). We continued work on the nav bar getting in the dropdown functionality. Tried to troubleshoot our Material UI but it's giving errors. We will need to ask Candice about it.
 
-2/23/23: Driver: Christina?
+2/23/23: Driver: Christina. Christina, Ian, and I worked together. We worked on the Sign up Page we worked on the Nav Bar. Added links to all our pages (with placeholders). Used the front end cookbook from Learn as a guide/template.
 
 2/22/23: Driver: Daniel. So we split into groups for the first time. I was with Ryan and we started off with the navbar but quickly realized that we didn't have any pages to pass in so we switched over to the login page. We installed the npm for Material UI. We added an auth.js with the cookbook functions. After going about it our own way, we realized that a lot fo the functionality we were writing was taken care of with the cookbook. We may need to redo the login page but it should make everything else afterwards much simpler.
 

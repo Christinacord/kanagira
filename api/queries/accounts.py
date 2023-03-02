@@ -31,7 +31,7 @@ class AccountQueries:
     def get_all_accounts(self) -> list[AccountOut]:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -54,7 +54,7 @@ class AccountQueries:
     def get_by_username(self, username: str) -> Account:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -79,9 +79,7 @@ class AccountQueries:
                 pool.putconn(conn)
 
     def create(self, info: AccountIn, hashed_password: str) -> Account:
-        conn = None
-        try:
-            conn = pool.getconn()
+        with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -105,9 +103,6 @@ class AccountQueries:
                     email=info.email,
                     hashed_password=hashed_password,
                 )
-        finally:
-            if conn is not None:
-                pool.putconn(conn)
 
     def delete(self, account_id: int) -> bool:
         try:

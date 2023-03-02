@@ -20,7 +20,7 @@ class SwimLaneQueries:
     def get_all_swim_lanes(self, board_id: int) -> list[SwimLaneOut]:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -45,7 +45,7 @@ class SwimLaneQueries:
     def create_swim_lane(self, board_id: int, info: SwimLaneIn) -> SwimLaneOut:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -66,7 +66,7 @@ class SwimLaneQueries:
     ) -> SwimLaneOut:
         conn = None
         try:
-            conn = pool.getconn()
+            conn = pool.connection()
             with conn.cursor() as db:
                 result = db.execute(
                     """
