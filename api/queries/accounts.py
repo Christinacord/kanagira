@@ -29,9 +29,7 @@ class Account(BaseModel):
 
 class AccountQueries:
     def get_all_accounts(self) -> list[AccountOut]:
-        conn = None
-        try:
-            conn = pool.connection()
+        with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -47,14 +45,60 @@ class AccountQueries:
                                username=record[2])
                     for record in records
                 ]
-        finally:
-            if conn is not None:
-                pool.putconn(conn)
+
+# class AccountQueries:
+#     def get_all_accounts(self) -> list[AccountOut]:
+#         conn = None
+#         try:
+#             conn = pool.connection()
+#             with conn.cursor() as db:
+#                 result = db.execute(
+#                     """
+#                     SELECT id, full_name, username
+#                     FROM accounts
+#                     ORDER BY id;
+#                     """
+#                 )
+#                 records = result.fetchall()
+#                 return [
+#                     AccountOut(id=record[0],
+#                                full_name=record[1],
+#                                username=record[2])
+#                     for record in records
+#                 ]
+#         finally:
+#             if conn is not None:
+#                 pool.putconn(conn)
+
+    # def get_by_username(self, username: str) -> Account:
+    #     conn = None
+    #     try:
+    #         conn = pool.connection()
+    #         with conn.cursor() as db:
+    #             result = db.execute(
+    #                 """
+    #                 SELECT id, full_name, username, email, hashed_password
+    #                 FROM accounts
+    #                 WHERE username = %s;
+    #                 """,
+    #                 [username],
+    #             )
+    #             record = result.fetchone()
+    #             if record is None:
+    #                 return None
+    #             return Account(
+    #                 id=record[0],
+    #                 full_name=record[1],
+    #                 username=record[2],
+    #                 email=record[3],
+    #                 hashed_password=record[4],
+    #             )
+    #     finally:
+    #         if conn is not None:
+    #             pool.putconn(conn)
 
     def get_by_username(self, username: str) -> Account:
-        conn = None
-        try:
-            conn = pool.connection()
+        with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
@@ -74,9 +118,6 @@ class AccountQueries:
                     email=record[3],
                     hashed_password=record[4],
                 )
-        finally:
-            if conn is not None:
-                pool.putconn(conn)
 
     def create(self, info: AccountIn, hashed_password: str) -> Account:
         with pool.connection() as conn:
