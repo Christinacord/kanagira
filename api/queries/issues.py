@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from .pool import pool
-
+from .accounts import AccountQueries
 
 class DuplicateIssueError(ValueError):
     pass
@@ -25,6 +25,7 @@ class IssueOut(BaseModel):
     creator_id: int
     assignee_id: int | None = None
     swim_lane_id: int
+    assignee_name: str | None = None
 
 
 class IssueQueries:
@@ -57,6 +58,7 @@ class IssueQueries:
                     creator_id=record[6],
                     assignee_id=record[7],
                     swim_lane_id=record[8],
+                    assignee_name=AccountQueries.get_by_id(record[7]),
                 )
 
     # def get_issue_by_id(self, issue_id: int) -> IssueOut:
@@ -125,6 +127,7 @@ class IssueQueries:
                         creator_id=record[6],
                         assignee_id=record[7],
                         swim_lane_id=record[8],
+                        assignee_name=AccountQueries.get_by_id(record[7]),
                     )
                     for record in records
                 ]
@@ -198,6 +201,7 @@ class IssueQueries:
                         creator_id=record[6],
                         assignee_id=record[7],
                         swim_lane_id=record[8],
+                        assignee_name=AccountQueries.get_by_id(record[7]),
                     )
                     for record in records
                 ]

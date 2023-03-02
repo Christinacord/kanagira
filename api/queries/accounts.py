@@ -97,6 +97,20 @@ class AccountQueries:
     #         if conn is not None:
     #             pool.putconn(conn)
 
+    def get_by_id(id: int) -> str:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                    SELECT full_name
+                    FROM accounts
+                    WHERE id = %s;
+                    """,
+                    [id],
+                )
+                record = result.fetchone()
+                return str(record)
+
     def get_by_username(self, username: str) -> Account:
         with pool.connection() as conn:
             with conn.cursor() as db:
