@@ -11,10 +11,10 @@ import SignupComponent from "./SignupForm";
 import BoardView from "./BoardView";
 import BoardForm from "./BoardForm";
 import IssueForm from "./IssueForm";
+import MyApp from "./Test";
 
 
 function GetToken() {
-  // Get token from JWT cookie (if already logged in)
   useToken();
   return null;
 }
@@ -32,6 +32,7 @@ function App() {
           <Route path="/boards/:board_id/view" element={<BoardView />} />
           <Route path="/boards/create" element={<BoardForm />} />
           <Route path="/boards/:board_id/swimlane/:swimlane_id/issues/create" element={<IssueForm />} />
+          <Route path="/test" element={<MyApp />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
