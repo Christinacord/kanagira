@@ -2,25 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useToken } from "./auth.js";
 import { useNavigate, useParams } from "react-router-dom";
 
-
 function BoardView() {
-  const [issues, setIssues] = useState([]);
-
+  // const [issues, setIssues] = useState([]);
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);
   const [inReview, setInReview] = useState([]);
   const [inTesting, setInTesting] = useState([]);
   const [done, setDone] = useState([]);
-
   const { board_id } = useParams();
-
   const { token } = useToken();
 
   useEffect(() => {
-
     const fetchIssues = async () => {
       const swimlaneStartId = ((board_id - 1) * 5) + 1;
-      count = 1;
+      let count = 1;
       for (let i = swimlaneStartId; i < swimlaneStartId + 5; i++) {
         const swim_lane_id = i;
         const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
@@ -53,11 +48,14 @@ function BoardView() {
         count += 1;
       }
     };
-
     fetchIssues();
   }, [board_id, token]);
 
-  console.log(issues);
+  console.log(backlog);
+  console.log(inProgress)
+  console.log(inReview);
+  console.log(inTesting)
+  console.log(done);
 
   if (!token) {
     return <div>Please Log In</div>;
@@ -66,24 +64,30 @@ function BoardView() {
   return (
     <>
       <div label="board title">
-      <tbody>
-        {issues.map(issue => {
-          return (
-            <tr key={issue.id}>
-              <td>{issue.name}</td>
-              <td>{issue.description}</td>
-              <td>{issue.type}</td>
-              <td>{issue.difficulty}</td>
-              <td>{issue.creator}</td>
-              <td>{issue.assignee}</td>
-            </tr>
+        {/* {board_id.map( => { */}
+        {/* return (
+            <div>
+              <h1>Board Title</h1>
+            </div>
+            <div label="board">
+              <div label="swimlane">
+                <div label="swimlane title"></div>
+                <div label="issue">
+                  <div label="name"></div>
+                  <div label="assignee"></div>
+                  <div label="priority"></div>
+                  <div label="type"></div>
+                  <div label="due date"></div>
+                </div>
+              </div>
+            </div>
+            <button>
+            Create Issue
+            </button>
           );
-        })}
-      </tbody>
-
+        })} */}
       </div>
     </>
   );
 }
-
 export default BoardView;
