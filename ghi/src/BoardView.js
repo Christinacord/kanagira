@@ -3,7 +3,6 @@ import { useToken } from "./auth.js";
 import { useNavigate, useParams } from "react-router-dom";
 
 function BoardView() {
-  // const [issues, setIssues] = useState([]);
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);
   const [inReview, setInReview] = useState([]);
