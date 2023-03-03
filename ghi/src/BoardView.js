@@ -20,7 +20,7 @@ function BoardView() {
 
     const fetchIssues = async () => {
       const swimlaneStartId = ((board_id - 1) * 5) + 1;
-      let count = 1;
+      count = 1;
       for (let i = swimlaneStartId; i < swimlaneStartId + 5; i++) {
         const swim_lane_id = i;
         const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
