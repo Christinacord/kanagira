@@ -11,6 +11,7 @@ import SignupComponent from "./SignupForm";
 import BoardView from "./BoardView";
 import BoardForm from "./BoardForm";
 import IssueForm from "./IssueForm";
+import Boards from "./Boards";
 import MyApp from "./Test";
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/signup" element={<SignupComponent />} />
+          <Route path="/boards" element={<Boards />} />
           <Route path="/boards/:board_id/view" element={<BoardView />} />
           <Route path="/boards/create" element={<BoardForm />} />
           <Route path="/boards/:board_id/swimlane/:swimlane_id/issues/create" element={<IssueForm />} />
