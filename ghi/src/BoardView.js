@@ -66,7 +66,7 @@ export default function BoardView() {
   return (
     <>
       <Box sx={{ width: '70%', mx: 'auto', display: 'flex', justifyContent: 'center', gap: 2 }}>
-        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200 }}>
+        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200, minHeight: '93vh', borderTop: 'none' }}>
           <Typography variant="h4" component="div" sx={{ textAlign: 'center' }}>
             Backlog
           </Typography>
@@ -88,7 +88,7 @@ export default function BoardView() {
             </Box>
           ))}
         </Box>
-        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200 }}>
+        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200, minHeight: '93vh', borderTop: 'none' }}>
           <Typography variant="h4" component="div" sx={{ textAlign: 'center' }}>
             In Progress
           </Typography>
@@ -110,7 +110,7 @@ export default function BoardView() {
             </Box>
           ))}
         </Box>
-        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8' }}>
+        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200, minHeight: '93vh', borderTop: 'none' }}>
           <Typography variant="h4" component="div" sx={{ textAlign: 'center' }}>
             In Review
           </Typography>
@@ -132,7 +132,7 @@ export default function BoardView() {
             </Box>
           ))}
         </Box>
-        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200 }}>
+        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200, minHeight: '93vh', borderTop: 'none' }}>
           <Typography variant="h4" component="div" sx={{ textAlign: 'center' }}>
             In Testing
           </Typography>
@@ -154,7 +154,7 @@ export default function BoardView() {
             </Box>
           ))}
         </Box>
-        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200}}>
+        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200, minHeight: '93vh', borderTop: 'none' }}>
           <Typography variant="h4" component="div" sx={{ textAlign: 'center' }}>
             Done
           </Typography>
