@@ -66,7 +66,7 @@ export default function BoardView() {
   return (
     <>
       <Box sx={{ width: '70%', mx: 'auto', display: 'flex', justifyContent: 'center', gap: 2 }}>
-        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200g }}>
+        <Box sx={{ border: '1px solid black', p: 1, backgroundColor: '#f8f8f8', minWidth: 200 }}>
           <Typography variant="h4" component="div" sx={{ textAlign: 'center' }}>
             Backlog
           </Typography>
