@@ -120,7 +120,7 @@ export function useToken() {
     });
     if (response.ok) {
       await login(username, password);
-      navigate("/");
+      navigate("/boards");
     }
     return false;
   }

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useToken } from "./auth.js";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Card } from "@mui/material";
 import Box from '@mui/material/Box';
 import CardActions from '@mui/material/CardActions';
@@ -248,4 +246,3 @@ export default function Issue() {
 
 
 }
-
