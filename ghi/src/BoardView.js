@@ -65,12 +65,6 @@ export default function BoardView() {
     fetchIssues();
   }, [board_id, token]);
 
-  console.log(backlog);
-  console.log(inProgress)
-  console.log(inReview);
-  console.log(inTesting)
-  console.log(done);
-
   if (!token) {
     return <div>Please Log In</div>;
   }
