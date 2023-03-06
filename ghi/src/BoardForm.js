@@ -1,53 +1,51 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+import { Link, useNavigate } from 'react-router-dom';
+import { useToken } from './auth.js';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useToken } from "./auth.js";
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-export default function SignupForm() {
-  const { token, signup } = useToken();
+const theme = createTheme();
 
-  const [full_name, setFull_name] = React.useState("");
-  const [username, setUsername] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+function BoardForm() {
+  const navigate = useNavigate();
+  const [name, setName] = React.useState('');
+  const { token } = useToken();
+  if (!token) {
+    return <div>Please Log In</div>;
+  }
 
-  const handleFull_nameChange = (e) => {
+  const handleNameChange = (e) => {
     const value = e.target.value;
-    setFull_name(value);
-  };
-
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-  };
-
-  const handleUsernameChange = (e) => {
-    const value = e.target.value;
-    setUsername(value);
-  };
-
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
+    setName(value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    signup(full_name, username, email, password);
-  };
+    const data = {};
+    data.name = name;
 
-  const theme = createTheme();
+    const boardsUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards`;
+    const fetchConfig = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const response = await fetch(boardsUrl, fetchConfig);
+    if (response.ok) {
+      const entry = await response.json();
+      navigate(`/boards/${entry.board_id}/view`, { replace: true });
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -61,62 +59,21 @@ export default function SignupForm() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
+          <Typography component="h1" variant="h4" sx={{ fontWeight: 'bold', mb: 2 }}>
+            Create Board
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="full_name"
                   required
                   fullWidth
-                  id="full_name"
-                  label="Full Name"
-                  autoFocus
-                  value={full_name}
-                  onChange={handleFull_nameChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="username"
-                  label="Username"
-                  name="username"
-                  autoComplete="username"
-                  value={username}
-                  onChange={handleUsernameChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  value={password}
-                  onChange={handlePasswordChange}
+                  id="name"
+                  label="Name"
+                  name="name"
+                  value={name}
+                  onChange={handleNameChange}
+                  autoComplete="off"
                 />
               </Grid>
             </Grid>
@@ -124,20 +81,24 @@ export default function SignupForm() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                color: "#fff",
+                backgroundColor: "#272D35",
+                "&:hover": {
+                  backgroundColor: "#BDBDBD",
+                  color: "#272D35",
+                },
+              }}
             >
-              Sign Up
+              Create Board
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
   );
 }
+
+export default BoardForm;
