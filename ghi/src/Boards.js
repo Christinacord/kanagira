@@ -39,23 +39,28 @@ export default function Boards() {
     }
 
     return (
-        <Box sx={{ height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Box sx={{ width: '70%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2 }}>
-                {boards.map(board => (
-                    <Card key={board.id} sx={{ width: 150, minWidth: 200, backgroundColor: '#272D35', color: 'white', boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)' }} variant="outlined">
-                        <CardContent>
-                            <Typography sx={{ fontSize: 15, color: 'rgba(255, 255, 255, 0.5)' }} gutterBottom>
-                                {board.id}
-                            </Typography>
-                            <Typography variant="h5" component="div" sx={{ textAlign: 'center', fontWeight: 'bold', mt: 1.5 }}>
-                                {board.name}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small" onClick={() => navigate(`/boards/${board.id}/view`)} sx={{ color: 'white', backgroundColor: '#44484F', '&:hover': { backgroundColor: '#383D45' } }}>View</Button>
-                        </CardActions>
-                    </Card>
-                ))}
+        <Box sx={{ paddingTop: 8, paddingBottom: 8 }}>
+            <Box sx={{ height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Box sx={{ width: '70%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2 }}>
+                    {boards.map(board => (
+                        <Card key={board.id} sx={{ width: 150, minWidth: 200, backgroundColor: '#272D35', color: 'white', boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)' }} variant="outlined">
+                            <CardContent>
+                                <Typography sx={{ fontSize: 15, color: 'rgba(255, 255, 255, 0.5)' }} gutterBottom>
+                                    {board.id}
+                                </Typography>
+                                <Typography variant="h5" component="div" sx={{ textAlign: 'center', fontWeight: 'bold', mt: 1.5 }}>
+                                    {board.name}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small" onClick={() => navigate(`/boards/${board.id}/view`)} sx={{ color: 'white', backgroundColor: '#44484F', '&:hover': { backgroundColor: '#383D45' } }}>View</Button>
+                            </CardActions>
+                        </Card>
+                    ))}
+                </Box>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: 8, marginTop: 4 }}>
+                <Button variant="contained" onClick={() => navigate('/boards/create')} sx={{ backgroundColor: '#272D35', color: 'white', '&:hover': { backgroundColor: '#383D45' }, fontSize: 18, padding: '12px 24px' }}>Create Board</Button>
             </Box>
         </Box>
     );

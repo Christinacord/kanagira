@@ -1,15 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useToken } from "./auth.js";
-// import { Button } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import LinkMui from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-//handle change necessary?
-//form input types?
-//classnames for form - material ui?
-//The REACT_APP_ variable that you'll use may be different.
-//Pay attention to the url value for the specific service you're using.
+const theme = createTheme();
 
-function LoginComponent() {
+export default function LoginComponent() {
   const { token, login } = useToken();
 
   const [username, setUsername] = React.useState("");
@@ -31,143 +39,70 @@ function LoginComponent() {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-form">
-        <form onSubmit={handleSubmit} id="login-form">
-          <div className="row">
-            <div className="form">
-              <input
-                onChange={handleUsernameChange}
-                required
-                placeholder="username"
-                type="text"
-                id="username"
-                name="username"
-                className="form"
-              />
-              <label htmlFor="username">Username</label>
-            </div>
-            <div className="form">
-              <input
-                onChange={handlePasswordChange}
-                required
-                placeholder="password"
-                type="password"
-                id="password"
-                name="password"
-                className="form"
-              />
-              <label htmlFor="password">Password</label>
-            </div>
-          </div>
-          <button variant="outlined" size="large">
-            Sign In
-          </button>
-        </form>
-      </div>
-      {/* <div className="signup-link">
-        <h3 className="login-signup-link">Don't have an account?</h3>
-        <Link to="/signup">
-          <Button variant="outlined" size="large">
-            Sign Up
-          </Button>
-        </Link>
-      </div> */}
-      <div className="kanagiraism">
-        <h2>"Kanagira, because who wants to remember tasks on their own?"</h2>
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              value={username}
+              onChange={handleUsernameChange}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <LinkMui href="/signup" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </LinkMui>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }
-
-export default LoginComponent;
-
-// function LoginForm() {
-//   const [username, setUsername] = React.useState("");
-//   const [password, setPassword] = React.useState("");
-
-//   const handleUsernameChange = (e) => {
-//     const value = e.target.value;
-//     setUsername(value);
-//   };
-
-//   const handlePasswordChange = (e) => {
-//     const value = e.target.value;
-//     setPassword(value);
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     const form = new FormData();
-//     form.append("username", username);
-//     form.append("password", password);
-
-//     const url = "http://localhost:8000/token";
-//     const fetchConfig = {
-//       method: "POST",
-//       body: form,
-//       credentials: "include",
-//     };
-
-//     const response = await fetch(url, fetchConfig);
-//     if (response.ok) {
-//       setUsername("");
-//       setPassword("");
-//       navigate("/dashboard");
-//     }
-
-//     const getToken = await fetch(url, { credentials: "include" });
-//   };
-
-//   return (
-//     <div className="login-page">
-//       <div className="login-form">
-//         <form onSubmit={handleSubmit} id="login-form">
-//           <div className="row">
-//             <div className="form">
-//               <input
-//                 onChange={handleUsernameChange}
-//                 required
-//                 placeholder="username"
-//                 type="text"
-//                 id="username"
-//                 name="username"
-//                 className="form"
-//               />
-//               <label htmlFor="username">Username</label>
-//             </div>
-//             <div className="form">
-//               <input
-//                 onChange={handlePasswordChange}
-//                 required
-//                 placeholder="password"
-//                 type="password"
-//                 id="password"
-//                 name="password"
-//                 className="form"
-//               />
-//               <label htmlFor="password">Password</label>
-//             </div>
-//           </div>
-//           <Button variant="outlined" size="large">
-//             Sign Up
-//           </Button>
-//         </form>
-//       </div>
-//       <div className="signup-link">
-//         <h3 className="login-signup-link">Don't have an account?</h3>
-//         <Link to="/signup">
-//           <Button variant="outlined" size="large">
-//             Sign Up
-//           </Button>
-//         </Link>
-//       </div>
-//       <div className="kanagiraism">
-//         <h2>"Kanagira, because who wants to remember tasks on their own?"</h2>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default LoginForm;

@@ -48,7 +48,7 @@ class BoardQueries:
                     for record in records
                 ]
 
-    def create(self, info: BoardIn) -> BoardIn:
+    def create(self, info: BoardIn) -> int:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
@@ -78,7 +78,7 @@ class BoardQueries:
                         board_id,
                     ],
                 )
-                return BoardIn(id=board_id, name=info.name)
+                return board_id
 
     def update(self, board_id: int, info: BoardIn) -> BoardOut:
         with pool.connection() as conn:
