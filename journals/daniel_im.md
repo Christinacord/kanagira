@@ -6,6 +6,12 @@ At least one ah-ha! moment that you had during your coding, however small
 Week 17
 
 Week 16
+delete images, containers, on docker, delete node module directory in ghi, and delete package-lock.json in the ghi.
+
+3/3/23: Driver: Ryan. We are trying to see if we can get Material UI to properly display. But all our previous tinkering was deleted so it wouldn't throw errors when compiling in Docker. If we can't figure it out we need something to show to the instructor/SEIR we will go to for help. Got it fixed not sure the reason why but Ryan reinstalled it and it now works and after pushing it all works for us too.
+Driver Ryan: Split into groups. Ian, Christina, and Joe worked on the Board View. Ryan and I worked on the Board Overview/Dashboard (page that shows all the boards you are on). Then we worked on the navbar. Then we worked on the issue detail modal.
+
+3/2/23: Driver: Daniel. We were all in one group today. We spent almost 3 hours trying to fix our connection issues. We ended up taking out our try finally on our create and then Riley noticed we were using pool.getconn instead of pool.connection. We swapped all those over and it seems to have resolved our connection issues. We got our GET request to work. We ended up solving our nesting issue, by completely ignoring our board info, hard coding in the swim lanes, and then making a GET request for our issues, but by using a for loop and if statements(hopefully we will refactor later) to sort them into different states for each swimlane. We also wrote a new get query so we can call in the assignee name and added it to our issues out so we can have the assignee name to reference (not just their id.) We then also went through the Material UI to test it. Then we made map functions for each swimlane issue template in each column. We will need to put them in cards later, they are just in table rows right now (to verify that they do indeed work and pull in the information we are looking for).
 
 3/1/23: Driver: Christina. We tested out our issue creation form and it turned out to be an issue with the router not our JS form.
 Driver: Ryan. We then went and worked on our Main Project. We

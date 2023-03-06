@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useToken } from "./auth.js";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Card } from "@mui/material";
 import Box from '@mui/material/Box';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
+
 export default function BoardView() {
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);
@@ -17,6 +17,7 @@ export default function BoardView() {
   const [done, setDone] = useState([]);
   const { board_id } = useParams();
   const { token } = useToken();
+
   useEffect(() => {
     const fetchIssues = async () => {
       const swimlaneStartId = ((board_id - 1) * 5) + 1;
@@ -55,14 +56,17 @@ export default function BoardView() {
     };
     fetchIssues();
   }, [board_id, token]);
+
   console.log(backlog);
   console.log(inProgress)
   console.log(inReview);
   console.log(inTesting)
   console.log(done);
+
   if (!token) {
     return <div>Please Log In</div>;
   }
+
   return (
     <>
       <Box sx={{ width: '70%', mx: 'auto', display: 'flex', justifyContent: 'center', gap: 2 }}>
