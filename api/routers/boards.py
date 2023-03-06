@@ -47,13 +47,13 @@ async def get_boards(repo: BoardQueries = Depends()):
 @router.post("/api/boards")
 async def create_board(info: BoardIn, repo: BoardQueries = Depends()):
     try:
-        board = repo.create(info)
+        board_id = repo.create(info)
     except DuplicateBoardError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Board with that name already exists",
         )
-    return board
+    return {"board_id": board_id}
 
 
 # Update a Board
