@@ -53,7 +53,7 @@ export default function MyApp() {
                 <MenuItem id="menu-appbar" component="a" href="#" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">About</Typography>
                 </MenuItem>
-                <MenuItem id="menu-appbar" component="a" href="#" onClick={handleCloseNavMenu}>
+                <MenuItem id="menu-appbar" component="a" href="/contact" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Contact Us</Typography>
                 </MenuItem>
                 <MenuItem id="menu-appbar" component="a" href="#" onClick={handleCloseNavMenu}>
@@ -69,7 +69,7 @@ export default function MyApp() {
               <Button onClick={handleCloseNavMenu} component="a" href="/#" sx={{ my: 2, color: 'white', display: 'block' }}>
                 About
               </Button>
-              <Button onClick={handleCloseNavMenu} component="a" href="/#" sx={{ my: 2, color: 'white', display: 'block' }}>
+              <Button onClick={handleCloseNavMenu} component="a" href="/contact" sx={{ my: 2, color: 'white', display: 'block' }}>
                 Contact Us
               </Button>
               <Button onClick={handleCloseNavMenu} component="a" href="/#" sx={{ my: 2, color: 'white', display: 'block' }}>
@@ -117,7 +117,7 @@ export default function MyApp() {
                 <MenuItem id="menu-appbar" component="a" href="#" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">About</Typography>
                 </MenuItem>
-                <MenuItem id="menu-appbar" component="a" href="#" onClick={handleCloseNavMenu}>
+                <MenuItem id="menu-appbar" component="a" href="/contact" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Contact Us</Typography>
                 </MenuItem>
                 <MenuItem id="menu-appbar" component="a" href="#" onClick={handleCloseNavMenu}>
@@ -133,7 +133,7 @@ export default function MyApp() {
               <Button onClick={handleCloseNavMenu} component="a" href="/#" sx={{ my: 2, color: 'white', display: 'block' }}>
                 About
               </Button>
-              <Button onClick={handleCloseNavMenu} component="a" href="/#" sx={{ my: 2, color: 'white', display: 'block' }}>
+              <Button onClick={handleCloseNavMenu} component="a" href="/contact" sx={{ my: 2, color: 'white', display: 'block' }}>
                 Contact Us
               </Button>
               <Button onClick={handleCloseNavMenu} component="a" href="/#" sx={{ my: 2, color: 'white', display: 'block' }}>

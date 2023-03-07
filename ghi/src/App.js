@@ -14,6 +14,7 @@ import IssueForm from "./IssueForm";
 import MyIssues from "./IssuesView";
 import Boards from "./Boards";
 import MyApp from "./Test";
+import Contact from "./Contact"
 
 
 function GetToken() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/boards/:board_id/swimlane/:swimlane_id/issues/create" element={<IssueForm />} />
           <Route path="/test" element={<MyApp />} />
           <Route path="/issues" element={<MyIssues />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
