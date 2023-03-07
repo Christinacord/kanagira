@@ -7,12 +7,29 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import BoardForm from "./BoardForm.js";
+import Modal from '@mui/material/Modal';
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
 
 export default function Boards() {
     const { token } = useToken();
     const [boards, setBoards] = React.useState([]);
     const navigate = useNavigate();
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     React.useEffect(() => {
         const fetchBoards = async () => {
@@ -60,7 +77,18 @@ export default function Boards() {
                 </Box>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: 8, marginTop: 4 }}>
-                <Button variant="contained" onClick={() => navigate('/boards/create')} sx={{ backgroundColor: '#272D35', color: 'white', '&:hover': { backgroundColor: '#383D45' }, fontSize: 18, padding: '12px 24px' }}>Create Board</Button>
+                <Button variant="contained" onClick={handleOpen} sx={{ backgroundColor: '#272D35', color: 'white', '&:hover': { backgroundColor: '#383D45' }, fontSize: 18, padding: '12px 24px' }}>Create Board</Button>
+                <Modal
+                    keepMounted
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                >
+                    <Box sx={style}>
+                        <BoardForm />
+                    </Box>
+                </Modal>
             </Box>
         </Box>
     );

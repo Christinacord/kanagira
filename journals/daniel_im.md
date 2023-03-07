@@ -5,8 +5,9 @@ At least one ah-ha! moment that you had during your coding, however small
 
 Week 17
 
+3/6/23: Driver: Daniel. This was a shorter work day since we had our practice assessment. I drove for myself and Ryan. We figured out modals. First we got it working on our Board Dashboard to display then I got it working in the Board View and also worked on trying to get the Issue creation. On a few points we had to help out Ian, Joe, and Christina with issues they were having. They were working on the Issues Dashboard.
+
 Week 16
-delete images, containers, on docker, delete node module directory in ghi, and delete package-lock.json in the ghi.
 
 3/3/23: Driver: Ryan. We are trying to see if we can get Material UI to properly display. But all our previous tinkering was deleted so it wouldn't throw errors when compiling in Docker. If we can't figure it out we need something to show to the instructor/SEIR we will go to for help. Got it fixed not sure the reason why but Ryan reinstalled it and it now works and after pushing it all works for us too.
 Driver Ryan: Split into groups. Ian, Christina, and Joe worked on the Board View. Ryan and I worked on the Board Overview/Dashboard (page that shows all the boards you are on). Then we worked on the navbar. Then we worked on the issue detail modal.

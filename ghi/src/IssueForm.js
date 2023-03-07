@@ -3,14 +3,15 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useToken } from "./auth.js";
 
 
-export default function IssueForm() {
+export default function IssueForm(props) {
     const navigate = useNavigate();
-    const { board_id, swimlane_id } = useParams();
+    // const { board_id, swimlane_id } = useParams();
     const [name, setName] = React.useState("");
     const [type, setType] = React.useState("");
     const [description, setDescription] = React.useState("");
     const [priority, setPriority] = React.useState("");
     const [difficulty, setDifficulty] = React.useState("");
+    const { board_id, swim_lane_id } = props;
 
     const { token } = useToken();
     if (!token) {
@@ -49,7 +50,7 @@ export default function IssueForm() {
         data.type = type;
         data.difficulty = difficulty;
         data.assignee = 0;
-        const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swimlane_id}/issues`;
+        const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(data),

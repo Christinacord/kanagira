@@ -8,7 +8,21 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
+import Issue from "./Issue.js";
+import Modal from '@mui/material/Modal';
+import IssueForm from "./IssueForm.js";
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function BoardView() {
   const [backlog, setBacklog] = useState([]);
@@ -24,10 +38,14 @@ export default function BoardView() {
   const [isDoneHovered, setIsDoneHovered] = useState(false);
   const { board_id } = useParams();
   const { token } = useToken();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     const fetchIssues = async () => {
       const swimlaneStartId = ((board_id - 1) * 5) + 1;
+      setStartSwimlaneId(swimlaneStartId);
       let count = 1;
       for (let i = swimlaneStartId; i < swimlaneStartId + 5; i++) {
         const swim_lane_id = i;
@@ -117,7 +135,17 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
+                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
+                      <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
+                        </Box>
+                      </Modal>
                     </CardActions>
                   </Card>
                 </Box>
@@ -155,14 +183,37 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
+                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
+                      <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
+                        </Box>
+                      </Modal>
                     </CardActions>
                   </Card>
                 </Box>
               ))}
               <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInProgressHovered ? 'visible' : 'hidden' }}>
-                <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+                <CreateButton onClick={handleOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId} />
+                  </Box>
+                </Modal>
               </Flex>
+              {/* <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInProgressHovered ? 'visible' : 'hidden' }}>
+                <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              </Flex> */}
             </>
           )}
         </Box>
@@ -194,7 +245,17 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
+                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
+                      <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
+                        </Box>
+                      </Modal>
                     </CardActions>
                   </Card>
                 </Box>
@@ -232,7 +293,17 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
+                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
+                      <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
+                        </Box>
+                      </Modal>
                     </CardActions>
                   </Card>
                 </Box>
@@ -335,12 +406,17 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button
-                        sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }}
-                        size="small"
+                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
+                      <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
                       >
-                        View
-                      </Button>
+                        <Box sx={style}>
+                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
+                        </Box>
+                      </Modal>
                     </CardActions>
                   </Card>
                 </Box>
