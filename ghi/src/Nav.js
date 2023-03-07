@@ -87,7 +87,7 @@ export default function MyApp() {
                 <MenuItem component="a" href="/boards" onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">Dashboard</Typography>
                 </MenuItem>
-                <MenuItem component="a" href="#" onClick={handleCloseUserMenu}>
+                <MenuItem component="a" href="/issues" onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">My Issues</Typography>
                 </MenuItem>
                 <MenuItem component="a" href="#" onClick={handleClick}>
