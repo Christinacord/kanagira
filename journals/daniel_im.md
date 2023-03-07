@@ -3,7 +3,17 @@ A list of features/issues that you worked on and who you worked with, if applica
 A reflection on any design conversations that you had
 At least one ah-ha! moment that you had during your coding, however small
 
+board view - swim lane issue create modal - needs to work, showing up but not working
+board view - issue view - update issue to other swim lanes, close issues,
+board view - need to make new open close handlers for swimlane issue create modal so it doesnt stack
+
+UNIT TESTS
+DOCUMENTATION
+CLEAN UP CODE - comments/prints
+
 Week 17
+
+3/7/23:
 
 3/6/23: Driver: Daniel. This was a shorter work day since we had our practice assessment. I drove for myself and Ryan. We figured out modals. First we got it working on our Board Dashboard to display then I got it working in the Board View and also worked on trying to get the Issue creation. On a few points we had to help out Ian, Joe, and Christina with issues they were having. They were working on the Issues Dashboard.
 
