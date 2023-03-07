@@ -39,8 +39,11 @@ export default function BoardView() {
   const { board_id } = useParams();
   const { token } = useToken();
   const [open, setOpen] = React.useState(false);
+  const [createOpen, setCreateOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleCreateOpen = () => setCreateOpen(true);
+  const handleCreateClose = () => setCreateOpen(false);
 
   useEffect(() => {
     const fetchIssues = async () => {
@@ -49,7 +52,6 @@ export default function BoardView() {
       let count = 1;
       for (let i = swimlaneStartId; i < swimlaneStartId + 5; i++) {
         const swim_lane_id = i;
-        setStartSwimlaneId(swim_lane_id);
         const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
         const fetchConfig = {
           method: "GET",
@@ -191,7 +193,7 @@ export default function BoardView() {
                         aria-describedby="modal-modal-description"
                       >
                         <Box sx={style}>
-                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
+                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId + 1} issue_id={issue.id} />
                         </Box>
                       </Modal>
                     </CardActions>
@@ -199,21 +201,18 @@ export default function BoardView() {
                 </Box>
               ))}
               <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInProgressHovered ? 'visible' : 'hidden' }}>
-                <CreateButton onClick={handleOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+                <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
                 <Modal
-                  open={open}
-                  onClose={handleClose}
+                  open={createOpen}
+                  onClose={handleCreateClose}
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                 >
                   <Box sx={style}>
-                    <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId} />
+                    <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 1} />
                   </Box>
                 </Modal>
               </Flex>
-              {/* <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInProgressHovered ? 'visible' : 'hidden' }}>
-                <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-              </Flex> */}
             </>
           )}
         </Box>
