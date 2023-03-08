@@ -1,7 +1,16 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useToken } from "./auth.js";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+const theme = createTheme();
 
 export default function IssueForm(props) {
     const navigate = useNavigate();
@@ -55,7 +64,7 @@ export default function IssueForm(props) {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Authorization": "Bearer " + token,
+                Authorization: "Bearer " + token,
                 "Content-Type": "application/json",
             },
         };
@@ -69,108 +78,111 @@ export default function IssueForm(props) {
     };
 
     return (
-        <>
-            <div>
-                <form onSubmit={handleSubmit} id="issue-form">
-                    <div className="issue-page">
-                        <div className="issue-form">
-                            <div className="row">
-                                <div className="form">
-                                    <input
-                                        onChange={handleNameChange}
-                                        required
-                                        placeholder="name"
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        className="form"
-                                    />
-                                    <label htmlFor="name">Issue Name</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="issue-page">
-                        <div className="issue-form">
-                            <div className="row">
-                                <div className="form">
-                                    <input
-                                        onChange={handleDescriptionChange}
-                                        required
-                                        placeholder="description"
-                                        type="text"
-                                        id="description"
-                                        name="description"
-                                        className="form"
-                                    />
-                                    <label htmlFor="description">Description</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="issue-page">
-                        <div className="issue-form">
-                            <div className="row">
-                                <div className="form">
-                                    <input
-                                        onChange={handlePriorityChange}
-                                        required
-                                        placeholder="priority"
-                                        type="text"
-                                        id="priority"
-                                        name="priority"
-                                        className="form"
-                                    />
-                                    <label htmlFor="priority">Priority</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="issue-page">
-                        <div className="issue-form">
-                            <div className="row">
-                                <div className="form">
-                                    <input
-                                        onChange={handleTypeChange}
-                                        required
-                                        placeholder="issue type"
-                                        type="text"
-                                        id="type"
-                                        name="type"
-                                        className="form"
-                                    />
-                                    <label htmlFor="type">Issue Type</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="issue-page">
-                        <div className="issue-form">
-                            <div className="row">
-                                <div className="form">
-                                    <input
-                                        onChange={handleDifficultyChange}
-                                        required
-                                        placeholder="difficulty"
-                                        type="text"
-                                        id="difficulty"
-                                        name="difficulty"
-                                        className="form"
-                                    />
-                                    <label htmlFor="difficulty">Difficulty</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="issue-page">
-                        <div className="issue-form">
-                            <button variant="outlined" size="large">
-                                Create Issue
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                    }}
+                >
+                    <Typography
+                        component="h1"
+                        variant="h4"
+                        sx={{ fontWeight: "bold", mb: 2 }}
+                    >
+                        Create Issue
+                    </Typography>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="name"
+                                    label="Name"
+                                    name="name"
+                                    value={name}
+                                    onChange={handleNameChange}
+                                    autoComplete="off"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="description"
+                                    label="Description"
+                                    name="description"
+                                    value={description}
+                                    onChange={handleDescriptionChange}
+                                    autoComplete="off"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="priority"
+                                    label="Priority"
+                                    name="priority"
+                                    type="number"
+                                    min={1}
+                                    max={5}
+                                    value={priority}
+                                    onChange={handlePriorityChange}
+                                    autoComplete="off"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="type"
+                                    label="Type"
+                                    name="type"
+                                    value={type}
+                                    onChange={handleTypeChange}
+                                    autoComplete="off"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="difficulty"
+                                    label="Difficulty"
+                                    name="difficulty"
+                                    type="number"
+                                    value={difficulty}
+                                    onChange={handleDifficultyChange}
+                                    autoComplete="off"
+                                />
+                            </Grid>
+                        </Grid>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{
+                                mt: 3,
+                                mb: 2,
+                                color: "#fff",
+                                backgroundColor: "#272D35",
+                                "&:hover": {
+                                    backgroundColor: "#BDBDBD",
+                                    color: "#272D35",
+                                },
+                            }}
+                        >
+                            Create Issue
+                        </Button>
+                    </Box>
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 }
