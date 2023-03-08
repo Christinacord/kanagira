@@ -26,6 +26,7 @@ export default function Issue(props) {
     const { token } = useToken();
     const navigate = useNavigate();
 
+
     useEffect(() => {
         const fetchIssue = async () => {
             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
@@ -91,8 +92,7 @@ export default function Issue(props) {
     }
 
 
-
-    return (
+ return (
         <>
             <Box
                 sx={{ "& .MuiDialog-paper": { height: "30%", width: "30%", maxWidth: "none" } }}
@@ -231,151 +231,4 @@ export default function Issue(props) {
             </Box>
         </>
     );
-
-    // return (
-    //     <>
-    //         <Button variant="outlined" onClick={handleOpen}>
-    //             View Issue Details
-    //         </Button>
-    //         <Dialog
-    //             open={open}
-    //             onClose={handleClose}
-    //             sx={{ "& .MuiDialog-paper": { height: "30%", width: "30%", maxWidth: "none" } }}
-    //         >
-    //             {issue && (
-    //                 <>
-    //                     <DialogTitle
-    //                         sx={{ textAlign: "left", fontWeight: "bold", fontSize: "2rem" }}
-    //                     >
-    //                         <Box
-    //                             sx={{
-    //                                 display: "flex",
-    //                                 flexDirection: "row",
-    //                                 alignItems: "center",
-    //                                 justifyContent: "space-between"
-    //                             }}
-    //                         >
-    //                             <Box sx={{ display: "flex", alignItems: "center" }}>
-    //                                 {issue.difficulty && (
-    //                                     <Box
-    //                                         sx={{
-    //                                             width: 20,
-    //                                             height: 20,
-    //                                             borderRadius: "4px",
-    //                                             backgroundColor: (() => {
-    //                                                 switch (issue.difficulty) {
-    //                                                     case 1:
-    //                                                         return "green";
-    //                                                     case 2:
-    //                                                         return "blue";
-    //                                                     case 3:
-    //                                                         return "yellow";
-    //                                                     case 4:
-    //                                                         return "orange";
-    //                                                     case 5:
-    //                                                         return "red";
-    //                                                     default:
-    //                                                         return "grey";
-    //                                                 }
-    //                                             })(),
-    //                                             mr: 2,
-    //                                         }}
-    //                                     />
-    //                                 )}
-    //                                 <Typography sx={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-    //                                     {issue.name}
-    //                                 </Typography>
-    //                             </Box>
-    //                             <Box sx={{ display: "flex", alignItems: "center" }}>
-    //                                 <Typography variant="subtitle1" gutterBottom sx={{ mr: 2 }}>
-    //                                     Priority: {issue.priority}
-    //                                 </Typography>
-    //                                 <Typography variant="subtitle1" gutterBottom sx={{ mr: 2 }}>
-    //                                     Type: {issue.type}
-    //                                 </Typography>
-    //                             </Box>
-    //                         </Box>
-    //                     </DialogTitle>
-    //                     <DialogContent>
-    //                         <Box
-    //                             sx={{
-    //                                 display: "flex",
-    //                                 flexDirection: "row",
-    //                                 alignItems: "center",
-    //                                 mb: 2,
-    //                             }}
-    //                         >
-    //                             <Paper
-    //                                 elevation={0}
-    //                                 variant="outlined"
-    //                                 sx={{ flexGrow: 1, p: 2, height: "100%" }}
-    //                             >
-    //                                 <Box
-    //                                     sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}
-    //                                 >
-    //                                     <Typography
-    //                                         variant="subtitle2"
-    //                                         gutterBottom
-    //                                         sx={{ color: "grey", mb: 1 }}
-    //                                     >
-    //                                         Description:
-    //                                     </Typography>
-    //                                     <Typography variant="body1">{issue.description}</Typography>
-    //                                 </Box>
-    //                             </Paper>
-    //                         </Box>
-    //                     </DialogContent>
-    //                     <DialogActions>
-    //                         {issue.assignee_name && (
-    //                             <Box
-    //                                 sx={{
-    //                                     display: "flex",
-    //                                     flexDirection: "row",
-    //                                     alignItems: "center",
-    //                                     justifyContent: "flex-start",
-    //                                     flexGrow: 1,
-    //                                     pl: 1.5,
-    //                                     borderLeft: "4px solid #272D35",
-    //                                 }}
-    //                             >
-    //                                 <Box sx={{ mr: 2 }}>
-    //                                     <Typography variant="subtitle1" gutterBottom>
-    //                                         Assignee:
-    //                                     </Typography>
-    //                                 </Box>
-    //                                 <Box>
-    //                                     <Select
-    //                                         labelId="assignee-select-label"
-    //                                         id="assignee-select"
-    //                                         value={assignee}
-    //                                         onChange={handleAssigneeChange}
-    //                                         sx={{ minWidth: "180px", height: "32px" }}
-    //                                     >
-    //                                         {users.map((user) => (
-    //                                             <MenuItem key={user.id} value={user.id}>
-    //                                                 {user.full_name}
-    //                                             </MenuItem>
-    //                                         ))}
-    //                                     </Select>
-    //                                 </Box>
-
-    //                             </Box>
-    //                         )}
-    //                         <Button
-    //                             onClick={handleClose}
-    //                             variant="contained"
-    //                             color="primary"
-    //                             style={{ backgroundColor: 'rgba(39, 45, 53, 0.8)', color: 'white' }}
-    //                         >
-    //                             Close
-    //                         </Button>
-    //                     </DialogActions>
-
-    //                 </>
-    //             )}
-    //         </Dialog>
-    //     </>
-    // );
-
-
 }
