@@ -11,8 +11,7 @@ import { styled } from '@mui/system';
 import Issue from "./Issue.js";
 import Modal from '@mui/material/Modal';
 import IssueForm from "./IssueForm.js";
-
-const style = {
+const viewStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -23,7 +22,17 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  borderRadius: 8,
+  boxShadow: 24,
+  p: 2,
+};
 export default function BoardView() {
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);
@@ -39,7 +48,6 @@ export default function BoardView() {
   const [createOpen, setCreateOpen] = useState(false);
   const handleCreateOpen = () => setCreateOpen(true);
   const handleCreateClose = () => setCreateOpen(false);
-
   useEffect(() => {
     const fetchIssues = async () => {
       const swimlaneStartId = ((board_id - 1) * 5) + 1;
@@ -79,25 +87,20 @@ export default function BoardView() {
     };
     fetchIssues();
   }, [board_id, token]);
-
-
   function addIssueToBacklog(issue) {
     const newBacklog = [...backlog, issue]
     setBacklog(() => {
       return newBacklog
     })
   }
-
   if (!token) {
     return <div>Please Log In</div>;
   }
-
   const Flex = styled('div')({
     display: 'flex',
     justifyContent: 'flex-end',
     paddingTop: '15px',
   });
-
   const CreateButton = styled(Button)({
     backgroundColor: '#f8f8f8',
     color: '#979797',
@@ -107,8 +110,6 @@ export default function BoardView() {
       boxShadow: 'none',
     },
   });
-
-
   return (
     <>
       <Box sx={{ width: '80vw', mx: 'auto', display: 'flex', justifyContent: 'center', gap: 2, pt: 2, borderRadius: 2, overflow: 'hidden' }}>
@@ -201,7 +202,6 @@ export default function BoardView() {
             </>
           )}
         </Box>
-
         <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: '17%', minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontSize: '2rem', fontWeight: 'lighter', color: 'text.primary', pb: 2 }}>
             <Typography variant="h4" component="div">
@@ -358,7 +358,7 @@ export default function BoardView() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={viewStyle}>
           <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={open.issue_id} />
         </Box>
       </Modal>
