@@ -25,7 +25,6 @@ export default function Issue(props) {
     const { board_id, swim_lane_id, issue_id } = props;
     const { token } = useToken();
     const navigate = useNavigate();
-    // const [open, setOpen] = useState(false);
 
     useEffect(() => {
         const fetchIssue = async () => {
@@ -92,19 +91,10 @@ export default function Issue(props) {
     }
 
 
-    // const handleOpen = () => {
-    //     setOpen(true);
-    // };
-
-    // const handleClose = () => {
-    //     setOpen(false);
-    // };
 
     return (
         <>
             <Box
-                // open={open}
-                // onClose={handleClose}
                 sx={{ "& .MuiDialog-paper": { height: "30%", width: "30%", maxWidth: "none" } }}
             >
                 {issue && (

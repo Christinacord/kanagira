@@ -32,16 +32,11 @@ export default function BoardView() {
   const [done, setDone] = useState([]);
   const [startSwimlaneId, setStartSwimlaneId] = useState(null);
   const [isBacklogHovered, setIsBacklogHovered] = useState(false);
-  // const [isInProgressHovered, setIsInProgressHovered] = useState(false);
-  // const [isInReviewHovered, setIsInReviewHovered] = useState(false);
-  // const [isInTestingHovered, setIsInTestingHovered] = useState(false);
-  // const [isDoneHovered, setIsDoneHovered] = useState(false);
   const { board_id } = useParams();
   const { token } = useToken();
-  const [open, setOpen] = React.useState(false);
-  const [createOpen, setCreateOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState({open: false, issue_id: null});
+  const handleClose = () => setOpen({ open: false, issue_id: null });
+  const [createOpen, setCreateOpen] = useState(false);
   const handleCreateOpen = () => setCreateOpen(true);
   const handleCreateClose = () => setCreateOpen(false);
 
@@ -87,7 +82,6 @@ export default function BoardView() {
 
 
   function addIssueToBacklog(issue) {
-    // add issue to backlog
     const newBacklog = [...backlog, issue]
     setBacklog(() => {
       return newBacklog
@@ -155,17 +149,7 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
-                      <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style}>
-                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
-                        </Box>
-                      </Modal>
+                      <Button onClick={() => setOpen({open: true, issue_id: issue.id})} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
                     </CardActions>
                   </Card>
                 </Box>
@@ -187,10 +171,6 @@ export default function BoardView() {
           )}
         </Box>
         <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
-          {/* <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
-          onMouseEnter={() => setIsInProgressHovered(true)}
-          onMouseLeave={() => setIsInProgressHovered(false)}
-        > */}
           <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontSize: '2rem', fontWeight: 'lighter', color: 'text.primary', pb: 2 }}>
             <Typography variant="h4" component="div">
               In Progress
@@ -201,17 +181,6 @@ export default function BoardView() {
           </Box>
           {inProgress.length === 0 ? (
             <Flex style={{ display: 'flex', justifyContent: 'center' }}>
-              {/* <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-              <Modal
-                open={createOpen}
-                onClose={handleCreateClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 1} />
-                </Box>
-              </Modal> */}
             </Flex>
           ) : (
             <>
@@ -224,43 +193,16 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
-                      <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style}>
-                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId + 1} issue_id={issue.id} />
-                        </Box>
-                      </Modal>
+                      <Button onClick={() => setOpen({ open: true, issue_id: issue.id })} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
                     </CardActions>
                   </Card>
                 </Box>
               ))}
-              {/* <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInProgressHovered ? 'visible' : 'hidden' }}>
-                <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-                <Modal
-                  open={createOpen}
-                  onClose={handleCreateClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style}>
-                    <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 1} />
-                  </Box>
-                </Modal>
-              </Flex> */}
             </>
           )}
         </Box>
 
         <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
-          {/* <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
-          onMouseEnter={() => setIsInReviewHovered(true)}
-          onMouseLeave={() => setIsInReviewHovered(false)}
-        > */}
           <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontSize: '2rem', fontWeight: 'lighter', color: 'text.primary', pb: 2 }}>
             <Typography variant="h4" component="div">
               In Review
@@ -271,17 +213,6 @@ export default function BoardView() {
           </Box>
           {inReview.length === 0 ? (
             <Flex style={{ display: 'flex', justifyContent: 'center' }}>
-              {/* <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-            <Modal
-              open={createOpen}
-              onClose={handleCreateClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 2} />
-              </Box>
-            </Modal> */}
             </Flex>
           ) : (
             <>
@@ -294,42 +225,15 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
-                      <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style}>
-                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
-                        </Box>
-                      </Modal>
+                      <Button onClick={() => setOpen({ open: true, issue_id: issue.id })} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
                     </CardActions>
                   </Card>
                 </Box>
               ))}
-              {/* <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInReviewHovered ? 'visible' : 'hidden' }}>
-              <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-              <Modal
-                open={createOpen}
-                onClose={handleCreateClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 2} />
-                </Box>
-              </Modal>
-            </Flex> */}
             </>
           )}
         </Box>
         <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
-          {/* <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
-        onMouseEnter={() => setIsInTestingHovered(true)}
-        onMouseLeave={() => setIsInTestingHovered(false)}
-      > */}
           <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontSize: '2rem', fontWeight: 'lighter', color: 'text.primary', pb: 2 }}>
             <Typography variant="h4" component="div">
               In Testing
@@ -340,17 +244,6 @@ export default function BoardView() {
           </Box>
           {inTesting.length === 0 ? (
             <Flex style={{ display: 'flex', justifyContent: 'center' }}>
-              {/* <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-            <Modal
-              open={createOpen}
-              onClose={handleCreateClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 3} />
-              </Box>
-            </Modal> */}
             </Flex>
           ) : (
             <>
@@ -363,34 +256,11 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
-                      <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style}>
-                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
-                        </Box>
-                      </Modal>
+                      <Button onClick={() => setOpen({ open: true, issue_id: issue.id })} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
                     </CardActions>
                   </Card>
                 </Box>
               ))}
-              {/* <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInTestingHovered ? 'visible' : 'hidden' }}>
-              <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-              <Modal
-                open={createOpen}
-                onClose={handleCreateClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 3} />
-                </Box>
-              </Modal>
-            </Flex> */}
             </>
           )}
         </Box>
@@ -404,18 +274,6 @@ export default function BoardView() {
             borderRadius: '0 0 2px 2px',
           }}
         >
-          {/* <Box
-        sx={{
-          position: 'relative',
-          p: 1,
-          backgroundColor: '#f8f8f8',
-          minWidth: 250,
-          minHeight: '93vh',
-          borderRadius: '0 0 2px 2px',
-        }}
-        onMouseEnter={() => setIsDoneHovered(true)}
-        onMouseLeave={() => setIsDoneHovered(false)}
-      > */}
           <Box
             sx={{
               display: 'flex',
@@ -450,17 +308,6 @@ export default function BoardView() {
                 visibility: 'visible',
               }}
             >
-              {/* <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-            <Modal
-              open={createOpen}
-              onClose={handleCreateClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 4} />
-              </Box>
-            </Modal> */}
             </Flex>
           ) : (
             <>
@@ -496,44 +343,26 @@ export default function BoardView() {
                       </Typography>
                     </CardContent>
                     <CardActions sx={{ ml: 'auto' }}>
-                      <Button onClick={handleOpen} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
-                      <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style}>
-                          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={issue.id} />
-                        </Box>
-                      </Modal>
+                      <Button onClick={() => setOpen({ open: true, issue_id: issue.id })} sx={{ color: 'text.secondary', fontSize: 12, pl: 3 }} size="small">View</Button>
                     </CardActions>
                   </Card>
                 </Box>
               ))}
-              {/* <Flex
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                visibility: isDoneHovered ? 'visible' : 'hidden',
-              }}
-            >
-              <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-              <Modal
-                open={createOpen}
-                onClose={handleCreateClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 4} />
-                </Box>
-              </Modal>
-            </Flex> */}
             </>
           )}
         </Box>
       </Box>
+      <Modal
+        open={open.open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={open.issue_id} />
+        </Box>
+      </Modal>
     </>
   );
 }
+

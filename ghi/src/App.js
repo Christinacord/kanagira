@@ -31,7 +31,6 @@ function App() {
       <BrowserRouter>
         <GetToken />
         <Nav />
-        <Container sx={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginComponent />} />
@@ -45,8 +44,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<Faq />} />
         </Routes>
-        </Container>
-        <Footer/>
       </BrowserRouter>
     </AuthProvider>
   );
