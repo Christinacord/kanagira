@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useToken } from "./auth.js";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { Card } from "@mui/material";
 import Box from '@mui/material/Box';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogActions from '@mui/material/DialogActions';
 import Paper from '@mui/material/Paper';
 import { Select, MenuItem } from "@mui/material";
 import { isUnitless } from "@mui/material/styles/cssUtils.js";
+import { IconButton } from '@mui/material';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 
 
 export default function Issue(props) {
@@ -161,7 +155,7 @@ export default function Issue(props) {
                 {issue && (
                     <>
                         <Box
-                            sx={{ textAlign: "left", fontWeight: "bold", fontSize: "2rem" }}
+                            sx={{ textAlign: "left", fontWeight: "bold", fontSize: "2rem", marginBottom: "1rem" }}
                         >
                             <Box
                                 sx={{
@@ -241,58 +235,58 @@ export default function Issue(props) {
                                 </Paper>
                             </Box>
                         </Box>
-                        <Box>
-                            {issue.assignee_name && (
-                                <Box
-                                    sx={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                        justifyContent: "flex-start",
-                                        flexGrow: 1,
-                                        pl: 1.5,
-                                        borderLeft: "4px solid #272D35",
-                                    }}
-                                >
-                                    <Box sx={{ mr: 2 }}>
-                                        <Typography variant="subtitle1" gutterBottom>
-                                            Assignee:
-                                        </Typography>
-                                    </Box>
-                                    <Box>
-                                        <Select
-                                            labelId="assignee-select-label"
-                                            id="assignee-select"
-                                            value={assignee}
-                                            onChange={handleAssigneeChange}
-                                            sx={{ minWidth: "180px", height: "32px" }}
-                                        >
-                                            {users.map((user) => (
-                                                <MenuItem key={user.id} value={user.id}>
-                                                    {user.full_name}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </Box>
-                                </Box>
-                            )}
-                        </Box>
-                        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
                             <Box>
-                                <Button
-                                    variant="contained"
+                                {issue.assignee_name && (
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            alignItems: "center",
+                                            justifyContent: "flex-start",
+                                            flexGrow: 1,
+                                            pl: 1.5,
+                                            borderLeft: "4px solid #272D35",
+                                        }}
+                                    >
+                                        <Box sx={{ mr: 2 }}>
+                                            <Typography variant="subtitle1" gutterBottom>
+                                                Assignee:
+                                            </Typography>
+                                        </Box>
+                                        <Box>
+                                            <Select
+                                                labelId="assignee-select-label"
+                                                id="assignee-select"
+                                                value={assignee}
+                                                onChange={handleAssigneeChange}
+                                                sx={{ minWidth: "180px", height: "32px" }}
+                                            >
+                                                {users.map((user) => (
+                                                    <MenuItem key={user.id} value={user.id}>
+                                                        {user.full_name}
+                                                    </MenuItem>
+                                                ))}
+                                            </Select>
+                                        </Box>
+                                    </Box>
+                                )}
+                            </Box>
+                            <Box>
+                                <IconButton
+                                    aria-label="move-left"
                                     onClick={() => handleSwimlaneDecrease(issue.swim_lane_id)}
                                     sx={{ mr: 2 }}
                                 >
-                                    Move Left
-                                </Button>
-                                <Button
-                                    variant="contained"
+                                    <ChevronLeft />
+                                </IconButton>
+                                <IconButton
+                                    aria-label="move-right"
                                     onClick={() => handleSwimlaneIncrease(issue.swim_lane_id)}
                                     sx={{ mr: 2 }}
                                 >
-                                    Move Right
-                                </Button>
+                                    <ChevronRight />
+                                </IconButton>
                             </Box>
                         </Box>
                     </>
