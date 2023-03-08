@@ -11,7 +11,7 @@ export default function IssueForm(props) {
     const [description, setDescription] = React.useState("");
     const [priority, setPriority] = React.useState("");
     const [difficulty, setDifficulty] = React.useState("");
-    const { board_id, swim_lane_id } = props;
+    const { board_id, swim_lane_id, addIssueToBacklog, handleCreateClose } = props;
 
     const { token } = useToken();
     if (!token) {
@@ -63,7 +63,8 @@ export default function IssueForm(props) {
         const response = await fetch(issuesUrl, fetchConfig);
         if (response.ok) {
             const entry = await response.json();
-
+            addIssueToBacklog(entry);
+            handleCreateClose();
         }
     };
 

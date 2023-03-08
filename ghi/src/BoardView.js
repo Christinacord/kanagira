@@ -32,10 +32,10 @@ export default function BoardView() {
   const [done, setDone] = useState([]);
   const [startSwimlaneId, setStartSwimlaneId] = useState(null);
   const [isBacklogHovered, setIsBacklogHovered] = useState(false);
-  const [isInProgressHovered, setIsInProgressHovered] = useState(false);
-  const [isInReviewHovered, setIsInReviewHovered] = useState(false);
-  const [isInTestingHovered, setIsInTestingHovered] = useState(false);
-  const [isDoneHovered, setIsDoneHovered] = useState(false);
+  // const [isInProgressHovered, setIsInProgressHovered] = useState(false);
+  // const [isInReviewHovered, setIsInReviewHovered] = useState(false);
+  // const [isInTestingHovered, setIsInTestingHovered] = useState(false);
+  // const [isDoneHovered, setIsDoneHovered] = useState(false);
   const { board_id } = useParams();
   const { token } = useToken();
   const [open, setOpen] = React.useState(false);
@@ -85,6 +85,15 @@ export default function BoardView() {
     fetchIssues();
   }, [board_id, token]);
 
+
+  function addIssueToBacklog(issue) {
+    // add issue to backlog
+    const newBacklog = [...backlog, issue]
+    setBacklog(() => {
+      return newBacklog
+    })
+  }
+
   if (!token) {
     return <div>Please Log In</div>;
   }
@@ -106,7 +115,6 @@ export default function BoardView() {
   });
 
 
-
   return (
     <>
       <Box sx={{ width: '70%', mx: 'auto', display: 'flex', justifyContent: 'center', gap: 2, pt: 2, borderRadius: 2, overflow: 'hidden' }}>
@@ -124,7 +132,17 @@ export default function BoardView() {
           </Box>
           {backlog.length === 0 ? (
             <Flex style={{ display: 'flex', justifyContent: 'center' }}>
-              <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              <Modal
+                open={createOpen}
+                onClose={handleCreateClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId} addIssueToBacklog={addIssueToBacklog} handleCreateClose={handleCreateClose} />
+                </Box>
+              </Modal>
             </Flex>
           ) : (
             <>
@@ -153,15 +171,26 @@ export default function BoardView() {
                 </Box>
               ))}
               <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isBacklogHovered ? 'visible' : 'hidden' }}>
-                <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+                <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+                <Modal
+                  open={createOpen}
+                  onClose={handleCreateClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId} addIssueToBacklog={addIssueToBacklog} handleCreateClose={handleCreateClose} />
+                  </Box>
+                </Modal>
               </Flex>
             </>
           )}
         </Box>
-        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
+        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
+          {/* <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
           onMouseEnter={() => setIsInProgressHovered(true)}
           onMouseLeave={() => setIsInProgressHovered(false)}
-        >
+        > */}
           <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontSize: '2rem', fontWeight: 'lighter', color: 'text.primary', pb: 2 }}>
             <Typography variant="h4" component="div">
               In Progress
@@ -172,7 +201,17 @@ export default function BoardView() {
           </Box>
           {inProgress.length === 0 ? (
             <Flex style={{ display: 'flex', justifyContent: 'center' }}>
-              <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              {/* <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              <Modal
+                open={createOpen}
+                onClose={handleCreateClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 1} />
+                </Box>
+              </Modal> */}
             </Flex>
           ) : (
             <>
@@ -200,7 +239,7 @@ export default function BoardView() {
                   </Card>
                 </Box>
               ))}
-              <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInProgressHovered ? 'visible' : 'hidden' }}>
+              {/* <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInProgressHovered ? 'visible' : 'hidden' }}>
                 <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
                 <Modal
                   open={createOpen}
@@ -212,15 +251,16 @@ export default function BoardView() {
                     <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 1} />
                   </Box>
                 </Modal>
-              </Flex>
+              </Flex> */}
             </>
           )}
         </Box>
 
-        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
+        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
+          {/* <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
           onMouseEnter={() => setIsInReviewHovered(true)}
           onMouseLeave={() => setIsInReviewHovered(false)}
-        >
+        > */}
           <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontSize: '2rem', fontWeight: 'lighter', color: 'text.primary', pb: 2 }}>
             <Typography variant="h4" component="div">
               In Review
@@ -231,7 +271,17 @@ export default function BoardView() {
           </Box>
           {inReview.length === 0 ? (
             <Flex style={{ display: 'flex', justifyContent: 'center' }}>
-              <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              {/* <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+            <Modal
+              open={createOpen}
+              onClose={handleCreateClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 2} />
+              </Box>
+            </Modal> */}
             </Flex>
           ) : (
             <>
@@ -259,16 +309,27 @@ export default function BoardView() {
                   </Card>
                 </Box>
               ))}
-              <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInReviewHovered ? 'visible' : 'hidden' }}>
-                <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-              </Flex>
+              {/* <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInReviewHovered ? 'visible' : 'hidden' }}>
+              <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              <Modal
+                open={createOpen}
+                onClose={handleCreateClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 2} />
+                </Box>
+              </Modal>
+            </Flex> */}
             </>
           )}
         </Box>
-        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
-          onMouseEnter={() => setIsInTestingHovered(true)}
-          onMouseLeave={() => setIsInTestingHovered(false)}
-        >
+        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
+          {/* <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
+        onMouseEnter={() => setIsInTestingHovered(true)}
+        onMouseLeave={() => setIsInTestingHovered(false)}
+      > */}
           <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontSize: '2rem', fontWeight: 'lighter', color: 'text.primary', pb: 2 }}>
             <Typography variant="h4" component="div">
               In Testing
@@ -279,7 +340,17 @@ export default function BoardView() {
           </Box>
           {inTesting.length === 0 ? (
             <Flex style={{ display: 'flex', justifyContent: 'center' }}>
-              <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              {/* <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+            <Modal
+              open={createOpen}
+              onClose={handleCreateClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 3} />
+              </Box>
+            </Modal> */}
             </Flex>
           ) : (
             <>
@@ -307,9 +378,19 @@ export default function BoardView() {
                   </Card>
                 </Box>
               ))}
-              <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInTestingHovered ? 'visible' : 'hidden' }}>
-                <CreateButton sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
-              </Flex>
+              {/* <Flex style={{ display: 'flex', justifyContent: 'center', visibility: isInTestingHovered ? 'visible' : 'hidden' }}>
+              <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              <Modal
+                open={createOpen}
+                onClose={handleCreateClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 3} />
+                </Box>
+              </Modal>
+            </Flex> */}
             </>
           )}
         </Box>
@@ -322,9 +403,19 @@ export default function BoardView() {
             minHeight: '93vh',
             borderRadius: '0 0 2px 2px',
           }}
-          onMouseEnter={() => setIsDoneHovered(true)}
-          onMouseLeave={() => setIsDoneHovered(false)}
         >
+          {/* <Box
+        sx={{
+          position: 'relative',
+          p: 1,
+          backgroundColor: '#f8f8f8',
+          minWidth: 250,
+          minHeight: '93vh',
+          borderRadius: '0 0 2px 2px',
+        }}
+        onMouseEnter={() => setIsDoneHovered(true)}
+        onMouseLeave={() => setIsDoneHovered(false)}
+      > */}
           <Box
             sx={{
               display: 'flex',
@@ -359,17 +450,17 @@ export default function BoardView() {
                 visibility: 'visible',
               }}
             >
-              <CreateButton
-                sx={{
-                  fontSize: '1.2rem',
-                  fontWeight: 'bold',
-                  color: 'text.primary',
-                }}
-                variant="contained"
-                color="primary"
-              >
-                ➕ Create issue
-              </CreateButton>
+              {/* <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+            <Modal
+              open={createOpen}
+              onClose={handleCreateClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 4} />
+              </Box>
+            </Modal> */}
             </Flex>
           ) : (
             <>
@@ -420,25 +511,25 @@ export default function BoardView() {
                   </Card>
                 </Box>
               ))}
-              <Flex
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  visibility: isDoneHovered ? 'visible' : 'hidden',
-                }}
+              {/* <Flex
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                visibility: isDoneHovered ? 'visible' : 'hidden',
+              }}
+            >
+              <CreateButton onClick={handleCreateOpen} sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'text.primary' }} variant="contained" color="primary">➕ Create issue</CreateButton>
+              <Modal
+                open={createOpen}
+                onClose={handleCreateClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
               >
-                <CreateButton
-                  sx={{
-                    fontSize: '1.2rem',
-                    fontWeight: 'bold',
-                    color: 'text.primary',
-                  }}
-                  variant="contained"
-                  color="primary"
-                >
-                  ➕ Create issue
-                </CreateButton>
-              </Flex>
+                <Box sx={style}>
+                  <IssueForm board_id={board_id} swim_lane_id={startSwimlaneId + 4} />
+                </Box>
+              </Modal>
+            </Flex> */}
             </>
           )}
         </Box>
