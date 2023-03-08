@@ -117,8 +117,8 @@ export default function BoardView() {
 
   return (
     <>
-      <Box sx={{ width: '70%', mx: 'auto', display: 'flex', justifyContent: 'center', gap: 2, pt: 2, borderRadius: 2, overflow: 'hidden' }}>
-        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
+      <Box sx={{ width: '80vw', mx: 'auto', display: 'flex', justifyContent: 'center', gap: 2, pt: 2, borderRadius: 2, overflow: 'hidden' }}>
+        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: '17%', minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
           onMouseEnter={() => setIsBacklogHovered(true)}
           onMouseLeave={() => setIsBacklogHovered(false)}
         >
@@ -186,7 +186,7 @@ export default function BoardView() {
             </>
           )}
         </Box>
-        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
+        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: '17%', minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
           {/* <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
           onMouseEnter={() => setIsInProgressHovered(true)}
           onMouseLeave={() => setIsInProgressHovered(false)}
@@ -256,7 +256,7 @@ export default function BoardView() {
           )}
         </Box>
 
-        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
+        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: '17%', minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
           {/* <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
           onMouseEnter={() => setIsInReviewHovered(true)}
           onMouseLeave={() => setIsInReviewHovered(false)}
@@ -325,7 +325,7 @@ export default function BoardView() {
             </>
           )}
         </Box>
-        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
+        <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: '17%', minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
           {/* <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: 250, minHeight: '93vh', borderRadius: '0 0 2px 2px' }}
         onMouseEnter={() => setIsInTestingHovered(true)}
         onMouseLeave={() => setIsInTestingHovered(false)}
@@ -399,7 +399,7 @@ export default function BoardView() {
             position: 'relative',
             p: 1,
             backgroundColor: '#f8f8f8',
-            minWidth: 250,
+            minWidth: '17%',
             minHeight: '93vh',
             borderRadius: '0 0 2px 2px',
           }}

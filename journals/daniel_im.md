@@ -13,6 +13,8 @@ CLEAN UP CODE - comments/prints
 
 Week 17
 
+3/8/23: Driver:
+
 3/7/23: Driver: Christina. Today I was with Ian and Christina. We worked on our modals for our issues on the Board View page. We were having an issue with having them show up. We also had an issue getting them to submit the Issue Form. We fixed those issues. We also decided to only allow a user to add issues on the Backlog swimlane because react was changing over our swimlane variable asynchronously so they were all ending up in the last swimlane. We also created a FAQ page.
 
 3/6/23: Driver: Daniel. This was a shorter work day since we had our practice assessment. I drove for myself and Ryan. We figured out modals. First we got it working on our Board Dashboard to display then I got it working in the Board View and also worked on trying to get the Issue creation. On a few points we had to help out Ian, Joe, and Christina with issues they were having. They were working on the Issues Dashboard.
