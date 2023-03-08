@@ -39,7 +39,6 @@ export default function LoginComponent() {
     e.preventDefault();
     try {
       await login(username, password);
-      navigate("/");
     } catch (error) {
       setError("Invalid username or password");
     }
