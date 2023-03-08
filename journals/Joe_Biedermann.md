@@ -13,3 +13,8 @@
 ## 2/22/23
 
 -We began work on our backend today. Christina, Ian, and myself were tasked with the HomePage. We got the body flushed out while we wait for the Nav to be complete. We will next add our Login/Signup buttons.
+
+## 2/22/23
+
+-Fixed Issue modal to submit and display correctly. Created the Contact us page as well as the footer.
+footer background color = 1976d2
