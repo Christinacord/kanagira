@@ -16,6 +16,8 @@ import Boards from "./Boards";
 import MyApp from "./Test";
 import Contact from "./Contact"
 import Faq from "./Faq";
+import Footer from "./Footer"
+import { Container } from '@mui/material';
 
 
 function GetToken() {
@@ -29,6 +31,7 @@ function App() {
       <BrowserRouter>
         <GetToken />
         <Nav />
+        <Container sx={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginComponent />} />
@@ -42,6 +45,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<Faq />} />
         </Routes>
+        </Container>
+        <Footer/>
       </BrowserRouter>
     </AuthProvider>
   );

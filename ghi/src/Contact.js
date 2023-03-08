@@ -138,7 +138,7 @@ function Contact() {
                                 Portfolio
                                 <LanguageIcon />
                             </WebsiteLink>{' '}
-                            <GitHubLink href="https://github.com/Smoovies13">
+                            <GitHubLink href="https://github.com/dansuim">
                                 GitHub
                                 <GitHubIcon />
                             </GitHubLink>
