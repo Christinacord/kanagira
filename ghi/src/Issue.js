@@ -91,6 +91,67 @@ export default function Issue(props) {
         }
     }
 
+    const handleSwimlaneIncrease = async (currSwimlane) => {
+        const maxId = swim_lane_id + 4;
+        if (currSwimlane < maxId) {
+            const newSwimLaneId = currSwimlane + 1;
+            console.log(newSwimLaneId);
+            const updatedIssue = {
+                ...issue,
+                swim_lane_id: newSwimLaneId,
+            }
+            console.log(updatedIssue);
+            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
+            const fetchConfig = {
+                method: "PUT",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedIssue),
+            };
+            const response = await fetch(url, fetchConfig);
+            console.log(response);
+            if (response.ok) {
+                const data = await response.json();
+                setIssue({
+                    ...issue,
+                    swim_lane_id: newSwimLaneId,
+                });
+            }
+        }
+    }
+
+    const handleSwimlaneDecrease = async (currSwimlane) => {
+        const minId = swim_lane_id;
+        if (currSwimlane > minId) {
+            const newSwimLaneId = currSwimlane - 1;
+            console.log(newSwimLaneId);
+            const updatedIssue = {
+                ...issue,
+                swim_lane_id: newSwimLaneId,
+            }
+            console.log(updatedIssue);
+            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
+            const fetchConfig = {
+                method: "PUT",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedIssue),
+            };
+            const response = await fetch(url, fetchConfig);
+            console.log(response);
+            if (response.ok) {
+                const data = await response.json();
+                setIssue({
+                    ...issue,
+                    swim_lane_id: newSwimLaneId,
+                });
+            }
+        }
+    };
 
     return (
         <>
@@ -130,7 +191,7 @@ export default function Issue(props) {
                                                         case 5:
                                                             return "red";
                                                         default:
-                                                            return "grey";
+                                                            return "gray";
                                                     }
                                                 })(),
                                                 mr: 2,
@@ -213,11 +274,27 @@ export default function Issue(props) {
                                             ))}
                                         </Select>
                                     </Box>
-
                                 </Box>
                             )}
                         </Box>
-
+                        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                            <Box>
+                                <Button
+                                    variant="contained"
+                                    onClick={() => handleSwimlaneDecrease(issue.swim_lane_id)}
+                                    sx={{ mr: 2 }}
+                                >
+                                    Move Left
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    onClick={() => handleSwimlaneIncrease(issue.swim_lane_id)}
+                                    sx={{ mr: 2 }}
+                                >
+                                    Move Right
+                                </Button>
+                            </Box>
+                        </Box>
                     </>
                 )}
             </Box>

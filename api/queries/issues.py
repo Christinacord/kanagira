@@ -14,6 +14,7 @@ class IssueIn(BaseModel):
     type: str
     difficulty: int
     assignee_id: int | None = None
+    swim_lane_id: int | None = None
 
 
 class IssueOut(BaseModel):
@@ -179,7 +180,8 @@ class IssueQueries:
                         priority = %s,
                         type = %s,
                         difficulty = %s,
-                        assignee_id = %s
+                        assignee_id = %s,
+                        swim_lane_id = %s
                     WHERE id = %s
                     RETURNING id;
                     """,
@@ -190,6 +192,7 @@ class IssueQueries:
                         info.type,
                         info.difficulty,
                         info.assignee_id,
+                        info.swim_lane_id,
                         issue_id,
                     ],
                 )
@@ -202,4 +205,5 @@ class IssueQueries:
                     type=info.type,
                     difficulty=info.difficulty,
                     assignee_id=info.assignee_id,
+                    swim_lane_id=info.swim_lane_id,
                 )
