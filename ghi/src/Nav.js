@@ -114,9 +114,6 @@ export default function MyApp() {
                 <MenuIcon />
               </IconButton>
               <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left', }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: 'block', md: 'none' }, }}>
-                <MenuItem id="menu-appbar" component="a" href="#" onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">About</Typography>
-                </MenuItem>
                 <MenuItem id="menu-appbar" component="a" href="/contact" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Contact Us</Typography>
                 </MenuItem>
@@ -130,9 +127,6 @@ export default function MyApp() {
               KANAGIRA
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button onClick={handleCloseNavMenu} component="a" href="/#" sx={{ my: 2, color: 'white', display: 'block' }}>
-                About
-              </Button>
               <Button onClick={handleCloseNavMenu} component="a" href="/contact" sx={{ my: 2, color: 'white', display: 'block' }}>
                 Contact Us
               </Button>

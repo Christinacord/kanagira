@@ -1,6 +1,6 @@
 import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -57,10 +57,17 @@ export default function Faq() {
     return (
         <div style={{
             background: `url(https://images.unsplash.com/photo-1636819488524-1f019c4e1c44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80) no-repeat center center fixed`,
-            backgroundSize: "cover",
+            backgroundSize: "100% 100%",
             padding: "20px",
             minHeight: "100vh" // added to ensure the image covers the entire viewport height
         }}>
+            <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ background: 'rgba(255, 255, 255, 0)', padding: '10px' }}>
+                    <p style={{ margin: '0', fontSize: '50px', fontWeight: 'bold', textAlign: 'center' }}>
+                        Concept to Launch in Record Time
+                    </p>
+                </div>
+            </Box>
             <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -131,15 +138,13 @@ export default function Faq() {
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-            <Accordion disabled>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel3a-content"
-                    id="panel3a-header"
-                >
-                    <Typography>Don't trust your memory, trust Kanagira!.</Typography>
-                </AccordionSummary>
-            </Accordion>
+            <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ background: 'rgba(255, 255, 255, 0)', padding: '10px' }}>
+                    <p style={{ margin: '0', fontSize: '35px', fontWeight: 'bold', textAlign: 'center' }}>
+                        "Don't trust your memory, trust Kanagira!."
+                    </p>
+                </div>
+            </Box>
         </div>
     );
 }

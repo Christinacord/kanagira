@@ -101,6 +101,7 @@ export function useToken() {
       return;
     }
     let error = await response.json();
+    alert("Invalid username or password");
     return handleErrorMessage(error);
   }
 
