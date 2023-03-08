@@ -216,14 +216,6 @@ export default function Issue(props) {
 
                                 </Box>
                             )}
-                            <Button
-                                // onClick={handleClose}
-                                variant="contained"
-                                color="primary"
-                                style={{ backgroundColor: 'rgba(39, 45, 53, 0.8)', color: 'white' }}
-                            >
-                                Close
-                            </Button>
                         </Box>
 
                     </>
