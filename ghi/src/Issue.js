@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useToken } from "./auth.js";
-import { useParams, useNavigate, Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { Select, MenuItem } from "@mui/material";
-import { isUnitless } from "@mui/material/styles/cssUtils.js";
 import { IconButton } from '@mui/material';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
+import Input from '@mui/material/Input';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 
 export default function Issue(props) {
@@ -16,10 +16,134 @@ export default function Issue(props) {
     const [issue, setIssue] = useState(null);
     const [users, setUsers] = useState([]);
     const [assignee, setAssignee] = useState(null);
+    const [isEditingName, setIsEditingName] = useState(false);
+    const [isEditingDescription, setIsEditingDescription] = useState(false);
+    const [description, setDescription] = useState(null);
+    const [name, setName] = useState(null);
     const { board_id, swim_lane_id, issue_id } = props;
     const { token } = useToken();
-    const navigate = useNavigate();
 
+    const handleNameClick = () => {
+        setIsEditingName(true);
+    };
+
+    const handleDescriptionClick = () => {
+        setIsEditingDescription(true);
+    };
+
+
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
+    const handleDescriptionChange = (e) => {
+        setDescription(e.target.value);
+    };
+
+    const handleNameKeyDown = async (e) => {
+        if (e.key === "Enter") {
+            setIsEditingName(false);
+            const updatedIssue = {
+                ...issue,
+                name: name,
+            };
+            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
+            const fetchConfig = {
+                method: "PUT",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedIssue),
+            };
+            const response = await fetch(url, fetchConfig);
+            if (response.ok) {
+                const data = await response.json();
+                setIssue({
+                    ...issue,
+                    name: data.name,
+                });
+            }
+        }
+    };
+
+    const handleDescriptionKeyDown = async (e) => {
+        if (e.key === "Enter") {
+            setIsEditingDescription(false);
+            const updatedIssue = {
+                ...issue,
+                description: description,
+            };
+            const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
+            const fetchConfig = {
+                method: "PUT",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedIssue),
+            };
+            const response = await fetch(url, fetchConfig);
+            if (response.ok) {
+                const data = await response.json();
+                setIssue({
+                    ...issue,
+                    description: data.description,
+                });
+            }
+        }
+    };
+
+    const handleDescriptionBlur = async () => {
+        setIsEditingDescription(false);
+        const updatedIssue = {
+            ...issue,
+            description: description,
+        };
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
+        const fetchConfig = {
+            method: "PUT",
+            headers: {
+                "Authorization": "Bearer " + token,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedIssue),
+        };
+        const response = await fetch(url, fetchConfig);
+        if (response.ok) {
+            const data = await response.json();
+            setIssue({
+                ...issue,
+                description: data.description,
+            });
+        }
+    };
+
+    
+    const handleNameBlur = async () => {
+        setIsEditingName(false);
+         const updatedIssue = {
+            ...issue,
+            name: name,
+        };
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
+        const fetchConfig = {
+            method: "PUT",
+            headers: {
+                "Authorization": "Bearer " + token,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedIssue),
+        };
+        const response = await fetch(url, fetchConfig);
+        if (response.ok) {
+            const data = await response.json();
+            setIssue({
+                ...issue,
+                name: data.name,
+            });
+        }
+    };
 
     useEffect(() => {
         const fetchIssue = async () => {
@@ -36,6 +160,8 @@ export default function Issue(props) {
                 const data = await response.json();
                 setIssue(data);
                 setAssignee(data.assignee_id);
+                setName(data.name);
+                setDescription(data.description);
             }
         };
 
@@ -89,12 +215,10 @@ export default function Issue(props) {
         const maxId = swim_lane_id + 4;
         if (currSwimlane < maxId) {
             const newSwimLaneId = currSwimlane + 1;
-            console.log(newSwimLaneId);
             const updatedIssue = {
                 ...issue,
                 swim_lane_id: newSwimLaneId,
             }
-            console.log(updatedIssue);
             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
             const fetchConfig = {
                 method: "PUT",
@@ -120,7 +244,6 @@ export default function Issue(props) {
         const minId = swim_lane_id;
         if (currSwimlane > minId) {
             const newSwimLaneId = currSwimlane - 1;
-            console.log(newSwimLaneId);
             const updatedIssue = {
                 ...issue,
                 swim_lane_id: newSwimLaneId,
@@ -146,6 +269,7 @@ export default function Issue(props) {
             }
         }
     };
+
 
     return (
         <>
@@ -192,9 +316,22 @@ export default function Issue(props) {
                                             }}
                                         />
                                     )}
-                                    <Typography sx={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                                        {issue.name}
-                                    </Typography>
+                                    {isEditingName ? (
+                                        <Input
+                                            value={name}
+                                            onChange={handleNameChange}
+                                            onKeyDown={handleNameKeyDown}
+                                            onBlur={handleNameBlur}
+                                            autoFocus
+                                        />
+                                    ) : (
+                                        <Typography
+                                            sx={{ fontSize: "1.2rem", fontWeight: "bold", cursor: "pointer" }}
+                                            onClick={handleNameClick}
+                                        >
+                                            {issue.name}
+                                        </Typography>
+                                    )}
                                 </Box>
                                 <Box sx={{ display: "flex", alignItems: "center" }}>
                                     <Typography variant="subtitle1" gutterBottom sx={{ mr: 2 }}>
@@ -230,7 +367,32 @@ export default function Issue(props) {
                                         >
                                             Description:
                                         </Typography>
-                                        <Typography variant="body1">{issue.description}</Typography>
+                                        {isEditingDescription ? (
+                                                <TextareaAutosize
+                                                    value={description}
+                                                    onChange={handleDescriptionChange}
+                                                    onKeyDown={handleDescriptionKeyDown}
+                                                    onBlur={handleDescriptionBlur}
+                                                    autoFocus
+                                                    sx={{
+                                                        border: "none",
+                                                        width: "100%",
+                                                        padding: "8px",
+                                                        fontSize: "16px",
+                                                        lineHeight: "1.5",
+                                                        borderRadius: "4px",
+                                                        boxShadow: "inset 0 0 0 1px #e6ecf1",
+                                                        "&:focus": {
+                                                            outline: "none",
+                                                            boxShadow: "inset 0 0 0 2px #0079bf",
+                                                        },
+                                                    }}
+                                                />
+                                        ) : (
+                                            <Typography variant="body1" onClick={handleDescriptionClick}>
+                                                {issue.description}
+                                            </Typography>
+                                        )}
                                     </Box>
                                 </Paper>
                             </Box>
