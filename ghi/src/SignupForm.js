@@ -22,6 +22,7 @@ export default function SignupForm() {
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
 
   const handleFull_nameChange = (e) => {
     const value = e.target.value;
@@ -45,7 +46,12 @@ export default function SignupForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    signup(full_name, username, email, password);
+    try {
+      await signup(full_name, username, email, password);
+      navigate("/boards");
+    } catch (error) {
+      alert("existing email or username please try again");
+    }
   };
 
   const theme = createTheme();
@@ -136,6 +142,13 @@ export default function SignupForm() {
                 </Link>
               </Grid>
             </Grid>
+          </Box>
+          <Box>
+            {error && (
+              <Typography sx={{ mt: 2 }} color="error">
+                {error}
+              </Typography>
+            )}
           </Box>
         </Box>
       </Container>
