@@ -141,7 +141,7 @@ export default function BoardView() {
           ) : (
             <>
               {backlog.map((issue) => (
-                <Box key={issue.id} m={1} sx={{ width: '95%' }}>
+                <Box key={issue.id} sx={{ my: 1, mx: 'auto', width: '95%' }}>
                   <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
                     <CardContent sx={{ px: 1, py: 0, textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', pb: 1 }}>
                       <Typography sx={{ fontSize: 20, fontWeight: 'bold', pt: 1, pl: 0.5 }} color="text.secondary" gutterBottom>
@@ -217,7 +217,7 @@ export default function BoardView() {
           ) : (
             <>
               {inReview.map((issue) => (
-                <Box key={issue.id} m={1} sx={{ width: '95%' }}>
+                <Box key={issue.id} sx={{ my: 1, mx: 'auto', width: '95%' }}>
                   <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
                     <CardContent sx={{ px: 1, py: 0, textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', pb: 1 }}>
                       <Typography sx={{ fontSize: 20, fontWeight: 'bold', pt: 1, pl: 0.5 }} color="text.secondary" gutterBottom>
@@ -248,7 +248,7 @@ export default function BoardView() {
           ) : (
             <>
               {inTesting.map((issue) => (
-                <Box key={issue.id} m={1} sx={{ width: '95%' }}>
+                <Box key={issue.id} sx={{ my: 1, mx: 'auto', width: '95%' }}>
                   <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
                     <CardContent sx={{ px: 1, py: 0, textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', pb: 1 }}>
                       <Typography sx={{ fontSize: 20, fontWeight: 'bold', pt: 1, pl: 0.5 }} color="text.secondary" gutterBottom>
@@ -312,7 +312,7 @@ export default function BoardView() {
           ) : (
             <>
               {done.map((issue) => (
-                <Box key={issue.id} m={1} sx={{ width: '95%' }}>
+                <Box key={issue.id} sx={{ my: 1, mx: 'auto', width: '95%' }}>
                   <Card
                     sx={{
                       width: '100%',
