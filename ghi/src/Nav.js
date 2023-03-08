@@ -56,7 +56,7 @@ export default function MyApp() {
                 <MenuItem id="menu-appbar" component="a" href="/contact" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Contact Us</Typography>
                 </MenuItem>
-                <MenuItem id="menu-appbar" component="a" href="#" onClick={handleCloseNavMenu}>
+                <MenuItem id="menu-appbar" component="a" href="faq" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">FAQ</Typography>
                 </MenuItem>
               </Menu>
@@ -72,7 +72,7 @@ export default function MyApp() {
               <Button onClick={handleCloseNavMenu} component="a" href="/contact" sx={{ my: 2, color: 'white', display: 'block' }}>
                 Contact Us
               </Button>
-              <Button onClick={handleCloseNavMenu} component="a" href="/#" sx={{ my: 2, color: 'white', display: 'block' }}>
+              <Button onClick={handleCloseNavMenu} component="a" href="/faq" sx={{ my: 2, color: 'white', display: 'block' }}>
                 FAQ
               </Button>
             </Box>
@@ -120,7 +120,7 @@ export default function MyApp() {
                 <MenuItem id="menu-appbar" component="a" href="/contact" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Contact Us</Typography>
                 </MenuItem>
-                <MenuItem id="menu-appbar" component="a" href="#" onClick={handleCloseNavMenu}>
+                <MenuItem id="menu-appbar" component="a" href="/faq" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">FAQ</Typography>
                 </MenuItem>
               </Menu>
@@ -136,7 +136,7 @@ export default function MyApp() {
               <Button onClick={handleCloseNavMenu} component="a" href="/contact" sx={{ my: 2, color: 'white', display: 'block' }}>
                 Contact Us
               </Button>
-              <Button onClick={handleCloseNavMenu} component="a" href="/#" sx={{ my: 2, color: 'white', display: 'block' }}>
+              <Button onClick={handleCloseNavMenu} component="a" href="/faq" sx={{ my: 2, color: 'white', display: 'block' }}>
                 FAQ
               </Button>
             </Box>

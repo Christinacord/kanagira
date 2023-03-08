@@ -15,6 +15,7 @@ import MyIssues from "./IssuesView";
 import Boards from "./Boards";
 import MyApp from "./Test";
 import Contact from "./Contact"
+import Faq from "./Faq";
 
 
 function GetToken() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/test" element={<MyApp />} />
           <Route path="/issues" element={<MyIssues />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<Faq />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
