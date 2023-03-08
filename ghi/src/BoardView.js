@@ -11,6 +11,7 @@ import { styled } from '@mui/system';
 import Issue from "./Issue.js";
 import Modal from '@mui/material/Modal';
 import IssueForm from "./IssueForm.js";
+
 const viewStyle = {
   position: 'absolute',
   top: '50%',
@@ -22,6 +23,7 @@ const viewStyle = {
   boxShadow: 24,
   p: 4,
 };
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -33,6 +35,8 @@ const style = {
   boxShadow: 24,
   p: 2,
 };
+
+
 export default function BoardView() {
   const [backlog, setBacklog] = useState([]);
   const [inProgress, setInProgress] = useState([]);

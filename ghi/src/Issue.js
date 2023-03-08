@@ -72,7 +72,7 @@ export default function Issue(props) {
             ...issue,
             assignee_id: newAssigneeId,
         };
-        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/6/swim_lanes/26/issues/1`;
+        const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
         const fetchConfig = {
             method: "PUT",
             headers: {
@@ -92,7 +92,7 @@ export default function Issue(props) {
     }
 
 
- return (
+    return (
         <>
             <Box
                 sx={{ "& .MuiDialog-paper": { height: "30%", width: "30%", maxWidth: "none" } }}

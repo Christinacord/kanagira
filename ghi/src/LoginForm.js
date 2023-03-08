@@ -23,6 +23,7 @@ export default function LoginComponent() {
 
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
 
   const handleUsernameChange = (e) => {
     const value = e.target.value;
@@ -36,7 +37,12 @@ export default function LoginComponent() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    login(username, password);
+    try {
+      await login(username, password);
+      navigate("/");
+    } catch (error) {
+      setError("Invalid username or password");
+    }
   };
 
   return (
@@ -94,14 +100,21 @@ export default function LoginComponent() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item>
-                <LinkMui href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </LinkMui>
-              </Grid>
-            </Grid>
           </Box>
+          <Box>
+            {error && (
+              <Typography sx={{ mt: 2 }} color="error">
+                {error}
+              </Typography>
+            )}
+          </Box>
+          <Grid container>
+            <Grid item>
+              <LinkMui href="/signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </LinkMui>
+            </Grid>
+          </Grid>
         </Box>
       </Container>
     </ThemeProvider>
