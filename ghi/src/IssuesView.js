@@ -28,6 +28,7 @@ export default function MyIssues() {
             if (response.ok) {
                 const data = await response.json();
                 setIssues(data);
+                navigate(`/boards`);
             }
         }
 
