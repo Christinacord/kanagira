@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import BoardForm from "./BoardForm.js";
 import Modal from '@mui/material/Modal';
 
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -57,10 +58,12 @@ export default function Boards() {
                 <Box sx={{ paddingTop: 8, paddingBottom: 8 }}>
                     <Box sx={{ height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Card sx={{ width: '40%', minWidth: 200, backgroundColor: '#272D35', color: 'white', boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)' }} variant="outlined">
-                            <CardContent>
-                                <Typography variant="h5" component="div" sx={{ textAlign: 'center', fontWeight: 'bold', mt: 1.5 }}>
-                                    Please log in
-                                </Typography>
+                            <CardContent sx={{ textAlign: 'center', fontWeight: 'bold' }}>
+                                <Button component={Link} to="/login" variant="body2" sx={{ textAlign: 'center', fontWeight: 'bold' }}>
+                                    <Typography variant="h5" component="div" sx={{ textAlign: 'center', fontWeight: 'bold', mt: 1.5 }}>
+                                        Please log in
+                                    </Typography>
+                                </Button>
                             </CardContent>
                         </Card>
                     </Box>
