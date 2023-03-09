@@ -105,6 +105,7 @@ export default function BoardView() {
     transform: 'translate(-50%, -50%)',
     width: 500,
     bgcolor: 'background.paper',
+    borderRadius: 2,
     boxShadow: 24,
     p: 4,
   };
@@ -116,7 +117,7 @@ export default function BoardView() {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    borderRadius: 8,
+    borderRadius: 6,
     boxShadow: 24,
     p: 2,
   };
@@ -155,7 +156,7 @@ export default function BoardView() {
             <>
               {backlog.map((issue) => (
                 <Box key={issue.id} sx={{ my: 1, mx: 'auto', width: '95%' }}>
-                  <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
+                  <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', borderRadius: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
                     <CardContent sx={{ px: 1, py: 0, textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', pb: 1 }}>
                       <Typography sx={{ fontSize: 20, fontWeight: 'bold', pt: 1, pl: 0.5 }} color="text.secondary" gutterBottom>
                         {issue.name}
@@ -199,7 +200,7 @@ export default function BoardView() {
             <>
               {inProgress.map((issue) => (
                 <Box key={issue.id} sx={{ my: 1, mx: 'auto', width: '95%' }}>
-                  <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
+                  <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', borderRadius: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
                     <CardContent sx={{ px: 1, py: 0, textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', pb: 1 }}>
                       <Typography sx={{ fontSize: 20, fontWeight: 'bold', pt: 1, pl: 0.5 }} color="text.secondary" gutterBottom>
                         {issue.name}
@@ -230,7 +231,7 @@ export default function BoardView() {
             <>
               {inReview.map((issue) => (
                 <Box key={issue.id} sx={{ my: 1, mx: 'auto', width: '95%' }}>
-                  <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
+                  <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', borderRadius: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
                     <CardContent sx={{ px: 1, py: 0, textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', pb: 1 }}>
                       <Typography sx={{ fontSize: 20, fontWeight: 'bold', pt: 1, pl: 0.5 }} color="text.secondary" gutterBottom>
                         {issue.name}
@@ -261,7 +262,7 @@ export default function BoardView() {
             <>
               {inTesting.map((issue) => (
                 <Box key={issue.id} sx={{ my: 1, mx: 'auto', width: '95%' }}>
-                  <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
+                  <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', borderRadius: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
                     <CardContent sx={{ px: 1, py: 0, textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'center', pb: 1 }}>
                       <Typography sx={{ fontSize: 20, fontWeight: 'bold', pt: 1, pl: 0.5 }} color="text.secondary" gutterBottom>
                         {issue.name}
@@ -325,16 +326,7 @@ export default function BoardView() {
             <>
               {done.map((issue) => (
                 <Box key={issue.id} sx={{ my: 1, mx: 'auto', width: '95%' }}>
-                  <Card
-                    sx={{
-                      width: '100%',
-                      height: '90px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-                    }}
-                    variant="outlined"
-                  >
+                  <Card sx={{ width: '100%', height: '90px', display: 'flex', flexDirection: 'column', borderRadius: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }} variant="outlined">
                     <CardContent
                       sx={{
                         px: 1,
