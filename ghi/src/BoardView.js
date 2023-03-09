@@ -53,51 +53,55 @@ export default function BoardView() {
   const handleCreateClose = () => setCreateOpen(false);
 
   useEffect(() => {
-    const fetchIssues = async () => {
-      const swimlaneStartId = ((board_id - 1) * 5) + 1;
-      setStartSwimlaneId(swimlaneStartId);
-      let count = 1;
-      for (let i = swimlaneStartId; i < swimlaneStartId + 5; i++) {
-        const swim_lane_id = i;
-        const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
-        const fetchConfig = {
-          method: "GET",
-          headers: {
-            "Authorization": "Bearer " + token,
-            "Content-Type": "application/json",
-          },
-        };
-        const response = await fetch(issuesUrl, fetchConfig);
-        if (response.ok) {
-          const data = await response.json();
-          if (count === 1) {
-            setBacklog(data);
-          }
-          else if (count === 2) {
-            setInProgress(data);
-          }
-          else if (count === 3) {
-            setInReview(data);
-          }
-          else if (count === 4) {
-            setInTesting(data);
-          }
-          else if (count === 5) {
-            setDone(data);
-          }
-        }
-        count += 1;
-      }
-    };
     fetchIssues();
   }, [board_id, token]);
 
+  const fetchIssues = async () => {
+    const swimlaneStartId = ((board_id - 1) * 5) + 1;
+    setStartSwimlaneId(swimlaneStartId);
+    let count = 1;
+    for (let i = swimlaneStartId; i < swimlaneStartId + 5; i++) {
+      const swim_lane_id = i;
+      const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
+      const fetchConfig = {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await fetch(issuesUrl, fetchConfig);
+      if (response.ok) {
+        const data = await response.json();
+        if (count === 1) {
+          setBacklog(data);
+        }
+        else if (count === 2) {
+          setInProgress(data);
+        }
+        else if (count === 3) {
+          setInReview(data);
+        }
+        else if (count === 4) {
+          setInTesting(data);
+        }
+        else if (count === 5) {
+          setDone(data);
+        }
+      }
+      count += 1;
+    }
+  };
 
   function addIssueToBacklog(issue) {
     const newBacklog = [...backlog, issue]
     setBacklog(() => {
       return newBacklog
     })
+  }
+
+  function swimlaneRefresh(issue) {
+    fetchIssues();
   }
 
   if (!token) {
@@ -371,7 +375,7 @@ export default function BoardView() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={viewStyle}>
-          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={open.issue_id} />
+          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={open.issue_id} swimlaneRefresh={swimlaneRefresh} />
         </Box>
       </Modal>
     </>
