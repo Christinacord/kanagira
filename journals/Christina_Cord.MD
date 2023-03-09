@@ -1,6 +1,32 @@
+## 03/09/2023
+
+Today Joe and I spent the morning trying to get the modal on the IssuesView view to work/load. We ultimately made the IssuesView page navigate to the BoardView page that contains that particular issue after clicking the view button for that issue from the IssuesView page. All 5 of us wrote our unit tests for our routes.
+
+## 03/08/2023
+
+During the morning we researched and tested trying to get drag and drop functionality to work on the BoardView page. We tried using react-dnd library and also tried the react-beautiful-dnd library. We ended up using a different approach to get the functionality to move issues across the board. We decided to circle back to the drag and drop functionality during stretch goal week since that functionality was outside of our MVP. Daniel and I worked to get the BoardView to automatically refresh and have the updated state after opening a view issue modal and incrementing or decrementing the swimlane that the issue is currently in. Joe and I worked with Ian to add in error handling for the LoginForm and SignUpForm pages.
+
+## 03/07/2023
+
+Today I drove. Daniel, Ian, and I completed the modals for the BoardView. We fixed the issue modal to get it to close and the new issue created will populate. We completed the FAQ page. We completed the navigate to automatically navigate where we want after completing a signup or login (we directed those to the landing page and the boards page, respectively).
+
+## 03/06/2023
+
+Ryan worked on some code over the weekend. Today, Daniel and Ryan figured out how to utilize Material UI for certain react components. Joe, Ian, and I worked on creating the issues component that will show all of the issues for the signed in user.
+
+The team installed Material UI for styling. Daniel and Ryan worked on completing the Nav bar component and the issue detail component. Joe, Ian, and I worked styling the home page and the board view page using material ui.
+
+## 02/27/2023
+
+We were able to get params to work on createissue form. Were able to get a response for form data on the front end in browser. Checked in browser to see if issue was created but joe’s docker was not working so we couldn’t verify if it was actually created. Created createissue form. Worked together to figure out how to use useParams hook in createissue form. Ian/Daniel figured out how to get the board id on the back end. Re-worked board creation query to create 5 swim lanes automatically. Worked on nav bar a bit - still not finished.
+
+## 02/27/2023
+
+Daniel, Joe, Ian, and I worked together on updating our team's Jira Kanban board and adding tickets for a few things. We worked on the login, sign up, and logout buttons and functionality. We will style these pages later on toward the end of the project. We created a new component (BoardView)for boards that will show the view of a single board with swim lanes and issues on it. We discussed that our MVP should take a user immediately to the new board once they create a new board.
+
 ## 02/23/2023
 
-Daniel, Ian, and I worked on the Signup page. We also worked on the Nav Bar, adding links to all of the pages that we'll have according to our wireframes. Used the front-end cookbook from Learn as a guide/template.
+Daniel, Ian, and I worked on the SignupForm page. We also worked on the Nav Bar, adding links to all of the pages that we'll have according to our wireframes. Used the front-end cookbook from Learn as a guide/template.
 
 ## 02/22/2023
 
