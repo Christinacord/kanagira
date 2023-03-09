@@ -63,6 +63,7 @@ export default function Issue(props) {
                     ...issue,
                     name: data.name,
                 });
+                swimlaneRefresh(data);
             }
         }
     };
@@ -90,6 +91,7 @@ export default function Issue(props) {
                     ...issue,
                     description: data.description,
                 });
+                swimlaneRefresh(data);
             }
         }
     };
@@ -116,6 +118,7 @@ export default function Issue(props) {
                 ...issue,
                 description: data.description,
             });
+            swimlaneRefresh(data);
         }
     };
 
@@ -142,6 +145,7 @@ export default function Issue(props) {
                 ...issue,
                 name: data.name,
             });
+            swimlaneRefresh(data);
         }
     };
 
@@ -377,19 +381,6 @@ export default function Issue(props) {
                                                 onKeyDown={handleDescriptionKeyDown}
                                                 onBlur={handleDescriptionBlur}
                                                 autoFocus
-                                                sx={{
-                                                    border: "none",
-                                                    width: "100%",
-                                                    padding: "8px",
-                                                    fontSize: "16px",
-                                                    lineHeight: "1.5",
-                                                    borderRadius: "4px",
-                                                    boxShadow: "inset 0 0 0 1px #e6ecf1",
-                                                    "&:focus": {
-                                                        outline: "none",
-                                                        boxShadow: "inset 0 0 0 2px #0079bf",
-                                                    },
-                                                }}
                                             />
                                         ) : (
                                             <Typography variant="body1" onClick={handleDescriptionClick}>
