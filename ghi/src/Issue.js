@@ -20,7 +20,7 @@ export default function Issue(props) {
     const [isEditingDescription, setIsEditingDescription] = useState(false);
     const [description, setDescription] = useState(null);
     const [name, setName] = useState(null);
-    const { board_id, swim_lane_id, issue_id } = props;
+    const { board_id, swim_lane_id, issue_id, swimlaneRefresh } = props;
     const { token } = useToken();
 
     const handleNameClick = () => {
@@ -63,6 +63,7 @@ export default function Issue(props) {
                     ...issue,
                     name: data.name,
                 });
+                swimlaneRefresh(data);
             }
         }
     };
@@ -90,6 +91,7 @@ export default function Issue(props) {
                     ...issue,
                     description: data.description,
                 });
+                swimlaneRefresh(data);
             }
         }
     };
@@ -116,13 +118,14 @@ export default function Issue(props) {
                 ...issue,
                 description: data.description,
             });
+            swimlaneRefresh(data);
         }
     };
 
-    
+
     const handleNameBlur = async () => {
         setIsEditingName(false);
-         const updatedIssue = {
+        const updatedIssue = {
             ...issue,
             name: name,
         };
@@ -142,6 +145,7 @@ export default function Issue(props) {
                 ...issue,
                 name: data.name,
             });
+            swimlaneRefresh(data);
         }
     };
 
@@ -211,6 +215,7 @@ export default function Issue(props) {
         }
     }
 
+
     const handleSwimlaneIncrease = async (currSwimlane) => {
         const maxId = swim_lane_id + 4;
         if (currSwimlane < maxId) {
@@ -236,6 +241,7 @@ export default function Issue(props) {
                     ...issue,
                     swim_lane_id: newSwimLaneId,
                 });
+                swimlaneRefresh(data);
             }
         }
     }
@@ -266,6 +272,7 @@ export default function Issue(props) {
                     ...issue,
                     swim_lane_id: newSwimLaneId,
                 });
+                swimlaneRefresh(data);
             }
         }
     };
@@ -368,26 +375,13 @@ export default function Issue(props) {
                                             Description:
                                         </Typography>
                                         {isEditingDescription ? (
-                                                <TextareaAutosize
-                                                    value={description}
-                                                    onChange={handleDescriptionChange}
-                                                    onKeyDown={handleDescriptionKeyDown}
-                                                    onBlur={handleDescriptionBlur}
-                                                    autoFocus
-                                                    sx={{
-                                                        border: "none",
-                                                        width: "100%",
-                                                        padding: "8px",
-                                                        fontSize: "16px",
-                                                        lineHeight: "1.5",
-                                                        borderRadius: "4px",
-                                                        boxShadow: "inset 0 0 0 1px #e6ecf1",
-                                                        "&:focus": {
-                                                            outline: "none",
-                                                            boxShadow: "inset 0 0 0 2px #0079bf",
-                                                        },
-                                                    }}
-                                                />
+                                            <TextareaAutosize
+                                                value={description}
+                                                onChange={handleDescriptionChange}
+                                                onKeyDown={handleDescriptionKeyDown}
+                                                onBlur={handleDescriptionBlur}
+                                                autoFocus
+                                            />
                                         ) : (
                                             <Typography variant="body1" onClick={handleDescriptionClick}>
                                                 {issue.description}

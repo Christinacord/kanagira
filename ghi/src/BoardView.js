@@ -12,29 +12,6 @@ import Issue from "./Issue.js";
 import Modal from '@mui/material/Modal';
 import IssueForm from "./IssueForm.js";
 
-const viewStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 500,
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-  p: 4,
-};
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  borderRadius: 8,
-  boxShadow: 24,
-  p: 2,
-};
-
 
 export default function BoardView() {
   const [backlog, setBacklog] = useState([]);
@@ -51,47 +28,46 @@ export default function BoardView() {
   const [createOpen, setCreateOpen] = useState(false);
   const handleCreateOpen = () => setCreateOpen(true);
   const handleCreateClose = () => setCreateOpen(false);
-
   useEffect(() => {
-    const fetchIssues = async () => {
-      const swimlaneStartId = ((board_id - 1) * 5) + 1;
-      setStartSwimlaneId(swimlaneStartId);
-      let count = 1;
-      for (let i = swimlaneStartId; i < swimlaneStartId + 5; i++) {
-        const swim_lane_id = i;
-        const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
-        const fetchConfig = {
-          method: "GET",
-          headers: {
-            "Authorization": "Bearer " + token,
-            "Content-Type": "application/json",
-          },
-        };
-        const response = await fetch(issuesUrl, fetchConfig);
-        if (response.ok) {
-          const data = await response.json();
-          if (count === 1) {
-            setBacklog(data);
-          }
-          else if (count === 2) {
-            setInProgress(data);
-          }
-          else if (count === 3) {
-            setInReview(data);
-          }
-          else if (count === 4) {
-            setInTesting(data);
-          }
-          else if (count === 5) {
-            setDone(data);
-          }
-        }
-        count += 1;
-      }
-    };
     fetchIssues();
   }, [board_id, token]);
 
+  const fetchIssues = async () => {
+    const swimlaneStartId = ((board_id - 1) * 5) + 1;
+    setStartSwimlaneId(swimlaneStartId);
+    let count = 1;
+    for (let i = swimlaneStartId; i < swimlaneStartId + 5; i++) {
+      const swim_lane_id = i;
+      const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
+      const fetchConfig = {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await fetch(issuesUrl, fetchConfig);
+      if (response.ok) {
+        const data = await response.json();
+        if (count === 1) {
+          setBacklog(data);
+        }
+        else if (count === 2) {
+          setInProgress(data);
+        }
+        else if (count === 3) {
+          setInReview(data);
+        }
+        else if (count === 4) {
+          setInTesting(data);
+        }
+        else if (count === 5) {
+          setDone(data);
+        }
+      }
+      count += 1;
+    }
+  };
 
   function addIssueToBacklog(issue) {
     const newBacklog = [...backlog, issue]
@@ -100,21 +76,18 @@ export default function BoardView() {
     })
   }
 
-  // const issueSwimlaneUpdate = (issue) => {
-  //   const refreshSwimlane = [...issue]
-  //   fetchIssues();
-  // }
+  function swimlaneRefresh(issue) {
+    fetchIssues();
+  }
 
   if (!token) {
     return <div>Please Log In</div>;
   }
-
   const Flex = styled('div')({
     display: 'flex',
     justifyContent: 'flex-end',
     paddingTop: '15px',
   });
-
   const CreateButton = styled(Button)({
     backgroundColor: '#f8f8f8',
     color: '#979797',
@@ -124,6 +97,29 @@ export default function BoardView() {
       boxShadow: 'none',
     },
   });
+
+  const viewStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    borderRadius: 8,
+    boxShadow: 24,
+    p: 2,
+  };
 
 
   return (
@@ -218,7 +214,6 @@ export default function BoardView() {
             </>
           )}
         </Box>
-
         <Box sx={{ position: 'relative', p: 1, backgroundColor: '#f8f8f8', minWidth: '17%', minHeight: '93vh', borderRadius: '0 0 2px 2px' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontSize: '2rem', fontWeight: 'lighter', color: 'text.primary', pb: 2 }}>
             <Typography variant="h4" component="div">
@@ -376,7 +371,7 @@ export default function BoardView() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={viewStyle}>
-          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={open.issue_id} />
+          <Issue board_id={board_id} swim_lane_id={startSwimlaneId} issue_id={open.issue_id} swimlaneRefresh={swimlaneRefresh} />
         </Box>
       </Modal>
     </>

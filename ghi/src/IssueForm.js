@@ -40,14 +40,15 @@ export default function IssueForm(props) {
         setDescription(value);
     };
 
-    const handlePriorityChange = (e) => {
-        const value = e.target.value;
-        setPriority(value);
+    const handlePriorityChange = (event) => {
+        // Clamp the input value to the range of 0-5
+        const clampedValue = Math.min(Math.max(parseInt(event.target.value), 0), 5);
+        setPriority(clampedValue);
     };
 
-    const handleDifficultyChange = (e) => {
-        const value = e.target.value;
-        setDifficulty(value);
+    const handleDifficultyChange = (event) => {
+        const clampedValue = Math.min(Math.max(parseInt(event.target.value), 0), 5);
+        setDifficulty(clampedValue);
     };
 
     const handleSubmit = async (e) => {
@@ -158,6 +159,8 @@ export default function IssueForm(props) {
                                     label="Difficulty"
                                     name="difficulty"
                                     type="number"
+                                    min={1}
+                                    max={5}
                                     value={difficulty}
                                     onChange={handleDifficultyChange}
                                     autoComplete="off"

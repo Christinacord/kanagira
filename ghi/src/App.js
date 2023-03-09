@@ -16,8 +16,6 @@ import Boards from "./Boards";
 import MyApp from "./Test";
 import Contact from "./Contact"
 import Faq from "./Faq";
-import Footer from "./Footer"
-import { Container } from '@mui/material';
 
 
 function GetToken() {

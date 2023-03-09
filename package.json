@@ -4,6 +4,8 @@
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.11",
-    "@mui/material": "^5.11.11"
+    "@mui/material": "^5.11.11",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-toastify": "^9.1.1"
   }
 }
