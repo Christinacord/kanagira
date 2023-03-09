@@ -46,9 +46,9 @@ async def get_boards(repo: BoardQueries = Depends()):
 # Create a Board
 @router.post("/api/boards")
 async def create_board(
-    account_data: dict = Depends(authenticator.get_current_account_data),
     info: BoardIn, 
-    repo: BoardQueries = Depends()
+    account_data: dict = Depends(authenticator.get_current_account_data),
+    repo: BoardQueries = Depends(),
     ):
     try:
         board_id = repo.create(info)
