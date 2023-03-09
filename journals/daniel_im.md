@@ -3,17 +3,13 @@ A list of features/issues that you worked on and who you worked with, if applica
 A reflection on any design conversations that you had
 At least one ah-ha! moment that you had during your coding, however small
 
-board view - swim lane issue create modal - needs to work, showing up but not working
-board view - issue view - update issue to other swim lanes, close issues,
-board view - need to make new open close handlers for swimlane issue create modal so it doesnt stack
-
-UNIT TESTS
-DOCUMENTATION
-CLEAN UP CODE - comments/prints
-
 Week 17
 
-3/8/23: Driver:
+3/9/23: Once again worked on our own to write our unit tests. Rather than the way shown by Riley, we followed Ryan's recommendation and used Mock to call in data for our testing.
+
+3/8/23: Driver: Ryan. Today I started off with Ryan while Ian, Christina, and Joe worked on researching drag and drop functionality. Ryan and I worked on the functionality to move issues from one swimlane to another.
+For the rest of the day, rather than working on a main feature, we all split up to resolve and chase down little bugs in our application.
+Driver: Christina. Resolved the on click refresh for our board view when you are moving the issue from one swimlane to another. So you don't have to refresh the page to see where it is, everytime you click to move it left or right, it will refresh and show you where it is.
 
 3/7/23: Driver: Christina. Today I was with Ian and Christina. We worked on our modals for our issues on the Board View page. We were having an issue with having them show up. We also had an issue getting them to submit the Issue Form. We fixed those issues. We also decided to only allow a user to add issues on the Backlog swimlane because react was changing over our swimlane variable asynchronously so they were all ending up in the last swimlane. We also created a FAQ page.
 
