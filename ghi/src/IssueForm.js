@@ -41,13 +41,12 @@ export default function IssueForm(props) {
     };
 
     const handlePriorityChange = (event) => {
-        // Clamp the input value to the range of 0-5
-        const clampedValue = Math.min(Math.max(parseInt(event.target.value), 0), 5);
+        const clampedValue = Math.min(Math.max(parseInt(event.target.value), 1), 5);
         setPriority(clampedValue);
     };
 
     const handleDifficultyChange = (event) => {
-        const clampedValue = Math.min(Math.max(parseInt(event.target.value), 0), 5);
+        const clampedValue = Math.min(Math.max(parseInt(event.target.value), 1), 5);
         setDifficulty(clampedValue);
     };
 
