@@ -98,6 +98,7 @@ async def update_issue(
     swim_lane_id: int,
     info: IssueIn,
     issue_id: int,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: IssueQueries = Depends(),
 ):
     try:
