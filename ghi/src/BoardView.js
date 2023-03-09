@@ -12,29 +12,6 @@ import Issue from "./Issue.js";
 import Modal from '@mui/material/Modal';
 import IssueForm from "./IssueForm.js";
 
-const viewStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 500,
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-  p: 4,
-};
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  borderRadius: 8,
-  boxShadow: 24,
-  p: 2,
-};
-
 
 export default function BoardView() {
   const [backlog, setBacklog] = useState([]);
@@ -123,6 +100,29 @@ export default function BoardView() {
       boxShadow: 'none',
     },
   });
+
+  const viewStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    borderRadius: 8,
+    boxShadow: 24,
+    p: 2,
+  };
 
 
   return (
