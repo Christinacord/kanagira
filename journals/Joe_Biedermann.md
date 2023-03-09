@@ -16,7 +16,7 @@
 
 ## 2/24/23
 
--Today was a shorter day with a late start and social hack hour. I worked a little more on the homepage and researched MUI for a good portion of the day.
+-/Today was a shorter day with a late start and social hack hour. I worked a little more on the homepage and researched MUI for a good portion of the day.
 
 ## 2/27/23
 
@@ -46,3 +46,8 @@ footer background color = 1976d2
 ## 3/8/23
 
 -Today we worked on the drag and drop functionality of the issues. No success yet but we will continue to work on it. We decided against the footer for now since it was causing issues with the body and content of other pages. Christina and I also worked with Ian on the error handling for the Login and Signup pages.
+
+## 3/9/23
+
+-We wrote our unit tests today. Christina and I also worked on the issues view so that the view button would navigate to its assigned board.
+We also made some minor changes to the issue form so that the int fields couldn't be negative and were min/maxed 1-5. 
