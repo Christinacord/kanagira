@@ -81,13 +81,29 @@ export default function BoardView() {
   }
 
   if (!token) {
-    return <div>Please Log In</div>;
+    return (
+      <>
+        <Box sx={{ paddingTop: 8, paddingBottom: 8 }}>
+          <Box sx={{ height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Card sx={{ width: '40%', minWidth: 200, backgroundColor: '#272D35', color: 'white', boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)' }} variant="outlined">
+              <CardContent>
+                <Typography variant="h5" component="div" sx={{ textAlign: 'center', fontWeight: 'bold', mt: 1.5 }}>
+                  Please log in
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
+        </Box>
+      </>
+    )
   }
+
   const Flex = styled('div')({
     display: 'flex',
     justifyContent: 'flex-end',
     paddingTop: '15px',
   });
+
   const CreateButton = styled(Button)({
     backgroundColor: '#f8f8f8',
     color: '#979797',

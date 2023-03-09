@@ -277,6 +277,24 @@ export default function Issue(props) {
         }
     };
 
+    if (!token) {
+        return (
+            <>
+                <Box sx={{ paddingTop: 8, paddingBottom: 8 }}>
+                    <Box sx={{ height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <Card sx={{ width: '40%', minWidth: 200, backgroundColor: '#272D35', color: 'white', boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)' }} variant="outlined">
+                            <CardContent>
+                                <Typography variant="h5" component="div" sx={{ textAlign: 'center', fontWeight: 'bold', mt: 1.5 }}>
+                                    Please log in
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                </Box>
+            </>
+        )
+    }
+
 
     return (
         <>

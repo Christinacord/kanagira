@@ -6,6 +6,7 @@ from fastapi import (
 )
 
 from pydantic import BaseModel
+from authenticator import authenticator
 
 from queries.swim_lanes import (
     DuplicateSwimLaneError,
@@ -36,7 +37,7 @@ async def get_swim_lanes(board_id: int, repo: SwimLaneQueries = Depends()):
 
 @router.post("/api/boards/{board_id}/swim_lanes")
 async def create_swim_lane(
-    board_id: int, info: SwimLaneIn, repo: SwimLaneQueries = Depends()
+    board_id: int, info: SwimLaneIn, account_data: dict = Depends(authenticator.get_current_account_data), repo: SwimLaneQueries = Depends()
 ):
     try:
         swim_lane = repo.create_swim_lane(board_id, info)
@@ -53,6 +54,7 @@ async def update_swim_lane(
     board_id: int,
     swim_lane_id: int,
     info: SwimLaneIn,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: SwimLaneQueries = Depends(),
 ):
     try:
