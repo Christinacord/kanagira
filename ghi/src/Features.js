@@ -27,7 +27,7 @@ export default function Features() {
         },
         {
             title: 'Integratable',
-            subtitle: 'Our intuitive API makes it easy to automate issue creation and other aspects of agile production.',
+            subtitle: "Our intuitive API makes it easy to automate issue creation and other aspects of agile production into your own team's workflow.",
             icon: <ApiIcon />,
         },
     ];

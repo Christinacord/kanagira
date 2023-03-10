@@ -30,13 +30,13 @@ export default function HomePage() {
             >
               Concept to launch
               <br />
-              in record{' '}
+              in {' '}
               <Typography
                 color={'primary'}
                 component={'span'}
                 variant={'inherit'}
               >
-                time.
+                record time.
               </Typography>
             </Typography>
           </Box>
