@@ -1,6 +1,10 @@
+## 03/10/2023
+
+Today we worked together as a group and completed our documentation README file. We did a final walk through of our front and back end code. We made sure to delete any remaining dead code and unnecessary comments from the project.
+
 ## 03/09/2023
 
-Today Joe and I spent the morning trying to get the modal on the IssuesView view to work/load. We ultimately made the IssuesView page navigate to the BoardView page that contains that particular issue after clicking the view button for that issue from the IssuesView page. All 5 of us wrote our unit tests for our routes.
+Today Joe and I spent the morning trying to get the modal on the IssuesView view to work/load. We ultimately made the IssuesView page navigate to the BoardView page that contains that particular issue after clicking the view button for that issue from the IssuesView page. All 5 of us wrote our unit tests for our routes. In the evening I went through and started to delete print and console.log statements. I also made the "please log in" message a link to the login/signup page. I went through and added the protection to all of our backend routes.
 
 ## 03/08/2023
 
