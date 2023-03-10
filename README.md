@@ -1,13 +1,12 @@
 # Kanagira
+** An agile board build for all kinds of business!
 
 *Designed and created by*
-Ryan Paschen
-Christina Cord
-Daniel Im
-Joe Biedermann
-Ian Li
-
-*Kanagira* - An agile board built for all kinds of businesses!
+* Ryan Paschen
+* Christina Cord
+* Daniel Im
+* Joe Biedermann
+* Ian Li
 
 ## Design
 
@@ -38,13 +37,21 @@ Kanagira was developed with businesses in mind. It was designed as an internal t
 
 ## Installation
 1. Clone the repository
+
 2. CD into /<project-parent-directories>/Kanagira
+
 3. Run ```docker volume create postgres-data```
+
 4. Run ```docker compose build```
+
 5. Run ```docker compose up```
+
 6. Run ```docker exec -it kanagira-fastapi-1 bash```
+
 7. Run ```python -m migrations up```
+
 8. Exit the container's CLI
+
 9. Visit [here](http://localhost:3000) and have fun with your agile development :)
 
 ## Feature Roadmap
