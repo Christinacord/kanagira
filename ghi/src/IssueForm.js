@@ -77,7 +77,6 @@ export default function IssueForm(props) {
         data.type = type;
         data.difficulty = difficulty;
         data.assignee = 0;
-        console.log(data);
         const issuesUrl = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues`;
         const fetchConfig = {
             method: "POST",

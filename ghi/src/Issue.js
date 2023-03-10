@@ -238,7 +238,6 @@ export default function Issue(props) {
                 body: JSON.stringify(updatedIssue),
             };
             const response = await fetch(url, fetchConfig);
-            console.log(response);
             if (response.ok) {
                 const data = await response.json();
                 setIssue({
@@ -258,7 +257,6 @@ export default function Issue(props) {
                 ...issue,
                 swim_lane_id: newSwimLaneId,
             }
-            console.log(updatedIssue);
             const url = `${process.env.REACT_APP_ACCOUNTS_HOST}/api/boards/${board_id}/swim_lanes/${swim_lane_id}/issues/${issue_id}`;
             const fetchConfig = {
                 method: "PUT",
@@ -269,7 +267,6 @@ export default function Issue(props) {
                 body: JSON.stringify(updatedIssue),
             };
             const response = await fetch(url, fetchConfig);
-            console.log(response);
             if (response.ok) {
                 const data = await response.json();
                 setIssue({
