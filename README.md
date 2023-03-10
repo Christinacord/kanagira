@@ -18,7 +18,7 @@ Kanagira was developed with businesses in mind. It was designed as an internal t
 
 - [API Design](https://gitlab.com/kanagira/kanagira/-/blob/main/docs/API-endpoints.MD)
 - [Data Model](https://gitlab.com/kanagira/kanagira/-/blob/main/docs/DataModel.md)
-- [GHI]
+- [GHI](https://gitlab.com/kanagira/kanagira/-/blob/main/docs/GHI.md)
 
 ## Functionality of MVP
 

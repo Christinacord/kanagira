@@ -4,19 +4,19 @@
 
 -Homepage is the initial landing for users. We immediately present them with our mission statement and what benefits our application can provide them with.
 
-![homepage](./images/HomePage.png)
+![Homepage](./images/HomePage.png)
 
 ## Sign up Page
 
 -This is where users will create their secured and protected accounts with us. Upon completion, they will automatically be signed in and re-routed to the dashboard.
 
-![sign-up](./images/Signup.png)
+![SignupPage](./images/SignupPage.png)
 
 ## Login
 
 -Here is where users with accounts can log in.
 
-![login](./images/LoginPage.png)
+![Login](./images/LoginPage.png)
 
 ## Boards Page
 
