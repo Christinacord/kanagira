@@ -39,7 +39,7 @@ Kanagira was developed with businesses in mind. It was designed as an internal t
 ## Installation
 1. Clone the repository
 
-2. CD into /<project-parent-directories>/Kanagira
+2. CD into ../Kanagira
 
 3. Run ```docker volume create postgres-data```
 
