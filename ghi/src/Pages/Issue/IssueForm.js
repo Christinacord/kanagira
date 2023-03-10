@@ -11,6 +11,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Card } from "@mui/material";
 import CardContent from '@mui/material/CardContent';
+import { Select, MenuItem } from "@mui/material";
+import { InputLabel } from '@mui/material';
 
 const theme = createTheme();
 
@@ -154,16 +156,21 @@ export default function IssueForm(props) {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
+                                <Select
                                     required
                                     fullWidth
                                     id="type"
-                                    label="Type"
                                     name="type"
                                     value={type}
                                     onChange={handleTypeChange}
-                                    autoComplete="off"
-                                />
+                                    displayEmpty
+                                >
+                                    <MenuItem value= "" disabled>
+                                        <em>Type</em>
+                                    </MenuItem>
+                                    <MenuItem value="Bug">Bug</MenuItem>
+                                    <MenuItem value="Feature">Feature</MenuItem>
+                                </Select>
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
