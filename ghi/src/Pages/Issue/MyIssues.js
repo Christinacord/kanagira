@@ -1,5 +1,5 @@
 import React from "react";
-import { useToken } from "./auth.js";
+import { useToken } from "../../auth.js";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "@mui/material";
 import Box from '@mui/material/Box';

@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import RocketIllustration from './svg/illustrations/Rocket';
+import RocketIllustration from '../../svg/illustrations/Rocket';
 import Features from './Features.js';
 import Faq from './FaqAccordion.js';
 import Contact from './Contact/ContactUs.js';

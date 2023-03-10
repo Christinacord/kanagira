@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useToken } from "./auth.js";
+import { useToken } from "../../auth.js";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -168,8 +168,8 @@ export default function Issue(props) {
                 const data = await response.json();
                 setIssue(data);
                 setAssignee(data.assignee_id);
-                setName(data.name);
                 setDescription(data.description);
+                setName(data.name);
             }
         };
 

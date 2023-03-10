@@ -22,7 +22,6 @@ class HttpError(BaseModel):
 router = APIRouter()
 
 
-# Get one Board by ID
 @router.get("/api/boards/{id}")
 async def get_board(id: int, repo: BoardQueries = Depends()):
     account_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
@@ -35,7 +34,6 @@ async def get_board(id: int, repo: BoardQueries = Depends()):
         return board
 
 
-# Get all Boards
 @router.get("/api/boards", response_model=list[BoardOut])
 async def get_boards(repo: BoardQueries = Depends()):
     account_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
@@ -43,7 +41,6 @@ async def get_boards(repo: BoardQueries = Depends()):
         return repo.get_all_boards()
 
 
-# Create a Board
 @router.post("/api/boards")
 async def create_board(
     info: BoardIn, 
@@ -60,7 +57,6 @@ async def create_board(
     return {"board_id": board_id}
 
 
-# Update a Board
 @router.put("/api/boards/{board_id}")
 async def update_board(
     board_id: int, info: BoardIn, 

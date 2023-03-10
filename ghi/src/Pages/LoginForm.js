@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useToken } from "./auth.js";
+import { useToken } from "../auth.js";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -19,7 +18,6 @@ const theme = createTheme();
 
 export default function LoginComponent() {
   const { token, login } = useToken();
-  const navigate = useNavigate();
 
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
