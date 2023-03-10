@@ -58,11 +58,17 @@ we change the back end code around board view. we changed the logic how the issu
 ##3/3/2023
 start changing all page into MUI style.
 
-##3/3/2023
+##3/6/2023
+Final Week. Working on debugging and fixing. Working on faqs.
+
+##3/7/2023
 Final Week. Working on debugging and fixing.
 
-##3/4/2023
-Final Week. Working on debugging and fixing
+##3/8/2023
+Final Week. Working on debugging and fixing logins & sign up functions.
 
-##3/5/2023
-Final Week. Working on debugging and fixing
+##3/9/2023
+Final Week. Working on debugging and fixing and testing issues. Also finished unit tests.
+
+##3/10/2023
+We are done working.
