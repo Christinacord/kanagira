@@ -19,7 +19,7 @@ export default function Issue(props) {
 
     const [issue, setIssue] = useState(null);
     const [users, setUsers] = useState([]);
-    const [assignee, setAssignee] = useState(null);
+    const [assignee, setAssignee] = useState('');
     const [isEditingName, setIsEditingName] = useState(false);
     const [isEditingDescription, setIsEditingDescription] = useState(false);
     const [description, setDescription] = useState(null);
@@ -435,7 +435,7 @@ export default function Issue(props) {
                                             <Select
                                                 labelId="assignee-select-label"
                                                 id="assignee-select"
-                                                value={assignee}
+                                                value={assignee || ''}
                                                 onChange={handleAssigneeChange}
                                                 sx={{ minWidth: "180px", height: "32px" }}
                                             >
