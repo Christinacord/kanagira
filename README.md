@@ -1,5 +1,5 @@
 # Kanagira
-** An agile board build for all kinds of business!
+**An agile board build for all kinds of business!**
 
 *Designed and created by*
 * Ryan Paschen
