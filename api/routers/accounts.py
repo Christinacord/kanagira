@@ -35,12 +35,13 @@ class HttpError(BaseModel):
 
 router = APIRouter()
 
-
+# Get all accounts
 @router.get("/api/accounts", response_model=list[AccountOut])
 async def get_accounts(repo: AccountQueries = Depends()):
     return repo.get_all_accounts()
 
 
+# Get token
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
@@ -55,6 +56,7 @@ async def get_token(
         }
 
 
+# Create an account
 @router.post("/api/accounts", response_model=AccountToken | HttpError)
 async def create_account(
     info: AccountIn,
@@ -74,7 +76,7 @@ async def create_account(
     token = await authenticator.login(response, request, form, repo)
     return AccountToken(account=account, **token.dict())
 
-
+# Delete an account
 @router.delete("/api/accounts/{account_id}")
 def delete_account(
     account_id: int,
