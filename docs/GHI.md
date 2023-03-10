@@ -4,7 +4,7 @@
 
 -Homepage is the initial landing for users. We immediately present them with our mission statement and what benefits our application can provide them with.
 
-![Homepage](./images/HomePage.png)
+![Homepage](./images/Homepage.png)
 
 ## Sign up Page
 
