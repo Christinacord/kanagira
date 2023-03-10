@@ -5,7 +5,9 @@ At least one ah-ha! moment that you had during your coding, however small
 
 Week 17
 
-3/9/23: Once again worked on our own to write our unit tests. Rather than the way shown by Riley, we followed Ryan's recommendation and used Mock to call in data for our testing.
+3/10/23: Today we walked through the whole project page by page and file by file. We moved our files into folders to clean it up. I wrote up the documentation for our data models. Finished up my journal entries.
+
+3/9/23: Once again worked on our own to write our unit tests. Rather than the way shown by Riley, we followed Ryan's recommendation and used Mock to call in data for our testing. Started tying up loose ends, plan out the closing out of our project before submitting. My git got completely messed up, spent 2.5 hours trying to fix it before I went to Justin and he walked me through getting it fixed. In the end we cleared all my commits and got my files synced with our repository. Still not sure exactly how it broke.
 
 3/8/23: Driver: Ryan. Today I started off with Ryan while Ian, Christina, and Joe worked on researching drag and drop functionality. Ryan and I worked on the functionality to move issues from one swimlane to another.
 For the rest of the day, rather than working on a main feature, we all split up to resolve and chase down little bugs in our application.
