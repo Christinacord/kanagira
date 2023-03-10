@@ -23,8 +23,8 @@ export default function BoardView() {
   const [isBacklogHovered, setIsBacklogHovered] = useState(false);
   const { board_id } = useParams();
   const { token } = useToken();
-  const [open, setOpen] = useState({ open: false, issue_id: null });
-  const handleClose = () => setOpen({ open: false, issue_id: null });
+  const [open, setOpen] = useState({ open: false, issue_id: "" });
+  const handleClose = () => setOpen({ open: false, issue_id: "" });
   const [createOpen, setCreateOpen] = useState(false);
   const handleCreateOpen = () => setCreateOpen(true);
   const handleCreateClose = () => setCreateOpen(false);

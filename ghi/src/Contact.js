@@ -16,10 +16,17 @@ const AboutMe = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     marginBottom: theme.spacing(6),
+    [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+        alignItems: 'flex-start',
+            '& > *': {
+        marginBottom: theme.spacing(2),
+        },
+},
 }));
 
 const LinkedInLink = styled('a')(({ theme }) => ({
-    color: '#0e76a8',
+    color: 'black',
     textDecoration: 'none',
     '&:hover': {
         textDecoration: 'underline',
@@ -50,26 +57,21 @@ const GitHubLink = styled('a')(({ theme }) => ({
     '& > svg': {
         marginRight: theme.spacing(1),
     },
-
 }));
 
 function Contact() {
     return (
         <>
+            <style>{'body { background-color: #1976d2; }'}</style>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 20, margin: "100px 20 0 0" }}>
                 <AboutMe style={{ position: "absolute", top: 80, left: 25 }}>
                     <ProfilePicture
                         alt="Profile Picture"
-                        src="https://example.com/profile-picture.jpg"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXxAYV-wgGrMrsCtEaJ-2lsKXcvdx2tbL3CA&usqp=CAU"
                     />
                     <div>
                         <Typography variant="h4" gutterBottom>
                             Ryan Paschen
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            BLAH BLAH BLAH BLAH BLAH
-                            <br />
-                            BLAH BLAH BLAH BLAH BLAH
                         </Typography>
                         <Typography variant="body1">
                             <WebsiteLink href="">
@@ -83,11 +85,10 @@ function Contact() {
                             <LinkedInLink href="https://www.linkedin.com/in/ryan-paschen/">
                                 LinkedIn
                                 <LinkedInIcon />
-                            </LinkedInLink>.
+                            </LinkedInLink>
                         </Typography>
                     </div>
                 </AboutMe>
-
                 <AboutMe style={{ position: "absolute", top: 80, right: 25 }}>
                     <ProfilePicture
                         alt="Profile Picture"
@@ -96,11 +97,6 @@ function Contact() {
                     <div>
                         <Typography variant="h4" gutterBottom>
                             Christina Cord
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            BLAH BLAH BLAH BLAH BLAH
-                            <br />
-                            BLAH BLAH BLAH BLAH BLAH
                         </Typography>
                         <Typography variant="body1">
                             <WebsiteLink href="">
@@ -114,11 +110,10 @@ function Contact() {
                             <LinkedInLink href="https://www.linkedin.com/in/christinacord/">
                                 LinkedIn
                                 <LinkedInIcon />
-                            </LinkedInLink>.
+                            </LinkedInLink>
                         </Typography>
                     </div>
                 </AboutMe>
-
                 <AboutMe style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
                     <ProfilePicture
                         alt="Profile Picture"
@@ -127,11 +122,6 @@ function Contact() {
                     <div>
                         <Typography variant="h4" gutterBottom>
                             Daniel Im
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            BLAH BLAH BLAH BLAH BLAH
-                            <br />
-                            BLAH BLAH BLAH BLAH BLAH
                         </Typography>
                         <Typography variant="body1">
                             <WebsiteLink href="">
@@ -145,11 +135,10 @@ function Contact() {
                             <LinkedInLink href="https://www.linkedin.com/in/danielsuim/">
                                 LinkedIn
                                 <LinkedInIcon />
-                            </LinkedInLink>.
+                            </LinkedInLink>
                         </Typography>
                     </div>
                 </AboutMe>
-
                 <AboutMe style={{ position: "absolute", bottom: 0, left: 25 }}>
                     <ProfilePicture
                         alt="Profile Picture"
@@ -158,11 +147,6 @@ function Contact() {
                     <div>
                         <Typography variant="h4" gutterBottom>
                             Ian Li
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            BLAH BLAH BLAH BLAH BLAH
-                            <br />
-                            BLAH BLAH BLAH BLAH BLAH
                         </Typography>
                         <Typography variant="body1">
                             <WebsiteLink href="">
@@ -176,11 +160,10 @@ function Contact() {
                             <LinkedInLink href="https://www.linkedin.com/in/ian-z-li/">
                                 LinkedIn
                                 <LinkedInIcon />
-                            </LinkedInLink>.
+                            </LinkedInLink>
                         </Typography>
                     </div>
                 </AboutMe>
-
                 <AboutMe style={{ position: "absolute", bottom: 0, right: 25 }}>
                     <ProfilePicture
                         alt="Profile Picture"
@@ -189,11 +172,6 @@ function Contact() {
                     <div>
                         <Typography variant="h4" gutterBottom>
                             Joe Biedermann
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            BLAH BLAH BLAH BLAH BLAH
-                            <br />
-                            BLAH BLAH BLAH BLAH BLAH
                         </Typography>
                         <Typography variant="body1">
                             <WebsiteLink href="">
@@ -204,11 +182,10 @@ function Contact() {
                                 GitHub
                                 <GitHubIcon />
                             </GitHubLink>
-
                             <LinkedInLink href="https://www.linkedin.com/in/joe-biedermann/">
                                 LinkedIn
                                 <LinkedInIcon />
-                            </LinkedInLink>.
+                            </LinkedInLink>
                         </Typography>
                     </div>
                 </AboutMe>
