@@ -53,9 +53,6 @@ export default function MyApp() {
                 <MenuItem id="menu-appbar" component="a" href="/contact" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Contact Us</Typography>
                 </MenuItem>
-                <MenuItem id="menu-appbar" component="a" href="faq" onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">FAQ</Typography>
-                </MenuItem>
               </Menu>
             </Box>
             <RocketLaunchIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -65,9 +62,6 @@ export default function MyApp() {
             <Box id="normalview-menubar" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button onClick={handleCloseNavMenu} component="a" href="/contact" sx={{ my: 2, color: 'white', display: 'block' }}>
                 Contact Us
-              </Button>
-              <Button onClick={handleCloseNavMenu} component="a" href="/faq" sx={{ my: 2, color: 'white', display: 'block' }}>
-                FAQ
               </Button>
             </Box>
             <Box id="account-icon-dropdown-menu" sx={{ flexGrow: 0 }}>
@@ -111,9 +105,6 @@ export default function MyApp() {
                 <MenuItem id="menu-appbar" component="a" href="/contact" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">Contact Us</Typography>
                 </MenuItem>
-                <MenuItem id="menu-appbar" component="a" href="/faq" onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">FAQ</Typography>
-                </MenuItem>
               </Menu>
             </Box>
             <RocketLaunchIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -123,9 +114,6 @@ export default function MyApp() {
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button onClick={handleCloseNavMenu} component="a" href="/contact" sx={{ my: 2, color: 'white', display: 'block' }}>
                 Contact Us
-              </Button>
-              <Button onClick={handleCloseNavMenu} component="a" href="/faq" sx={{ my: 2, color: 'white', display: 'block' }}>
-                FAQ
               </Button>
             </Box>
             <Box id="account-icon-dropdown-menu" sx={{ flexGrow: 0 }}>
