@@ -36,11 +36,17 @@
 
 ![CreateBoardForm](./images/CreateBoardForm.png)
 
+## Issue Detail View
+
+- This is where you can see the details of a specific issue within your board/swimlane
+
+![IssuesDetail](./images/IssueView.png)
+
 ## Issues View
 
 -Issues View is where users will see all of the issues that they are assigned to.
 
-![IssuesViewPage](./images/IssuesViewPage.png)
+![IssuesViewPage](./images/MyIssues.png)
 
 ## Create Issue Form
 
