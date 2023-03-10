@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const Faq = () => {
   return (
-    <Box paddingTop={5} paddingBottom={10}>
+    <Box paddingTop={5} paddingBottom={15}>
       <Box marginBottom={4}>
         <Box
           component={Typography}

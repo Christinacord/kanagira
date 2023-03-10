@@ -53,7 +53,7 @@ const GitHubLink = styled('a')(({ theme }) => ({
 
 }));
 
-function Contact() {
+export default function About() {
     return (
         <>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 20, margin: "100px 20 0 0" }}>
@@ -217,5 +217,3 @@ function Contact() {
     )
 }
 
-
-export default Contact
