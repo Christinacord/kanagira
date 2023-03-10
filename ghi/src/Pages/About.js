@@ -17,12 +17,12 @@ const AboutMe = styled('div')(({ theme }) => ({
     alignItems: 'center',
     marginBottom: theme.spacing(6),
     [theme.breakpoints.down('sm')]: {
-    flexDirection: 'column',
+        flexDirection: 'column',
         alignItems: 'flex-start',
-            '& > *': {
-        marginBottom: theme.spacing(2),
+        '& > *': {
+            marginBottom: theme.spacing(2),
         },
-},
+    },
 }));
 
 const LinkedInLink = styled('a')(({ theme }) => ({

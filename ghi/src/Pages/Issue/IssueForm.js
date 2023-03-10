@@ -164,7 +164,7 @@ export default function IssueForm(props) {
                                     onChange={handleTypeChange}
                                     displayEmpty
                                 >
-                                    <MenuItem value= "" disabled>
+                                    <MenuItem value="" disabled>
                                         <em>Type</em>
                                     </MenuItem>
                                     <MenuItem value="Bug">Bug</MenuItem>

@@ -45,7 +45,9 @@ async def get_issue_by_id(
 
 @router.get("/api/boards/{board_id}/swim_lanes/{swim_lane_id}/issues")
 async def get_issues_by_swim_lane_id(
-    board_id: int, swim_lane_id: int, repo: IssueQueries = Depends(),
+    board_id: int,
+    swim_lane_id: int,
+    repo: IssueQueries = Depends(),
 ):
     issue = repo.get_issues_by_swim_lane_id(swim_lane_id)
     if issue is None:

@@ -40,7 +40,9 @@ class AccountQueries:
                 )
                 records = result.fetchall()
                 return [
-                    AccountOut(id=record[0], full_name=record[1], username=record[2])
+                    AccountOut(
+                        id=record[0], full_name=record[1], username=record[2]
+                    )
                     for record in records
                 ]
 

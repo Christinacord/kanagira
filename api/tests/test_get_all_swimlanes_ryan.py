@@ -11,7 +11,10 @@ def test_get_all_swim_lanes():
     swim_lane_out1 = SwimLaneOut(id=1, name="swim_lane1", board_id=board_id)
     swim_lane_out2 = SwimLaneOut(id=2, name="swim_lane2", board_id=board_id)
     mock_repo = Mock(spec=SwimLaneQueries)
-    mock_repo.get_all_swim_lanes.return_value = [swim_lane_out1, swim_lane_out2]
+    mock_repo.get_all_swim_lanes.return_value = [
+        swim_lane_out1,
+        swim_lane_out2,
+    ]
 
     # Act
     app.dependency_overrides[SwimLaneQueries] = lambda: mock_repo

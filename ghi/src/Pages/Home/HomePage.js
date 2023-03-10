@@ -18,93 +18,93 @@ export default function HomePage() {
 
   return (
     <>
-    <Grid container sx={{ paddingLeft: 20, paddingBottom: 2}}>
-      <Grid item container alignItems={'center'} justifyContent={'center'} xs={12} md={6} sx={{ paddingLeft: isMd ? 8 : 0 }}>
-        <Box data-aos={isMd ? 'fade-right' : 'fade-up'}>
-          <Box marginBottom={2}>
-            <Typography
-              variant="h2"
-              color="textPrimary"
-              sx={{
-                fontWeight: 700,
-              }}
-            >
-              Concept to launch
-              <br />
-              in {' '}
+      <Grid container sx={{ paddingLeft: 20, paddingBottom: 2 }}>
+        <Grid item container alignItems={'center'} justifyContent={'center'} xs={12} md={6} sx={{ paddingLeft: isMd ? 8 : 0 }}>
+          <Box data-aos={isMd ? 'fade-right' : 'fade-up'}>
+            <Box marginBottom={2}>
               <Typography
-                color={'primary'}
-                component={'span'}
-                variant={'inherit'}
+                variant="h2"
+                color="textPrimary"
+                sx={{
+                  fontWeight: 700,
+                }}
               >
-                record time.
+                Concept to launch
+                <br />
+                in {' '}
+                <Typography
+                  color={'primary'}
+                  component={'span'}
+                  variant={'inherit'}
+                >
+                  record time.
+                </Typography>
               </Typography>
-            </Typography>
-          </Box>
-          <Box marginBottom={3}>
-            <Typography
-              variant="h6"
-              component="p"
-              color="textSecondary"
-              sx={{ fontWeight: 400 }}
-            >
-              Teamwork in mind, don't trust your memory, trust Kanagira!
-            </Typography>
-          </Box>
-          <Box
-            display="flex"
-            flexDirection={{ xs: 'column', sm: 'row' }}
-            alignItems={{ xs: 'stretched', sm: 'flex-start' }}
-          >
-            <Button
-              component={'a'}
-              variant="contained"
-              color="primary"
-              size="large"
-              fullWidth={isMd ? false : true}
-              href={
-                '/boards'
-              }
-            >
-              Start now
-            </Button>
+            </Box>
+            <Box marginBottom={3}>
+              <Typography
+                variant="h6"
+                component="p"
+                color="textSecondary"
+                sx={{ fontWeight: 400 }}
+              >
+                Teamwork in mind, don't trust your memory, trust Kanagira!
+              </Typography>
+            </Box>
             <Box
-              marginTop={{ xs: 2, sm: 0 }}
-              marginLeft={{ sm: 2 }}
-              width={{ xs: '100%', md: 'auto' }}
+              display="flex"
+              flexDirection={{ xs: 'column', sm: 'row' }}
+              alignItems={{ xs: 'stretched', sm: 'flex-start' }}
             >
               <Button
                 component={'a'}
-                href={'http://localhost:8000/docs'}
-                variant="outlined"
+                variant="contained"
                 color="primary"
                 size="large"
                 fullWidth={isMd ? false : true}
-                target="_blank"
+                href={
+                  '/boards'
+                }
               >
-                View documentation
+                Start now
               </Button>
+              <Box
+                marginTop={{ xs: 2, sm: 0 }}
+                marginLeft={{ sm: 2 }}
+                width={{ xs: '100%', md: 'auto' }}
+              >
+                <Button
+                  component={'a'}
+                  href={'http://localhost:8000/docs'}
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  fullWidth={isMd ? false : true}
+                  target="_blank"
+                >
+                  View documentation
+                </Button>
+              </Box>
             </Box>
           </Box>
-        </Box>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <Box
-          height={'100%'}
-          width={'100%'}
-          display={'flex'}
-          justifyContent={'center'}
-          alignItems={'center'}
-        >
-          <Box height={'100%'} width={'100%'} maxHeight={600}>
-            <RocketIllustration width={'100%'} height={'100%'} />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            height={'100%'}
+            width={'100%'}
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={'center'}
+          >
+            <Box height={'100%'} width={'100%'} maxHeight={600}>
+              <RocketIllustration width={'100%'} height={'100%'} />
+            </Box>
           </Box>
-        </Box>
+        </Grid>
       </Grid>
-    </Grid>
-    <Features />
-    <Faq />
-    <Contact />
+      <Features />
+      <Faq />
+      <Contact />
     </>
   );
 };

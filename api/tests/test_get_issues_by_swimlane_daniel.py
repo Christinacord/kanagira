@@ -37,17 +37,21 @@ def test_get_issues_by_swim_lane_id():
 
     # Assert
     assert response.status_code == 200
-    assert response.json() == [{
-        "id": issue_out.id,
-        "name": issue_out.name,
-        "description": issue_out.description,
-        "priority": issue_out.priority,
-        "type": issue_out.type,
-        "difficulty": issue_out.difficulty,
-        "creator_id": issue_out.creator_id,
-        "assignee_id": issue_out.assignee_id,
-        "swim_lane_id": issue_out.swim_lane_id,
-        "assignee_name": issue_out.assignee_name,
-    }]
+    assert response.json() == [
+        {
+            "id": issue_out.id,
+            "name": issue_out.name,
+            "description": issue_out.description,
+            "priority": issue_out.priority,
+            "type": issue_out.type,
+            "difficulty": issue_out.difficulty,
+            "creator_id": issue_out.creator_id,
+            "assignee_id": issue_out.assignee_id,
+            "swim_lane_id": issue_out.swim_lane_id,
+            "assignee_name": issue_out.assignee_name,
+        }
+    ]
 
-    mock_issue_queries.get_issues_by_swim_lane_id.assert_called_once_with(swim_lane_id)
+    mock_issue_queries.get_issues_by_swim_lane_id.assert_called_once_with(
+        swim_lane_id
+    )

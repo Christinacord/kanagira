@@ -3,6 +3,7 @@ from unittest.mock import Mock
 from main import app
 from queries.boards import BoardQueries, BoardOut
 
+
 def test_get_all_boards():
     # Arrange
     board_out1 = BoardOut(id=1, name="board1")

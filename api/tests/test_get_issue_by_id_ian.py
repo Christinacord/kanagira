@@ -50,5 +50,5 @@ def test_get_issue_by_id():
         "swim_lane_id": issue_out.swim_lane_id,
         "assignee_name": issue_out.assignee_name,
     }
-    
+
     mock_issue_queries.get_issue_by_id.assert_called_once_with(issue_id)
