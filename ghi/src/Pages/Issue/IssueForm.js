@@ -12,7 +12,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Card } from "@mui/material";
 import CardContent from '@mui/material/CardContent';
 import { Select, MenuItem } from "@mui/material";
-import { InputLabel } from '@mui/material';
 
 const theme = createTheme();
 
@@ -170,6 +169,7 @@ export default function IssueForm(props) {
                                     </MenuItem>
                                     <MenuItem value="Bug">Bug</MenuItem>
                                     <MenuItem value="Feature">Feature</MenuItem>
+                                    <MenuItem value="Research">Research</MenuItem>
                                 </Select>
                             </Grid>
                             <Grid item xs={12}>
