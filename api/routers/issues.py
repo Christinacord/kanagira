@@ -26,7 +26,6 @@ class HttpError(BaseModel):
 router = APIRouter()
 
 
-# Get issue by issue id
 @router.get(
     "/api/boards/{board_id}/swim_lanes/{swim_lane_id}/issues/{issue_id}"
 )
@@ -44,7 +43,6 @@ async def get_issue_by_id(
     return issue
 
 
-# Get issues by swim lane id
 @router.get("/api/boards/{board_id}/swim_lanes/{swim_lane_id}/issues")
 async def get_issues_by_swim_lane_id(
     board_id: int, swim_lane_id: int, repo: IssueQueries = Depends(),
@@ -57,7 +55,6 @@ async def get_issues_by_swim_lane_id(
     return issue
 
 
-# Get issues by assignee id
 @router.get("/api/issues/me")
 async def get_issues_by_assignee_id(
     account_data: dict = Depends(authenticator.get_current_account_data),
@@ -72,7 +69,6 @@ async def get_issues_by_assignee_id(
     return issue
 
 
-# Create an issue
 @router.post("/api/boards/{board_id}/swim_lanes/{swim_lane_id}/issues")
 async def create_issue(
     board_id: int,
@@ -92,7 +88,6 @@ async def create_issue(
     return issue
 
 
-# Update an Issue
 @router.put(
     "/api/boards/{board_id}/swim_lanes/{swim_lane_id}/issues/{issue_id}"
 )

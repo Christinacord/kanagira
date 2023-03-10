@@ -28,8 +28,4 @@ const Contact = ({ themeMode = 'light' }) => {
     );
 };
 
-Contact.propTypes = {
-    themeMode: PropTypes.string.isRequired,
-};
-
 export default Contact;

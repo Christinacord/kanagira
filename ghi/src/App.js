@@ -1,17 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Nav";
-import HomePage from "./HomePage";
-import ErrorNotification from "./ErrorNotification";
+import HomePage from "./Pages/Home/HomePage";
 import "./App.css";
 import { AuthProvider, useToken } from "./auth.js";
-import LoginComponent from "./LoginForm";
-import SignupComponent from "./SignupForm";
-import BoardView from "./BoardView";
-import BoardForm from "./BoardForm";
-import IssueForm from "./IssueForm";
-import MyIssues from "./IssuesView";
-import Boards from "./Boards";
-import About from "./About"
+import LoginComponent from "./Pages/LoginForm";
+import SignupComponent from "./Pages/SignupForm";
+import Boards from "./Pages/Board/Boards";
+import BoardView from "./Pages/Board/BoardView";
+import BoardForm from "./Pages/Board/BoardForm";
+import IssueForm from "./Pages/Issue/IssueForm";
+import MyIssues from "./Pages/Issue/MyIssues";
+import About from "./Pages/About"
 
 
 function GetToken() {

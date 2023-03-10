@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useToken } from "./auth.js";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useToken } from '../../auth.js';
+import { useParams, Link } from "react-router-dom";
 import { Card } from "@mui/material";
 import Box from '@mui/material/Box';
 import CardActions from '@mui/material/CardActions';
@@ -8,9 +8,9 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
-import Issue from "./Issue.js";
+import Issue from "../Issue/IssueView.js";
 import Modal from '@mui/material/Modal';
-import IssueForm from "./IssueForm.js";
+import IssueForm from "../Issue/IssueForm.js";
 
 
 export default function BoardView() {

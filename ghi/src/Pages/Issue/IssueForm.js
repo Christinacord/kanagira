@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useToken } from "./auth.js";
+import { Link } from "react-router-dom";
+import { useToken } from "../../auth.js";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -15,7 +15,6 @@ import CardContent from '@mui/material/CardContent';
 const theme = createTheme();
 
 export default function IssueForm(props) {
-    const navigate = useNavigate();
     const [name, setName] = React.useState("");
     const [type, setType] = React.useState("");
     const [description, setDescription] = React.useState("");
