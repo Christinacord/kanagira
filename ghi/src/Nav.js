@@ -50,8 +50,8 @@ export default function MyApp() {
                 <MenuIcon />
               </IconButton>
               <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left', }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: 'block', md: 'none' }, }}>
-                <MenuItem id="menu-appbar" component="a" href="/contact" onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Contact Us</Typography>
+                <MenuItem id="menu-appbar" component="a" href="/about" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">About</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -60,8 +60,8 @@ export default function MyApp() {
               KANAGIRA
             </Typography>
             <Box id="normalview-menubar" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button onClick={handleCloseNavMenu} component="a" href="/contact" sx={{ my: 2, color: 'white', display: 'block' }}>
-                Contact Us
+              <Button onClick={handleCloseNavMenu} component="a" href="/about" sx={{ my: 2, color: 'white', display: 'block' }}>
+                About
               </Button>
             </Box>
             <Box id="account-icon-dropdown-menu" sx={{ flexGrow: 0 }}>
@@ -102,8 +102,8 @@ export default function MyApp() {
                 <MenuIcon />
               </IconButton>
               <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left', }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: 'block', md: 'none' }, }}>
-                <MenuItem id="menu-appbar" component="a" href="/contact" onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Contact Us</Typography>
+                <MenuItem id="menu-appbar" component="a" href="/bout" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">About</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -112,8 +112,8 @@ export default function MyApp() {
               KANAGIRA
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button onClick={handleCloseNavMenu} component="a" href="/contact" sx={{ my: 2, color: 'white', display: 'block' }}>
-                Contact Us
+              <Button onClick={handleCloseNavMenu} component="a" href="/about" sx={{ my: 2, color: 'white', display: 'block' }}>
+                About
               </Button>
             </Box>
             <Box id="account-icon-dropdown-menu" sx={{ flexGrow: 0 }}>

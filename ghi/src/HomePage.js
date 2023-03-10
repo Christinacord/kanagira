@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import RocketIllustration from './svg/illustrations/Rocket';
 import Features from './Features.js';
 import Faq from './FaqAccordion.js';
+import Contact from './Contact/ContactUs.js';
 
 export default function HomePage() {
   const theme = useTheme();
@@ -103,6 +104,7 @@ export default function HomePage() {
     </Grid>
     <Features />
     <Faq />
+    <Contact />
     </>
   );
 };

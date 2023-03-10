@@ -28,7 +28,7 @@ export default function MyIssues() {
             if (response.ok) {
                 const data = await response.json();
                 setIssues(data);
-                navigate(`/boards`);
+                navigate(`/issues`);
             }
         }
 
@@ -86,7 +86,7 @@ export default function MyIssues() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" onClick={() => navigate(`/${issue.id}/view`)} sx={{ color: 'white', backgroundColor: '#44484F', '&:hover': { backgroundColor: '#383D45' } }}>View</Button>
+                                        <Button size="small" onClick={() => navigate(`/boards/`)} sx={{ color: 'white', backgroundColor: '#44484F', '&:hover': { backgroundColor: '#383D45' } }}>View</Button>
                                     </CardActions>
                                 </Card>
                             ))}
