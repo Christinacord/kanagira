@@ -59,7 +59,7 @@ const GitHubLink = styled('a')(({ theme }) => ({
     },
 }));
 
-function Contact() {
+export default function About() {
     return (
         <>
             <style>{'body { background-color: #1976d2; }'}</style>
@@ -194,5 +194,3 @@ function Contact() {
     )
 }
 
-
-export default Contact

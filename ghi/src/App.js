@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Nav";
 import HomePage from "./HomePage";
-import { useEffect, useState } from "react";
-import Construct from "./Construct.js";
 import ErrorNotification from "./ErrorNotification";
 import "./App.css";
 import { AuthProvider, useToken } from "./auth.js";
@@ -13,7 +11,7 @@ import BoardForm from "./BoardForm";
 import IssueForm from "./IssueForm";
 import MyIssues from "./IssuesView";
 import Boards from "./Boards";
-import Contact from "./Contact"
+import About from "./About"
 
 
 function GetToken() {
@@ -36,7 +34,7 @@ function App() {
           <Route path="/boards/create" element={<BoardForm />} />
           <Route path="/boards/:board_id/swimlane/:swimlane_id/issues/create" element={<IssueForm />} />
           <Route path="/issues" element={<MyIssues />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
