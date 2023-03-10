@@ -8,15 +8,16 @@
 * Joe Biedermann
 * Ian Li
 
+
+## Intended Market
+
+Kanagira was developed with businesses in mind. It was designed as an internal tool that could be scaled for use across an entire business. Allowing for multiple boards to be created, a multitude of teams can work without interfering with each other.
+
 ## Design
 
 - Link 1
 - Link 2
 - Link 3
-
-## Intended Market
-
-Kanagira was developed with businesses in mind. It was designed as an internal tool that could be scaled for use across an entire business. Allowing for multiple boards to be created, a multitude of teams can work without interfering with each other.
 
 ## Functionality of MVP
 - Visitors can register an account using their full name, username, email and password
