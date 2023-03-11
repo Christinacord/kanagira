@@ -50,4 +50,8 @@ footer background color = 1976d2
 ## 3/9/23
 
 -We wrote our unit tests today. Christina and I also worked on the issues view so that the view button would navigate to its assigned board.
-We also made some minor changes to the issue form so that the int fields couldn't be negative and were min/maxed 1-5. 
+We also made some minor changes to the issue form so that the int fields couldn't be negative and were min/maxed 1-5.
+
+## 3/10/23
+
+-Today we completed our documentation. We also went through all of the code and did a clean up and organized our files. We tested the app and walked through as a team to make sure everything was working properly. Great Success!
