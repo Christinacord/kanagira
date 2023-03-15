@@ -28,9 +28,13 @@ export default function BoardView() {
   const [createOpen, setCreateOpen] = useState(false);
   const handleCreateOpen = () => setCreateOpen(true);
   const handleCreateClose = () => setCreateOpen(false);
+
+  /* eslint-disable */
   useEffect(() => {
     fetchIssues();
   }, [board_id, token]);
+  /* eslint-enable */
+
 
   const fetchIssues = async () => {
     const swimlaneStartId = ((board_id - 1) * 5) + 1;
