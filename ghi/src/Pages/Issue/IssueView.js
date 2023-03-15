@@ -212,7 +212,9 @@ export default function Issue(props) {
         };
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
+            /* eslint-disable */
             const data = await response.json();
+            /* eslint-enable */
             setIssue({
                 ...issue,
                 assignee_id: newAssigneeId,
