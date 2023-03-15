@@ -88,7 +88,6 @@ class BoardQueries:
                     UPDATE boards
                     SET name = %s
                     WHERE id = %s
-                    ORDER BY id
                     RETURNING id;
                     """,
                     [info.name, board_id],
