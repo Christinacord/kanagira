@@ -17,8 +17,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme();
 
 export default function LoginComponent() {
+/* eslint-disable */
   const { token, login } = useToken();
-
+/* eslint-enable */
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");

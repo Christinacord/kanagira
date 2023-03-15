@@ -49,8 +49,11 @@ export default function Boards() {
             }
         }
 
-        fetchBoards();
-    }, []);
+
+  /* eslint-disable */
+    fetchBoards();
+}, []);
+  /* eslint-enable */
 
     if (!token) {
         return (

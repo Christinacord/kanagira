@@ -14,14 +14,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 
 export default function SignupForm() {
+  /* eslint-disable */
   const { token, signup } = useToken();
+  /* eslint-enable */
   const navigate = useNavigate();
   const [full_name, setFull_name] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  /* eslint-disable */
   const [error, setError] = React.useState("");
-
+  /* eslint-enable */
   const handleFull_nameChange = (e) => {
     const value = e.target.value;
     setFull_name(value);

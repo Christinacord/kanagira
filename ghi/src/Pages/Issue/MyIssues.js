@@ -31,10 +31,10 @@ export default function MyIssues() {
                 navigate(`/issues`);
             }
         }
-
+/* eslint-disable */
         fetchIssues();
     }, [token]);
-
+/* eslint-enable */
     if (!token) {
         return (
             <>

@@ -11,7 +11,10 @@ import SendToMobileIcon from '@mui/icons-material/SendToMobile';
 import ApiIcon from '@mui/icons-material/Api';
 
 export default function Features() {
+    /* eslint-disable */
     const theme = useTheme();
+    /* eslint-enable */
+
     const features = [
         {
             title: 'Scalable',

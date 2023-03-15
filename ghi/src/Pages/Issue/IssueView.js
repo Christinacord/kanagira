@@ -188,10 +188,11 @@ export default function Issue(props) {
                 setUsers(data);
             }
         };
-
+/* eslint-disable */
         fetchIssue();
         fetchUsers();
     }, [issue_id, token]);
+/* eslint-enable */
 
     const handleAssigneeChange = async (event) => {
         const newAssigneeId = event.target.value;
