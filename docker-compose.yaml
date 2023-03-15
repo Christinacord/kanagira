@@ -43,7 +43,7 @@ services:
       WAIT_HOSTS: postgres:5432
       WAIT_BEFORE: 5
       WAIT_TIMEOUT: 60
-      DATABASE_URL: postgresql://user:password@postgres/fastapi
+      DATABASE_URL: postgresql://postgres:e5bb7f3f03153360@srv-captain--kanagirapostgresql
 
   ghi:
     image: node:lts-bullseye
