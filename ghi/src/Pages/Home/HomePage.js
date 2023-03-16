@@ -63,7 +63,7 @@ export default function HomePage() {
                 size="large"
                 fullWidth={isMd ? false : true}
                 href={
-                  '/boards'
+                  '/kanagira/boards'
                 }
               >
                 Start now
