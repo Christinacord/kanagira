@@ -75,7 +75,7 @@ export default function HomePage() {
               >
                 <Button
                   component={'a'}
-                  href={'http://localhost:8000/docs'}
+                  href={'https://kanagira.nov-ct-1.mod3projects.com/docs'}
                   variant="outlined"
                   color="primary"
                   size="large"
