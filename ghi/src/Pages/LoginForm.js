@@ -108,7 +108,7 @@ export default function LoginComponent() {
           </Box>
           <Grid container>
             <Grid item>
-              <LinkMui href="/signup" variant="body2">
+              <LinkMui href="/kanagira/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </LinkMui>
             </Grid>
