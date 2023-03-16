@@ -92,7 +92,7 @@ export default function About() {
                 <AboutMe style={{ position: "absolute", top: 80, right: 25 }}>
                     <ProfilePicture
                         alt="Profile Picture"
-                        src="https://media.licdn.com/dms/image/D4E35AQHItwpdV6nhOg/profile-framedphoto-shrink_200_200/0/1662729862658?e=1678827600&v=beta&t=dyrPtgkSgyqdl6CulxnsFiXxBWK41SUQm-IudS6w6u4"
+                        src="https://media.licdn.com/dms/image/D4E35AQHItwpdV6nhOg/profile-framedphoto-shrink_100_100/0/1662729862658?e=1679587200&v=beta&t=BBUSiYy9cXE6-_JdO6auQEHCgfgHvpBLj29gLtUwGGo"
                     />
                     <div>
                         <Typography variant="h4" gutterBottom>
@@ -142,7 +142,7 @@ export default function About() {
                 <AboutMe style={{ position: "absolute", bottom: 0, left: 25 }}>
                     <ProfilePicture
                         alt="Profile Picture"
-                        src="https://media.licdn.com/dms/image/D5635AQHOYBHxWEtS2Q/profile-framedphoto-shrink_200_200/0/1677100863476?e=1678827600&v=beta&t=Bb9MBP-YXEpOVI3z3Odx1MEcGtYHSAlSvKgURJtwFAU"
+                        src="https://media.licdn.com/dms/image/D5635AQHOYBHxWEtS2Q/profile-framedphoto-shrink_200_200/0/1677100863476?e=1679587200&v=beta&t=liZmqGA3VOgTdEWLMF0AdIT23G9dk65LmQd_M9cvQaU"
                     />
                     <div>
                         <Typography variant="h4" gutterBottom>
@@ -193,4 +193,3 @@ export default function About() {
         </>
     )
 }
-
