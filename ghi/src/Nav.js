@@ -44,7 +44,7 @@ export default function MyApp() {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <RocketLaunchIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            <Typography variant="h6" noWrap component="a" href="/" sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
+            <Typography variant="h6" noWrap component="a" href="/kanagira/" sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
               KANAGIRA
             </Typography>
             <Box id="mobile-responsive-hamburger-menu" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -52,17 +52,17 @@ export default function MyApp() {
                 <MenuIcon />
               </IconButton>
               <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left', }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: 'block', md: 'none' }, }}>
-                <MenuItem id="menu-appbar" component="a" href="/about" onClick={handleCloseNavMenu}>
+                <MenuItem id="menu-appbar" component="a" href="/kanagira/about" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">About</Typography>
                 </MenuItem>
               </Menu>
             </Box>
             <RocketLaunchIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography variant="h5" noWrap component="a" href="/#" sx={{ mr: 2, display: { xs: 'flex', md: 'none' }, flexGrow: 1, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
+            <Typography variant="h5" noWrap component="a" href="/kanagira/#" sx={{ mr: 2, display: { xs: 'flex', md: 'none' }, flexGrow: 1, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
               KANAGIRA
             </Typography>
             <Box id="normalview-menubar" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button onClick={handleCloseNavMenu} component="a" href="/about" sx={{ my: 2, color: 'white', display: 'block' }}>
+              <Button onClick={handleCloseNavMenu} component="a" href="/kanagira/about" sx={{ my: 2, color: 'white', display: 'block' }}>
                 About
               </Button>
             </Box>
@@ -74,13 +74,13 @@ export default function MyApp() {
               </Tooltip>
               <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: 'top', horizontal: 'right', }}
                 keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                <MenuItem component="a" href="/boards" onClick={handleCloseUserMenu}>
+                <MenuItem component="a" href="/kanagira/boards" onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">Dashboard</Typography>
                 </MenuItem>
-                <MenuItem component="a" href="/issues" onClick={handleCloseUserMenu}>
+                <MenuItem component="a" href="/kanagira/issues" onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">My Issues</Typography>
                 </MenuItem>
-                <MenuItem component="a" href="#" onClick={handleClick}>
+                <MenuItem component="a" href="/kanagira/#" onClick={handleClick}>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
               </Menu>
@@ -96,7 +96,7 @@ export default function MyApp() {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <RocketLaunchIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            <Typography variant="h6" noWrap component="a" href="/" sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
+            <Typography variant="h6" noWrap component="a" href="/kanagira/" sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
               KANAGIRA
             </Typography>
             <Box id="mobile-responsive-hamburger-menu" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -104,17 +104,17 @@ export default function MyApp() {
                 <MenuIcon />
               </IconButton>
               <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left', }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: 'block', md: 'none' }, }}>
-                <MenuItem id="menu-appbar" component="a" href="/bout" onClick={handleCloseNavMenu}>
+                <MenuItem id="menu-appbar" component="a" href="/kanagira/about" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">About</Typography>
                 </MenuItem>
               </Menu>
             </Box>
             <RocketLaunchIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography variant="h5" noWrap component="a" href="/#" sx={{ mr: 2, display: { xs: 'flex', md: 'none' }, flexGrow: 1, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
+            <Typography variant="h5" noWrap component="a" href="/kanagira/#" sx={{ mr: 2, display: { xs: 'flex', md: 'none' }, flexGrow: 1, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
               KANAGIRA
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button onClick={handleCloseNavMenu} component="a" href="/about" sx={{ my: 2, color: 'white', display: 'block' }}>
+              <Button onClick={handleCloseNavMenu} component="a" href="/kanagira/about" sx={{ my: 2, color: 'white', display: 'block' }}>
                 About
               </Button>
             </Box>
@@ -126,10 +126,10 @@ export default function MyApp() {
               </Tooltip>
               <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: 'top', horizontal: 'right', }}
                 keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                <MenuItem component="a" href="/login" onClick={handleCloseUserMenu}>
+                <MenuItem component="a" href="/kanagira/login" onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">Login</Typography>
                 </MenuItem>
-                <MenuItem component="a" href="/signup" onClick={handleCloseUserMenu}>
+                <MenuItem component="a" href="/kanagira/signup" onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">Sign Up</Typography>
                 </MenuItem>
               </Menu>
